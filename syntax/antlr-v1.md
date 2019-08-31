@@ -20,7 +20,7 @@ type ::=
 	| "_"
 
 typename ::=
-	rep1sep(type, '.')
+	rep1sep(type, '.') ('[' rep1sep(typename, sep) ']')?
 
 typeanno ::=
 	'(' typename ')'
