@@ -23,12 +23,11 @@ Classes:
 - generic operator overloading.
 - nested classes.
 
-Traits:
-- defines a set of messages and members that must be implemented in classes that apply the trait.
+Protocols:
+- defines a set of messages and members that must be implemented in classes that use the protocol.
 - name may change.
 - no macros.
 - no generics (for now).
-- default values for members.
 
 Catagories:
 - declares a set of messages, members, and macros that are added to a class at runtime.
