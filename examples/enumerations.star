@@ -1,7 +1,7 @@
 use Core
 
 module Main {
-	catagory Fruit {
+	kind Fruit {
 		Apple
 		Banana
 		Cherry
