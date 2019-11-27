@@ -4,7 +4,7 @@ class Point {
 	my x = 0
 	my y = 0
 
-	on [Str] {
+	on [Str] is cast {
 		return "Point x: \(x), y: \(y)"
 	}
 }
@@ -12,7 +12,7 @@ class Point {
 class Circle of Point {
 	my r = 0
 
-	on [Str] {
+	on [Str] is cast {
 		return "Circle x: \(x), y: \(y), radius: \(r)"
 	}
 }
