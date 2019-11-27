@@ -69,7 +69,7 @@ class Poly {
 				my factor = p[at: 0] / poly.terms[at: 0]
 				factors[pushValue: factor]
 				
-				for[my i in: [0 to: degree - poly.degree]] {
+				for[my i in: [0 to: poly.term.length]] {
 					p[at: i set: p[at: i] - poly.terms[at: i] * factor]
 				}
 
