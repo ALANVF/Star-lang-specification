@@ -4,17 +4,17 @@ class Vector {
 	my x (Int)
 	my y (Int)
 	
-	operator +[v (Vector)] {
+	operator `+` [v (Vector)] {
 		return Vector[x: this.x + v.x
 					  y: this.y + v.y]
 	}
 	
-	operator -[v (Vector)] {
+	operator `-` [v (Vector)] {
 		return Vector[x: this.x - v.x
 					  y: this.y - v.y]
 	}
 	
-	operator ?=[v (Vector)] {
+	operator `?=` [v (Vector)] {
 		return this.x ?= v.x && this.y ?= v.y
 	}
 }
