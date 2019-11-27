@@ -2,13 +2,13 @@ use Core
 
 module Main {
 	kind Fruit {
-		Apple
-		Banana
-		Cherry
+		apple
+		banana
+		cherry
 	}
 	
 	on [main] {
-		my f (Fruit) = Fruit.Banana
-		say[f] ;=> Fruit.Banana
+		my f (Fruit) = Fruit.banana
+		say[f] ;=> Fruit.banana
 	}
 }
