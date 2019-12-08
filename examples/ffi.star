@@ -3,7 +3,7 @@ use Core
 ; pretending that LibC doesn't already exist
 module LibC is native "c" {
 	on [strdup: (Str)]: (Ptr[Char]) is native
-	on [free: (Ptr[Void])]: (Int) is native
+	on [free: (Ptr[Void])] is native
 }
 
 module Main {
