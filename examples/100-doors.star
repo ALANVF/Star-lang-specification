@@ -10,7 +10,7 @@ module Main {
 			}
 		}
 		
-		for[my i, door in: doors] {
+		for[my i, my door in: doors] {
 			say["Door \(i+1) is \(door[yes: "open" no: "closed"])."]
 		}
 	}
