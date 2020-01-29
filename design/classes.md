@@ -4,7 +4,7 @@ Everything in Star is a class
 ```swift
 1[what]       ;=> "Int"
 "thing"[what] ;=> "Str"
-{||}[what]    ;=> "Func(Void)"
+{||}[what]    ;=> "Func[Void]"
 ```
 
 ### Class basics
@@ -26,7 +26,7 @@ For the class `Point`, the following initializers are automatically created:
 init [new]                             {...}
 init [x: (Int)]                        {...}
 init [y: (Int)]                        {...}
-init [x: (Int), y: (Int)] is unordered {...}
+init [x: (Int). y: (Int)] is unordered {...}
 ```
 
 Just like with normal variables, class/member variables are not required to be assigned a value as long as you explicitly declare its type, or you assign it a default value. As an example, the following would be invalid:
@@ -53,7 +53,7 @@ say[p.y] ;=> 3
 
 ### Message basics
 
-Star uses messaging instead of methods, which are similar but not the same. In a normal language, you may do something like this:
+Star uses messaging instead of methods, which are similar but not the same. In a normal language, you might do something like this:
 ```js
 "abacad".replace("a", "_") //=> "_b_c_d"
 ```
@@ -65,16 +65,16 @@ But in Star, you'd do this instead:
 
 Messaging is kinda like calling unnamed methods with named arguments I guess. Star does allow you to have arguments without labels, but you must remember these rules:
 - labeled arguments do not need to (but can) have a separator (`,` or newline) between them.
-- arguments must end with a separator if the next argument is unnamed.
+- arguments must end with a separator if the next argument is unlabeled.
 - a message is allowed to only have a label (like `1[abs]`), but no other labels/arguments are allowed in the rest of the call.
 - all messages must have at least one label.
 
 You should also note these other rules regarding messaging:
 - you may send a message to an object like `a[b: c]` or `[a b: c]`.
 - (for now) you may not have any space between the caller and the brackets `[]` when using prefix notation (`a[b: c]`).
-- you may send a message to the current context (class or module) by doing `[a: b c: d]` or `a[b c: d]`.
+- you may send a message to the current context (class or module) by doing `[a: b c: d]` ~~or `a[b c: d]`~~.
 - you may not have a variable share the same name as the first label of a message sent to the current context (e.g. `a[b]` could either be `[this a: b]` or `[a b]`).
-- a message call to the current context with a single label may be called like `thing[]` or `[thing]`.
+- a message call to the current context with a single label may be called like ~~`thing[]` or~~ `[thing]`.
 
 (put something here about type messages smh)
 
@@ -94,7 +94,7 @@ say[whatIsThis[2.3]] ;=> "decimal"
 
 # Syntax
 
-(specs for attributes will be discussed later)
+(specs for attributes and generics will be discussed later)
 
 The syntax to declare a class:
 ```less
@@ -129,8 +129,17 @@ The syntax to declare a message:
 
 Class attributes:
 - `hidden`: only allow this class to be used by the outer class.
+- `c_struct`: represents a native C struct (so it doesn't have any RTTI).
+- `c_union`: I think you can figure it out.
 
 Message attributes:
-- `static`: send this message to the class itself.
-- `hidden`: only allow this message to be sent inside the class.
-- `unordered`: order of the arguments don't matter (cannot have any unnamed arguments).
+- `static`: send this method to the class itself.
+- `hidden`: only allow this method to be sent inside the class.
+- `unordered`: order of the arguments don't matter (cannot have any unlabeled arguments).
+- `getter`: the method may be called as if it were a member. the method must not take any values.
+- `setter`: the method may be called as if it were assigning a value to a member. (for now) the method must take 1 argument.
+- `main`: this is the method to be called when running the main program. must be inside the main module.
+- `cast`: uhh... more on this later.
+- `noinherit`: subclasses do not inherit this message.
+- `inline`: self-explainitory.
+- `native`: the method represents a native function (details coming soon).
