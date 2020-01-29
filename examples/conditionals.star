@@ -9,7 +9,7 @@ module Main {
         if[1 ?= 2] {
             say[true]
         } else {
-            say false
+            say[false]
         }
         
         if[1 ?= 2] {
@@ -35,7 +35,7 @@ module Main {
         ;[conditional operators:
             `&&` = and
             `||` = or
-            `^^` = nor/xor
+            `^^` = nor/xor (haven't decided)
             `!`  = not
             `?`  = has a value?
         ]
