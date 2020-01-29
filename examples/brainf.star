@@ -1,9 +1,9 @@
 use Core
 
 class BF {
-	my table = Array[size: 100][fill: 0]
-	my lstack = []
-	my ibuffer = []
+	my table = Array[Int][size: 100][fill: 0]
+	my lstack = #[]
+	my ibuffer = #[]
 	my cell = 0
 	my ptr = 0
 	
