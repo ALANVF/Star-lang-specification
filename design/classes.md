@@ -26,7 +26,7 @@ For the class `Point`, the following initializers are automatically created:
 init [new]                             {...}
 init [x: (Int)]                        {...}
 init [y: (Int)]                        {...}
-init [x: (Int). y: (Int)] is unordered {...}
+init [x: (Int), y: (Int)] is unordered {...}
 ```
 
 Just like with normal variables, class/member variables are not required to be assigned a value as long as you explicitly declare its type, or you assign it a default value. As an example, the following would be invalid:
