@@ -12,21 +12,21 @@
 ; Also, I'd highly recommend looking at how languages such as Crystal, Elixir, Julia, Red,
 ; and Nim use macros if you have little/no experience with macros.
 
-; So Star has 2 kinds of macros: hygenic macros and pattern macros.
+; So Star has 2 kinds of macros: hygienic macros and pattern macros.
 ; Macros act similarly to regular methods, however they are run at compile-time rather
 ; than being run at run-time.
-; Macros can also be overloaded, and can (maybe) have generic arguments (I'll exlpain later).
+; Macros can also be overloaded, and can (maybe) have generic arguments (I'll explain later).
 
-; I'll start with hygenic macros first since they're simpler.
+; I'll start with hygienic macros first since they're simpler.
 
-; A simple hygenic macro:
+; A simple hygienic macro:
 macro [typeOf: expr (AST.Expr)] {
 	@(expr.valueType)
 }
 
 Core[say: 2.3[[typeOf: 1]]] ;=> 2
 
-; As you can see, hygenic macros are called like normal methods (hence the name "hygenic").
+; As you can see, hygienic macros are called like normal methods (hence the name "hygienic").
 ; They can take arguments just like normal methods, but their arguments can be "AST typed"
 ; as well as being normally typed.
 ; By "AST typed", I mean that it matches on the expression's syntactic type rather than
@@ -61,7 +61,7 @@ Core[say: 2.3[[typeOf: 1]]] ;=> 2
 		Similar to the last rule, but it requires the `label:` part to match.
 
 	- label: name (Type)
-		Self-explainitory.
+		Self-explanatory.
 
 	- name [rules...]
 		Captures a group (as name) where the contents match rules.
@@ -73,7 +73,7 @@ Core[say: 2.3[[typeOf: 1]]] ;=> 2
 		Adding the unordered attribute allows the block contents match the rules in any order.
 ]
 
-; There are still many more rules that I would to add such as alternation, repetition, optional rules,
+; There are still many more rules that I would like to add such as alternation, repetition, optional rules,
 ; rules inside parens, and possibly some form of recursive rules (rules that can reference themselves).
 
 ; The body of a macro represents what the resulting AST will be.
