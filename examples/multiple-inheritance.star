@@ -12,6 +12,6 @@ class C of A, B {}
 
 module Main {
 	on [main] {
-		say[C[new][f]] ;=> 2
+		Core[say: C[new][f]] ;=> 2
 	}
 }
