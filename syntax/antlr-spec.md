@@ -125,42 +125,31 @@ macro-attr ::=
 
 
 
-var-decl ::=
-	"my" name typeanno? attr* ("=" expr)?
+var-decl ::= "my" name typeanno? attr* ("=" expr)?
 
-type-decl ::=
-	"type" typename ("of" rep1sep(typename, ","))?
+type-decl ::= "type" typename ("of" rep1sep(typename, ","))?
 
 on ::=
 	| "on" "[" rep1sep(arg, sep?) "]" typeanno_? attr* block?
 	| "on" "[" typename "]" typeanno_? attr* block?
 
-init-decl ::=
-	"init" "[" rep1sep(arg, sep?) "]" attr* block?
+init-decl ::= "init" "[" rep1sep(arg, sep?) "]" attr* block?
 
-deinit-decl ::=
-	"deinit" block
+deinit-decl ::= "deinit" block
 
-op-decl ::=
-	"operator" litsym "[" (name typeanno?)? "]" typeanno_? attr* block?
+op-decl ::= "operator" litsym "[" (name typeanno?)? "]" typeanno_? attr* block?
 
-class-decl ::=
-	"class" typename ("of" rep1sep(typename, ","))? attr* block?
+class-decl ::= "class" typename ("of" rep1sep(typename, ","))? attr* block?
 
-protocol-decl ::=
-	"protocol" typename ("of" rep1sep(typename, ","))? attr* block?
+protocol-decl ::= "protocol" typename ("of" rep1sep(typename, ","))? attr* block?
 
-category-decl ::=
-	"category" typename "for" typename" attr* block?
+category-decl ::= "category" typename "for" typename attr* block?
 
-kind-decl ::=
-	"kind" typename typeanno? attr* block
+kind-decl ::= "kind" typename typeanno? attr* block
 
-module-decl ::=
-	"module" typename attr* block?
+module-decl ::= "module" typename attr* block?
 
-macro-decl ::=
-	"macro" "[" ... "]" macro-attr* "{" ... "}"
+macro-decl ::= "macro" "[" ... "]" macro-attr* "{" ... "}"
 
 
 
