@@ -4,7 +4,7 @@ Work in progress specs/docs for a programming language I'm making called Star, w
 Explainations of the random folders you see:
 - design: This folder has documents talking about design choices/explainations for Star.
 - examples: This folder includes various examples (mostly from Rosetta code) of programs written in Star. Nothing is final.
-- syntax: This folder includes formal syntactic specification for Star. Needs updated at some point.
+- syntax: This folder includes formal syntactic specification for Star.
 - concepts: This folder contains experimental ideas I've come up with for Star. Nothing is guaranteed to actually be added.
 
 ## What's the goal of Star?
