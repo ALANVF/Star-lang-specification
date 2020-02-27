@@ -2,14 +2,14 @@ use Core
 
 macro [
 	`if2`
-	[cond1 (Star.AST.Expr), cond2 (Star.AST.Expr)]
-	both (Star.AST.Block)
+	[cond1 (AST.Expr), cond2 (AST.Expr)]
+	both (AST.Block)
 	`else1`
-	only1 (Star.AST.Block)
+	only1 (AST.Block)
 	`else2`
-	only2 (Star.AST.Block)
+	only2 (AST.Block)
 	`else`
-	neither (Star.AST.Block)
+	neither (AST.Block)
 ] is pattern {
 	match[@cond1, @cond2] {
 		at[true, true]  @both
@@ -22,13 +22,13 @@ macro [
 module Main {
 	on [main] {
 		if2[false, true] {
-			say["both"]
+			Core[say: "both"]
 		} else1 {
-			say["only 1st"]
+			Core[say: "only 1st"]
 		} else2 {
-			say["only 2nd"]
+			Core[say: "only 2nd"]
 		} else {
-			say["neither"]
+			Core[say: "neither"]
 		}
 		
 		;=> "only 2nd"

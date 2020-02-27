@@ -1,5 +1,7 @@
 use Core
 
+; this is kinda outdated with the category concept but eh
+
 catagory DoStuff for Int {
 	on [doStuff] {
 		return "thing"
@@ -14,11 +16,11 @@ catagory DoThings {
 
 module Main {
 	on [main] {
-		say[1[doStuff]]                             ;=> "thing"
-		say[1[inCatagory: DoStuff]]                 ;=> true
+		Core[say: 1[doStuff]]                             ;=> "thing"
+		Core[say: 1[inCatagory: DoStuff]]                 ;=> true
 
-		say[1[Int[DoThings]][doThings]]             ;=> "stuff"
-		say[1[inCatagory: DoThings]]                ;=> false
-		say[1[Int[DoThings]][inCatagory: DoThings]] ;=> true
+		Core[say: 1[Int[DoThings]][doThings]]             ;=> "stuff"
+		Core[say: 1[inCatagory: DoThings]]                ;=> false
+		Core[say: 1[Int[DoThings]][inCatagory: DoThings]] ;=> true
 	}
 }

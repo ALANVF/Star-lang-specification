@@ -22,7 +22,7 @@ module Main {
 		my p = Point[new]
 		my c = Circle[new]
 
-		say[p] ;=> "Point x: 0, y: 0"
-		say[c] ;=> "Circle x: 0, y: 0, radius: 0"
+		Core[say: p] ;=> "Point x: 0, y: 0"
+		Core[say: c] ;=> "Circle x: 0, y: 0, radius: 0"
 	}
 }

@@ -1,15 +1,15 @@
 (this will closely relate to the macros document that I'll make later)
 
 # Syntax is data?
-Yes. Similarly to languages such as lisp (and variants), REBOL/Red, and Crystal (to an extent), all syntax in Star is actually data. here's a small example:
+Yes. Similarly to languages such as Lisp (and variants), REBOL/Red, and Crystal (to an extent), all syntax in Star is actually data. here's a small example:
 ```swift
-macro [whatIsThis: thing (Star.AST.AnyLiteral)] {
+macro [whatIsThis: thing (AST.Literal)] {
 	say[@(thing[astName])]
 }
 
-[whatIsThis: "banana"] ;=> "Star.AST.Literal.String"
-[whatIsThis: label:]   ;=> "Star.AST.Literal.Label"
-[whatIsThis: thing]    ;=> "Star.AST.Literal.Name"
+[whatIsThis: "banana"] ;=> "AST.String"
+[whatIsThis: label:]   ;=> "AST.Label"
+[whatIsThis: thing]    ;=> "AST.Name"
 ```
 
 This is similar to Lisp languages, where macros can manipulate the data passed to them like (idk lisp too well)
@@ -32,6 +32,7 @@ unpack [a b c] [5 1.2 "banana"] ;=> a: 5, b: 1.2, c: "banana"
 ```
 
 # The AST types
+(note: all of this is going to change soon)
 ```yaml
 - AST:
     - Literal:

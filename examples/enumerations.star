@@ -9,6 +9,6 @@ module Main {
 	
 	on [main] {
 		my f (Fruit) = Fruit.banana
-		say[f] ;=> Fruit.banana
+		Core[say: f] ;=> Fruit.banana
 	}
 }

@@ -23,8 +23,6 @@ typename ::= rep1sep(type, '.') ('[' rep1sep(typename, ",") ']')?
 
 typeanno ::= '(' typename ')'
 
-typeanno_ ::= ":" typeanno
-
 label ::= name ":"
 
 litsym ::= "`" ... "`"
@@ -47,7 +45,7 @@ hash ::= "#(" repsep(expr "=>" expr, sep) ")"
 
 function ::=
 	"{"
-		"|" repsep(name typeanno?, ",") "|" typeanno_?
+		"|" repsep(name typeanno?, ",") "|" typeanno?
 		repsep(statement, sep)
 	"}"
 
@@ -130,14 +128,14 @@ var-decl ::= "my" name typeanno? attr* ("=" expr)?
 type-decl ::= "type" typename ("of" rep1sep(typename, ","))?
 
 on ::=
-	| "on" "[" rep1sep(arg, sep?) "]" typeanno_? attr* block?
-	| "on" "[" typename "]" typeanno_? attr* block?
+	| "on" "[" rep1sep(arg, sep?) "]" typeanno? attr* block?
+	| "on" "[" typename "]" typeanno? attr* block?
 
 init-decl ::= "init" "[" rep1sep(arg, sep?) "]" attr* block?
 
 deinit-decl ::= "deinit" block
 
-op-decl ::= "operator" litsym "[" (name typeanno?)? "]" typeanno_? attr* block?
+op-decl ::= "operator" litsym "[" (name typeanno?)? "]" typeanno? attr* block?
 
 class-decl ::= "class" typename ("of" rep1sep(typename, ","))? attr* block?
 

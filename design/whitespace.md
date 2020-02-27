@@ -1,10 +1,10 @@
 So statements and expressions in Star are separated by a "," or a new line. Example:
 ```swift
-say[1]
-say[2]
-say[3], say[4, end: ","]
-say[
-	5
+Core[say: 1]
+Core[say: 2]
+Core[say: 3], Core[say: 4 end: ","]
+Core[
+	say: 5
 	end: ","
 ]
 ```

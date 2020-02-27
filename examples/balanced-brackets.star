@@ -4,7 +4,7 @@ module Main {
 	on [isBalanced: brackets (Str)] {
 		my l = 0
 		
-		for[my c in: brackets[chars]] {
+		for[my c in: brackets.chars] {
 			if[l < 0] {return false}
 			
 			match[c] {
@@ -27,7 +27,7 @@ module Main {
 		]
 		
 		for[my s in: bb] {
-			say[isBalanced[s]]
+			Core[say: isBalanced[s]]
 		}
 		
 		;=> true, true, true, true, false, false, false

@@ -14,7 +14,7 @@ module Accessors {
 			}
 		} is unordered
 	] is pattern is statement {
-		on [@name]: @type @attrs is getter @(getter.body)
+		on [@name] @type @attrs is getter @(getter.body)
 		on [@(name[AST.Label]) @type] @attrs is setter @(setter.body)
 	}
 }

@@ -3,7 +3,7 @@ use Core
 module Main {
 	on [newCounter] {
 		my i = 0
-		return {|| return i++}
+		return {|| return ++i}
 	}
 
 	on [main] {

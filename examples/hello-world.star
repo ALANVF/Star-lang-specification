@@ -2,6 +2,6 @@ use Core
 
 module Main {
 	on [main] {
-		say["Hello, world!"]
+		Core[say: "Hello, world!"]
 	}
 }

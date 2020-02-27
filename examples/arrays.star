@@ -9,9 +9,9 @@ module Main {
 		; Whenever an empty array of an unspecified type is sent a message that adds any sort of data, it is
 		; converted to an array of that data's type
 		my a2 = #[]
-		say[a2[typeName]] ;=> Array[_]
+		Core[say: a2[typeName]] ;=> Array[_]
 		a2[pushValue: "banana"]
-		say[a2[typeName]] ;=> Array[Str]
+		Core[say: a2[typeName]] ;=> Array[Str]
 		
 		; I might expand on this or change some ideas later, but for now, this is what I'm thinking.
 	}

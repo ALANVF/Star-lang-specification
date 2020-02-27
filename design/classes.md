@@ -16,7 +16,7 @@ class Point {
 	my y (Int)
 }
 
-say[Point[x: 1, y: 2]] ;=> "Point[x: 1 y: 2]"
+Core[say: Point[x: 1, y: 2]] ;=> "Point[x: 1 y: 2]"
 ```
 
 Notice that I did not need to declare an initializer. Star provides automatic initializers for classes based on the member variables (can be turned off with option I'll decide on later).
@@ -46,9 +46,9 @@ This is invalid because `y` is never assigned a value, so the compiler doesn't k
 Using the previously defined `Point` class, we can access/assign the `x` and `y` members like this:
 ```swift
 my p = Point[x: 1, y: 2]
-say[p.x] ;=> 1
+Core[say: p.x] ;=> 1
 p.y = 3
-say[p.y] ;=> 3
+Core[say: p.y] ;=> 3
 ```
 
 ### Message basics
@@ -76,7 +76,7 @@ You should also note these other rules regarding messaging:
 - you may not have a variable share the same name as the first label of a message sent to the current context (e.g. `a[b]` could either be `[this a: b]` or `[a b]`).
 - a message call to the current context with a single label may be called like ~~`thing[]` or~~ `[thing]`.
 
-(put something here about type messages smh)
+(put something here about casting smh)
 
 As a side note, messaging in Star works like Swift, where the following happens:
 ```swift
@@ -88,8 +88,8 @@ on [whatIsThis: (Dec)] {
 	return "decimal"
 }
 
-say[whatIsThis[1]]   ;=> "integer"
-say[whatIsThis[2.3]] ;=> "decimal"
+Core[say: whatIsThis[1]]   ;=> "integer"
+Core[say: whatIsThis[2.3]] ;=> "decimal"
 ```
 
 # Syntax
@@ -103,11 +103,10 @@ The syntax to declare a class:
 		| <use-statement>
 		| <var-statement>
 		| <init-statement>     // static message that creates a class
+		| <deinit-statement>   // called before gc destroys a class instance
 		| <on-statement>       // regular message call
 		| <operator-statement> // will be discussed later
 		| <macro-statement>    // will be discussed ... at some point
-		| <class-statement>    // maybe
-		| <module-statement>   // maybe
 	)*
 "}"
 ```

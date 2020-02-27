@@ -82,7 +82,7 @@ on [doThing: val (T)] {Core[say: val]}
 [doThing: "a"] ; fails: type `Str` does not conform to the `Real` protocol
 ```
 
-## What can/can't use generic parameters
+## What can/can't have generic parameters
 Can:
 - Classes
 - Methods (that includes initializers and operator overloads)

@@ -6,12 +6,12 @@ module Main {
 		
 		for[my i in: [0 to: 99]] {
 			for[my j in: [i to: 99 by: i + 1]] {
-				doors[at: i set: !doors[at: i]]
+				doors[at: i] = !doors[at: i]
 			}
 		}
 		
 		for[my i, my door in: doors] {
-			say["Door \(i+1) is \(door[yes: "open" no: "closed"])."]
+			Core[say: "Door \(i+1) is \(door[yes: "open" no: "closed"])."]
 		}
 	}
 }

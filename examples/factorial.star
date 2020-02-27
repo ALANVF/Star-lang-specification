@@ -5,7 +5,7 @@ module Main {
 		if[n ?= 0] {
 			return 1
 		} else {
-			return n * fact1[n - 1]
+			return n * [fact1: n - 1]
 		}
 	}
 	
@@ -14,7 +14,7 @@ module Main {
 	}
 	
 	on [main] {
-		say[fact1[5]] ;=> 120
-		say[fact2[5]] ;=> 120
+		Core[say: [fast1: 5]] ;=> 120
+		Core[say: [fact2: 5]] ;=> 120
 	}
 }
