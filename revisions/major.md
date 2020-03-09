@@ -1,3 +1,7 @@
+Revision #2:
+- Added Star highlighting modes for Vim and CudaText.
+- Added the `uncounted` attribute to the syntax spec.
+
 Revision #1:
 - Floating `:` literals have been removed, as it was too magical and differed from other constructs with type annotations.
 - Global methods have also been removed, mostly to make context methods (e.g. `[a: b]`) less ambiguous.

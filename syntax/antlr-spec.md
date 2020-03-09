@@ -112,6 +112,7 @@ attr ::=
 	| "c_union"
 	| "c_enum"
 	| "flags"
+	| "uncounted"
 	)
 
 macro-attr ::=
