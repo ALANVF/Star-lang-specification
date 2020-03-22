@@ -2,7 +2,7 @@ use Core
 
 module Main {
 	on [fact1: n (Int)] {
-		if[n ?= 0] {
+		if n ?= 0 {
 			return 1
 		} else {
 			return n * [fact1: n - 1]

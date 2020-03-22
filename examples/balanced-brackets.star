@@ -4,12 +4,12 @@ module Main {
 	on [isBalanced: brackets (Str)] {
 		my l = 0
 		
-		for[my c in: brackets.chars] {
-			if[l < 0] {return false}
+		for my c in: brackets.chars {
+			if l < 0 {return false}
 			
-			match[c] {
-				at["["] {l++}
-				at["]"] {l--}
+			match c {
+				at "[" {l++}
+				at "]" {l--}
 			}
 		}
 		
@@ -26,8 +26,8 @@ module Main {
 			"[]][[]"
 		]
 		
-		for[my s in: bb] {
-			Core[say: isBalanced[s]]
+		for my s in: bb {
+			Core[say: [isBalanced: s]]
 		}
 		
 		;=> true, true, true, true, false, false, false

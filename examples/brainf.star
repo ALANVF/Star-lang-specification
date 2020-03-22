@@ -8,51 +8,51 @@ class BF {
 	my ptr = 0
 	
 	on [run: code (Str)] {
-		while[ptr < code.length] {
-			match[code[at: ptr]] {
-				at[">"] {
+		while ptr < code.length {
+			match code[at: ptr] {
+				at ">" {
 					cell++
 					ptr++
 				}
 				
-				at[">"] {
+				at ">" {
 					cell--
 					ptr++
 				}
 				
-				at["+"] {
+				at "+" {
 					table[at: cell]++
 					ptr++
 				}
 				
-				at["-"] {
+				at "-" {
 					table[at: cell]--
 					ptr++
 				}
 				
-				at["."] {
+				at "." {
 					Core[say: table[at: cell][char] end: ""]
 					ptr++
 				}
 				
-				at[","] {
+				at "," {
 					my i = Core[prompt]
-					if[i ?= ""] {panic "error!"}
+					if i ?= "" {panic "error!"}
 					table[at: cell] = i[at: 0][ord]
 					ptr++
 				}
 				
-				at["["] {
-					if[table[at: cell] ?= 0] {
+				at "[" {
+					if table[at: cell] ?= 0 {
 						my i = 1
 						
-						while[i > 0] {
+						while i > 0 {
 							ptr++
 							my j = code[at: ptr]
 							
-							match[j] {
-								at["["] {i++}
-								at["]"] {i--}
+							match j {
+								at "[" {i++}
+								at "]" {i--}
 							}
 						}
 					} else {
@@ -60,17 +60,17 @@ class BF {
 					}
 				}
 				
-				at["]"] {
-					if[table[at: cell] != 0] {
+				at "]" {
+					if table[at: cell] != 0 {
 						my i = 1
 						
-						while[i > 0] {
+						while i > 0 {
 							ptr--
 							my j = code[at: ptr]
 							
-							match[j] {
-								at["["] {i--}
-								at["]"] {i++}
+							match j {
+								at "[" {i--}
+								at "]" {i++}
 							}
 						}
 					} else {

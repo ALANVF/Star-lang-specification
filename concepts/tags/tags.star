@@ -1,17 +1,12 @@
-; Tags are kinda like preprocessor directives and metadata for expressions/statements.
-
-; Uses the alloca instruction.
-#alloca my usesAlloca = 1
+; Tags are kinda like preprocessor directives and metadata for expressions/statements created from my laziness to type.
 
 ; Uses malloc instrinsic/instruction. needs to be freed.
 my usesMalloc = 2
 #free usesMalloc
 
-; As a side note, #alloca and #free will obviously be removed once Star has a GC.
-
-; Creates a global c-string value (not having the #string would make it an instance of Star.Core.Str).
+; Creates a c-string value.
 ; Also variables directly assigned to a global don't need to be freed.
-my globalStr = #global #string "banana"
+my globalStr = #c_str "banana"
 
 ; Nnwraps an instance of Star.Core.Int to an i32.
 my unwrappedInt = #unwrap 3

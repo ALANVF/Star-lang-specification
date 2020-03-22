@@ -1,3 +1,7 @@
+Revisions #3:
+- Control flow statements no longer require `[`...`]` since it wasn't helping anyone.
+- Changed some wording.
+
 Revision #2:
 - Added Star highlighting modes for Vim and CudaText.
 - Added the `uncounted` attribute to the syntax spec.

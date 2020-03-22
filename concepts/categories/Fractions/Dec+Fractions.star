@@ -3,7 +3,7 @@ category Fractions for Dec {
 		my top = this
 		my bottomP = 0
 		
-		while[top[floor] != top] {
+		while top[floor] != top {
 			top *= 10
 			bottomP++
 		}

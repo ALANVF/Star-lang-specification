@@ -51,16 +51,16 @@ Core[say: Number[nth: 1]] ;=> Number[nth: 1]
 ; They can also be matched on.
 my num = Number[nth: 2]
 
-match[num] {
-	at[Number[zero]] {
+match num {
+	at Number[zero] {
 		Core[say: "zero"]
 	}
 	
-	at[Number[nth: 1]] {
+	at Number[nth: 1] {
 		Core[say: "one"]
 	}
 	
-	at[Number[nth: my n]] {
+	at Number[nth: my n] {
 		Core[say: n]
 	}
 } ;=> 2

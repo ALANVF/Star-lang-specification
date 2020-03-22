@@ -15,11 +15,11 @@ class PolyRes {
 
 	on [Str] is cast {
 		case {
-			at[rem.top.degree ?= 0 && rem.top.terms[at: 0] ?= 0] {
+			at rem.top.degree ?= 0 && rem.top.terms[at: 0] ?= 0 {
 				return poly[Str]
 			}
 
-			at[poly.degree ?= 0 && poly.terms[at: 0] ?= 0] {
+			at poly.degree ?= 0 && poly.terms[at: 0] ?= 0 {
 				return (
 					(rem.top[sign] / rem.bottom[sign] ?= -1)[yes: "-(" no: "("]
 						+
@@ -59,26 +59,26 @@ class Poly {
 	}
 
 	operator `/` [poly (Poly)] {
-		if[degree < poly.degree] {
+		if degree < poly.degree {
 			return PolyRes[poly: Poly[newWithCoeffs: #[0]] rem: Fraction[top: this bottom: poly]]
 		} else {
 			my p = terms[copy]
 			my factors = #[]
 			
-			while[p.length >= poly.degree] {
+			while p.length >= poly.degree {
 				my factor = p[at: 0] / poly.terms[at: 0]
 				factors[pushValue: factor]
 				
-				for[my i in: [0 to: poly.term.length]] {
-					p[at: i set: p[at: i] - poly.terms[at: i] * factor]
+				for my i from: 0 to: poly.term.length - 1 {
+					p[at: i] = p[at: i] - poly.terms[at: i] * factor
 				}
 
-				while[p[at: 0] ?= 0] {
+				while p[at: 0] ?= 0 {
 					p[popFront]
 				}
 			}
 
-			if[p.isEmpty] {
+			if p.length ?= 0 {
 				p = #[0]
 			}
 
@@ -87,27 +87,27 @@ class Poly {
 	}
 
 	operator `*` [f (Int)] {
-		return Poly[newWithCoeffs: terms[map: {|term| return term * f}]]
+		return Poly[newWithCoeffs: terms[take: {|term| return term * f}]]
 	}
 
 	on [Str] is cast {
 		my out = ""
 		
-		for[my e, my i in: terms] {
-			if[e != 0] {
-				if[i != 0] {
+		for my e, my i in: terms {
+			if e != 0 {
+				if i != 0 {
 					out += (e < 0)[yes: " - " no: " + "]
-				} orif[e < 0] {
+				} orif e < 0 {
 					out += "-"
 				}
 
-				if[e[abs] != 1] {
+				if e[abs] != 1 {
 					out += e[abs]
 				}
 
-				if[i < terms.length - 2] {
+				if i < terms.length - 2 {
 					out += "x^"+i
-				} orif[i ?= terms.length - 2] {
+				} orif i ?= terms.length - 2 {
 					out += "x"
 				}
 			}

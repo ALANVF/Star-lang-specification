@@ -13,6 +13,6 @@ module Main {
 		a2[pushValue: "banana"]
 		Core[say: a2[typeName]] ;=> Array[Str]
 		
-		; I might expand on this or change some ideas later, but for now, this is what I'm thinking.
+		; I might expand on this or change some ideas later, but for now this is what I'm thinking.
 	}
 }
