@@ -14,6 +14,9 @@ I have many goals for Star, but I guess the big one right now is to make every p
 ## Where is the compiler?
 That's a good question. Make one and I'll tell you if one exists. Joking aside, I only have the parser partially done, and I don't feel like it's ready to be open source yet.
 
+## Where is the runtime?
+Right [here](https://github.com/ALANVF/Star-runtime).
+
 ## Everything here seems really informal
 Yeah I'm 16.
 

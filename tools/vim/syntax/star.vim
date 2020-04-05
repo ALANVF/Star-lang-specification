@@ -10,7 +10,7 @@ endif
 syn match     starStrEscape   contained ?\\\(\\\|"\|[nrte]\|x[a-fA-F0-9]\+\|o[0-7]\{1,3}\|u\d\{1,4}\)?
 syn region    starStrEscNest  matchgroup=starStrEscOp start="\\(" matchgroup=starStrEscOp end=")" contained contains=@starRules
 
-syn match     starSep         ",\|:"
+syn match     starSep         ","
 
 " Comments
 syn match     starLineComment ";\([^[].*\)\?$"
@@ -27,8 +27,8 @@ syn match     starTag         "\#[a-z_][a-zA-Z0-9_]*\>"
 syn match     starMacroName   "@[a-z_][a-zA-Z0-9_]*\>"
 syn region    starLitSym      start="`" end="`"
 
-syn match     starDec         "\<[+-]\?\d\+.\d\+\([eE][+-]\?\d\+\(.\d\+\)\?\)\?"
-syn match     starInt         "\<[+-]\?\d\+\([eE][+-]\?\d\+\(.\d\+\)\?\)\?"
+syn match     starDec         "[+-]\?\d\+.\d\+\([eE][+-]\?\d\+\(.\d\+\)\?\)\?"
+syn match     starInt         "[+-]\?\d\+\([eE][+-]\?\d\+\(.\d\+\)\?\)\?"
 syn match     starInt         "\<0[xX][a-fA-F0-9]\+"
 syn region    starStr         start=+"+ skip=+\\"+ end=+"+ contains=starStrEscape,starStrEscNest
 
