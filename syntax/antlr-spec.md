@@ -126,7 +126,9 @@ macro-attr ::=
 
 var-decl ::= "my" name typeanno? attr* ("=" expr)?
 
-type-decl ::= "type" typename ("of" rep1sep(typename, ","))?
+generic-decl ::= "type" typename ("of" rep1sep(typename, ","))? ("if" expr)?
+
+alias-decl ::= "type" typename attr* "=" typename
 
 on ::=
 	| "on" "[" rep1sep(arg, sep?) "]" typeanno? attr* block?
@@ -169,7 +171,8 @@ expr ::=
 	| "(" expr ")"
 
 statement ::=
-	| type-decl
+	| generic-decl
+	| alias-decl
 	| on
 	| init-decl
 	| deinit-decl
