@@ -27,8 +27,8 @@ syn match     starTag         "\#[a-z_][a-zA-Z0-9_]*\>"
 syn match     starMacroName   "@[a-z_][a-zA-Z0-9_]*\>"
 syn region    starLitSym      start="`" end="`"
 
-syn match     starDec         "[+-]\?\d\+.\d\+\([eE][+-]\?\d\+\(.\d\+\)\?\)\?"
-syn match     starInt         "[+-]\?\d\+\([eE][+-]\?\d\+\(.\d\+\)\?\)\?"
+syn match     starDec         "[+-]\?\d\+\.\d\+\([eE][+-]\?\d\+\(\.\d\+\)\?\)\?"
+syn match     starInt         "[+-]\?\d\+\(\.\)\@!\([eE][+-]\?\d\+\(\.\d\+\)\?\)\?"
 syn match     starInt         "\<0[xX][a-fA-F0-9]\+"
 syn region    starStr         start=+"+ skip=+\\"+ end=+"+ contains=starStrEscape,starStrEscNest
 
@@ -51,7 +51,7 @@ syn keyword   starKeyword     is of use
 " might work?
 syn region    starIsAttribute start="\(\<is\s\+\)\@<=" end="\s\+\|$" contains=starAttribute
 
-syn match     starCoreword    /\v<(if|orif|else|while|for|do|case|match|at|default|break|next|redo|panic|try|catch|new)(:)@!>/
+syn match     starCoreword    /\v<(if|orif|else|while|for|forever|do|case|match|at|default|break|next|redo|panic|try|catch|new)(:)@!>/
 
 syn cluster   starRules       contains=starSep,starComment,starConstant,starLabel,starName,starType,starTag,starMacroName,starLitsym,starDec,starInt,starStr,starArray,starHash,starParen,starGroup,starBlock,starKeyword,starCoreword
 
