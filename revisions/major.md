@@ -1,4 +1,7 @@
-Revisions #3:
+Revsion #4:
+- Added literal.md to document basic syntax for literals.
+
+Revision #3:
 - Control flow statements no longer require `[`...`]` since it wasn't helping anyone.
 - Changed some wording.
 
