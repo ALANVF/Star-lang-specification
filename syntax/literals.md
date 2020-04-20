@@ -82,9 +82,9 @@ Arrays may only contain 1 type of value. If its elements all conform to the same
 #[1[Real], 2.3[Real]] ;=> works
 ```
 
-Basic indexing looks like `#[1, 2, 3][at: 1]` (which results in `2`).
-
 Arrays are completely mutable.
+
+Basic indexing looks like `#[1, 2, 3][at: 1]` (which results in `2`).
 
 An array's type looks like `Array[E]` where `E` is the type of each value.
 
@@ -214,7 +214,7 @@ A tag literal:
 #b_2c
 ```
 
-Tags are annotations for expression and they'll probably be removed at some point in the future.
+Tags are annotations for expressions and they'll probably be removed at some point in the future.
 
 ### Paren
 A paren literal:
