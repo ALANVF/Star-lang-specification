@@ -90,6 +90,7 @@ module Main {
 				board.cells[at: choice - 1] = Cell.player2
 			}
 			
+			playerTurn = !playerTurn
 			winner = board[findWinner]
 			
 			Core[say: board[Str]]
