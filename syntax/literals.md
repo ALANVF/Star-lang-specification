@@ -216,6 +216,16 @@ A tag literal:
 
 Tags are annotations for expressions and they'll probably be removed at some point in the future.
 
+### Litsym
+A litsym literal:
+```
+`a`
+`some symbol`
+`a[b]c`
+```
+
+Litsyms are compile-time strings that are also used for internal stuff.
+
 ### Paren
 A paren literal:
 ```
