@@ -9,7 +9,7 @@ Explainations of the random folders you see:
 - tools: This folder contains helpful stuff like syntax highlighting for Star for various editors. Will probably be moved once I put the actual language project on GitHub.
 
 ## What's the goal of Star?
-I have many goals for Star, but I guess the big one right now is to make every part of the language *consistant*, which is something that very few languages have actually achieved (e.g. Go, Smalltalk). To me, consistency makes it much easier to learn and use a language since you don't have to remember all of the magical "exceptions" in the language's grammar (e.g. Perl, C).
+I have many goals for Star, but I guess the big one right now is to make every part of the language *consistent*, which is something that very few languages have actually achieved (e.g. Go, Smalltalk). To me, consistency makes it much easier to learn and use a language since you don't have to remember all of the magical "exceptions" in the language's grammar (e.g. Perl, C).
 
 ## Where is the compiler?
 That's a good question. Make one and I'll tell you if one exists. Joking aside, I only have the parser partially done, and I don't feel like it's ready to be open source yet.
