@@ -50,7 +50,7 @@ func(vector<int> {1}); //=> passed a generic vector value
 ```
 
 One example of why this might be useful is for implementing something such as a transposition method for an array type. Instead of
-[assuming that the array's type is also an array](https://github.com/crystal-lang/crystal/blob/master/src/array.cr#L1861), we could
+[assuming that the array's type is also an array](https://github.com/crystal-lang/crystal/blob/533cd24089860d7bdf089484aae71f0c60441d3b/src/array.cr#L1911), we could
 implement the `transpose` method for `Array[Array[T]]` but leave it out for `Array[T]`. The reason this works it because the generic
 parameters for `Array[Array[T]]` are more specific than the generic parameters for `Array[T]`. Here's an example of how this could work:
 
@@ -82,21 +82,29 @@ on [doThing: val (T)] {Core[say: val]}
 [doThing: "a"] ; fails: type `Str` does not conform to the `Real` protocol
 ```
 
+Conditional constraints might also be a thing:
+```swift
+type T if T != Void
+class Pointer[T] {...}
+
+my a = Pointer[Int][new]  ;=> works
+my b = Pointer[Void][new] ;=> fails: `Void != Void` is false
+```
+
 ## What can/can't have generic parameters
 Can:
 - Classes
+- Protocols
 - Methods (that includes initializers and operator overloads)
-- Kinds (Discriminated Unions)
+- Kinds (for tagged unions)
 
 Can't:
-- Protocols (might change later idk)
 - Categories
-- Type aliases (deal with it. I'm trying to use the good parts of C++ not the bad parts)
-- Modules
+- Type aliases (I'm trying to use the good parts of C++ not the bad parts)
 - Members/variables
-- Native classes (C structs/unions)
 
 TBD:
+- Modules
 - Macros
 - Funcs (anonymous methods)
 
@@ -105,7 +113,6 @@ Can:
 - Classes
 - Protocols
 - Kinds
-- Native classes
 - Type aliases
 
 Can't:
@@ -116,15 +123,20 @@ Can't:
 - Macros
 
 TBD:
-- Literal integers
+- Literals (such as integers)
 
 ## Special cases
-Because I don't want to add variadic templates, the `Func` type will be a special case in terms of generic parameters. Its
+Because I don't want to add variadic type arguments, the `Func` type will be a special case in terms of generic parameters. Its
 type definition would look something like `Func[Ret, Args...]` since methods can take any number of parameters. I'll
 probably explain this more at some other point.
 
+## Future considerations
+- Variadic type arguments
+- Scala-like "kinds"
+- Labeled type parameters
+
 ## Syntax
-Classes:
+Classes/protocols:
 ```swift
 type T1
 type T2
@@ -144,5 +156,9 @@ on [...] {...}
 
 Kinds:
 ```swift
-; TBD
+type T1
+type T2
+; ...
+type Tn
+kind MyKind[...] {...}
 ```
