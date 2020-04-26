@@ -25,13 +25,17 @@ class Colony {
 	}
 	
 	on [Str] is cast is hidden {
+		my out = ""
+
 		for my y (Int) from: 0 to: height {
 			for my x (Int) from: 0 to: width {
-				Core[say: cells[contains: Cell[:x :y]][yes: "#" no: "-"] end: " "]
+				out += cells[contains: Cell[:x :y]][yes: "#" no: "-"] + " "
 			}
+
+			out += "\n"
 		}
-		
-		Core[say]
+
+		return out[trim]
 	}
 	
 	on [runTimes: times] {
