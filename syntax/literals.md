@@ -68,7 +68,7 @@ An array literal:
 	"a"
 	"bcd"
 	"ef"
-	"ghij
+	"ghij"
 ]
 #[
 	#[1.2, 3.4],
