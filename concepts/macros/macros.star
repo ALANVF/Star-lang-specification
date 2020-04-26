@@ -1,5 +1,5 @@
 ;[ For the record:
-	`...` = litstym
+	`...` = litsym
 	(...) = paren
 	[...] = group
 	{...} = block

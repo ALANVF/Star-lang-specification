@@ -115,31 +115,31 @@ Keeping in mind that cascades are expressions, doing something like `a[b: c->[d:
 - `a--`: post-decrement.
 
 ### Binary operation
-`a ** b`: exponentiation.
-`a * b`: multiply.
-`a / b`: divide.
-`a // b`: floor divide.
-`a % b`: remainder.
-`a + b`: add.
-`a - b`: subtract.
-`a %% b`: divides equally.
-`a & b`: binary and.
-`a | b`: binary or.
-`a ^ b`: binary exclusive-or.
-`a >> b`: binary right-shift.
-`a << b`: binary left-shift.
-`a >>> b`: binary unsigned right-shift.
-`a ?= b`: equality.
-`a != b`: inequality.
-`a > b`: greater.
-`a >= b`: greater or equal.
-`a < b`: less.
-`a <= b`: less or equal.
-`a && b`: logical and.
-`a || b`: logical or.
-`a ^^ b`: logical exclusive-or.
-`a = b`: assignment.
-`a <op>= b`: compound assignment (same as `a = a <op> b`).
+- `a ** b`: exponentiation.
+- `a * b`: multiply.
+- `a / b`: divide.
+- `a // b`: floor divide.
+- `a % b`: remainder.
+- `a + b`: add.
+- `a - b`: subtract.
+- `a %% b`: divides equally.
+- `a & b`: binary and.
+- `a | b`: binary or.
+- `a ^ b`: binary exclusive-or.
+- `a >> b`: binary right-shift.
+- `a << b`: binary left-shift.
+- `a >>> b`: binary unsigned right-shift.
+- `a ?= b`: equality.
+- `a != b`: inequality.
+- `a > b`: greater.
+- `a >= b`: greater or equal.
+- `a < b`: less.
+- `a <= b`: less or equal.
+- `a && b`: logical and.
+- `a || b`: logical or.
+- `a ^^ b`: logical exclusive-or.
+- `a = b`: assignment.
+- `a <op>= b`: compound assignment (same as `a = a <op> b`).
 
 ### Future considerations
 - `a isa B`: type assertion.
