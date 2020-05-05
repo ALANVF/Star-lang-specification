@@ -24,7 +24,7 @@ class Colony {
 		return Bag[Cell][new: cells[collect: $0[neighbors]][flatten]]
 	}
 	
-	on [Str] is cast is hidden {
+	on [Str] is hidden {
 		my out = ""
 
 		for my y (Int) from: 0 to: height {
@@ -51,7 +51,7 @@ class Colony {
 	
 	on [runGeneration] is hidden {
 		cells = this[neighborCounts][keepIf: {|cell, count| (Bool)
-			return count ?= 2 && cells[contains: cell]) || count ?= 3
+			return (count ?= 2 && cells[contains: cell]) || count ?= 3
 		}].keys
 	}
 }

@@ -34,9 +34,10 @@ module Main {
         ;[conditional operators:
             `&&` = and
             `||` = or
-            `^^` = nor/xor (haven't decided)
+            `^^` = xor
+			`!!` = nor (undecided feature)
             `!`  = not
-            `?`  = has a value
+            `?`  = has a value/boolean coercion (haven't decided)
         ]
     }
 }

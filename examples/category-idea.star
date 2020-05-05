@@ -2,13 +2,13 @@ use Core
 
 ; this is kinda outdated with the category concept but eh
 
-catagory DoStuff for Int {
+category DoStuff for Int {
 	on [doStuff] {
 		return "thing"
 	}
 }
 
-catagory DoThings {
+category DoThings {
 	on [doThings] {
 		return "stuff"
 	}
@@ -17,10 +17,10 @@ catagory DoThings {
 module Main {
 	on [main] {
 		Core[say: 1[doStuff]]                             ;=> "thing"
-		Core[say: 1[inCatagory: DoStuff]]                 ;=> true
+		Core[say: 1[inCategory: DoStuff]]                 ;=> true
 
 		Core[say: 1[Int[DoThings]][doThings]]             ;=> "stuff"
-		Core[say: 1[inCatagory: DoThings]]                ;=> false
-		Core[say: 1[Int[DoThings]][inCatagory: DoThings]] ;=> true
+		Core[say: 1[inCategory: DoThings]]                ;=> false
+		Core[say: 1[Int[DoThings]][inCategory: DoThings]] ;=> true
 	}
 }

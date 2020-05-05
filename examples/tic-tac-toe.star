@@ -5,7 +5,7 @@ kind Cell {
 	x
 	o
 	
-	on [Str] is cast {
+	on [Str] {
 		match this {
 			at empty {
 				return " "
@@ -62,7 +62,7 @@ class Board {
 		return 0 < index && index < 10 && cells[at: index - 1] ?= Cell.empty
 	}
 	
-	on [Str] is cast {
+	on [Str] {
 		return cells[collect: $0[joinWith: " | "]][joinWith: "\n--+---+--"]
 	}
 }

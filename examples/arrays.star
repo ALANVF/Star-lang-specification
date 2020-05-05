@@ -3,7 +3,7 @@ use Core
 module Main {
 	on [main] {
 		; Arrays in Star can only have one type
-		my a1 = #[1, 2, 3], say[a1[typeName]] ;=> Array[Int]
+		my a1 = #[1, 2, 3], Core[say: a1[typeName]] ;=> Array[Int]
 		
 		; An empty array has a special type of `Array` (as opposed to Array[Int] or Array[Bool]).
 		; Whenever an empty array of an unspecified type is sent a message that adds any sort of data, it is

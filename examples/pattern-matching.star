@@ -2,6 +2,6 @@ use Core
 
 module Main {
 	on [main] {
-		"todo"
+		"todo. look at the pattern matching concept for more info"
 	}
 }

@@ -4,7 +4,7 @@ class Fraction {
 	my top
 	my bottom
 
-	on [Str] is cast {
+	on [Str] {
 		return "\(top) / \(bottom)"
 	}
 }
@@ -13,7 +13,7 @@ class PolyRes {
 	my poly
 	my rem
 
-	on [Str] is cast {
+	on [Str] {
 		case {
 			at rem.top.degree ?= 0 && rem.top.terms[at: 0] ?= 0 {
 				return poly[Str]
@@ -90,7 +90,7 @@ class Poly {
 		return Poly[newWithCoeffs: terms[take: {|term| return term * f}]]
 	}
 
-	on [Str] is cast {
+	on [Str] {
 		my out = ""
 		
 		for my e, my i in: terms {

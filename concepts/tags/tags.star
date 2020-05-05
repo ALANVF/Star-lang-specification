@@ -1,4 +1,4 @@
-; Tags are kinda like preprocessor directives and metadata for expressions/statements created from my laziness to type.
+; Tags are kinda like preprocessor directives and metadata for expressions/statements created from my laziness to type stuff.
 
 ; Uses malloc instrinsic/instruction. needs to be freed.
 my usesMalloc = 2

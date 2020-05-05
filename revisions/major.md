@@ -1,3 +1,10 @@
+Revision #5:
+- The `is cast` attribute no longer exists because it's redundant.
+- The `super` keyword has been removed because it had no use.
+- Updated and added information in oop-features design document.
+- Fixed some wording.
+- `s/catagory/category/`.
+
 Revsion #4:
 - Added literal.md to document basic syntax for literals.
 

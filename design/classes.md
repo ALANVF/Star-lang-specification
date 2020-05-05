@@ -103,7 +103,7 @@ The syntax to declare a class:
 		| <use-statement>
 		| <var-statement>
 		| <init-statement>     // static message that creates a class
-		| <deinit-statement>   // called before gc destroys a class instance
+		| <deinit-statement>   // called before arc destroys a class instance
 		| <on-statement>       // regular message call
 		| <operator-statement> // will be discussed later
 		| <macro-statement>    // will be discussed ... at some point
@@ -130,6 +130,8 @@ Class attributes:
 - `hidden`: only allow this class to be used by the outer class.
 - `c_struct`: represents a native C struct (so it doesn't have any RTTI).
 - `c_union`: I think you can figure it out.
+- `uncounted`: instances of this class do not contain any metadata used for ARC, so make sure to free these instances manually.
+- `native`: used internally only. mainly exists to represent native types within Star.
 
 Message attributes:
 - `static`: send this method to the class itself.
@@ -138,7 +140,6 @@ Message attributes:
 - `getter`: the method may be called as if it were a member. the method must not take any values.
 - `setter`: the method may be called as if it were assigning a value to a member. (for now) the method must take 1 argument.
 - `main`: this is the method to be called when running the main program. must be inside the main module.
-- `cast`: uhh... more on this later.
 - `noinherit`: subclasses do not inherit this message.
 - `inline`: self-explainitory.
 - `native`: the method represents a native function (details coming soon).

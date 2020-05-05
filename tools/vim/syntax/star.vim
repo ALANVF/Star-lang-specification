@@ -40,7 +40,7 @@ syn region    starGroup       start="\["  end="\]" transparent fold
 syn region    starBlock       start="{"   end="}"  transparent fold
 
 syn keyword   starAttribute   contained static hidden readonly writeonly custom
-syn keyword   starAttribute   contained unordered getter setter main cast inline noinherit
+syn keyword   starAttribute   contained unordered getter setter main inline noinherit
 syn keyword   starAttribute   contained pattern asm statement native
 syn keyword   starAttribute   contained c_struct c_union c_enum flags uncounted
 

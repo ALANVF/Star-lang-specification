@@ -31,8 +31,8 @@ unpack: func [
 unpack [a b c] [5 1.2 "banana"] ;=> a: 5, b: 1.2, c: "banana"
 ```
 
-# The AST types
-(note: all of this is going to change soon)
+# The AST types (OLD)
+old thing I need to update
 ```yaml
 - AST:
     - Literal:

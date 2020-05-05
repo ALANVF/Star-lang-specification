@@ -100,7 +100,7 @@ Can:
 
 Can't:
 - Categories
-- Type aliases (I'm trying to use the good parts of C++ not the bad parts)
+- Type aliases
 - Members/variables
 
 TBD:
@@ -132,7 +132,7 @@ probably explain this more at some other point.
 
 ## Future considerations
 - Variadic type arguments
-- Scala-like "kinds"
+- Scala-like [higher-kinded types](http://adriaanm.github.io/files/higher.pdf)
 - Labeled type parameters
 
 ## Syntax

@@ -97,7 +97,6 @@ attr ::=
 	"is" (
 	| "hidden"
 	| "static"
-	| "cast"
 	| "readonly"
 	| "writeonly"
 	| "unordered"
@@ -155,7 +154,7 @@ macro-decl ::= "macro" "[" ... "]" macro-attr* "{" ... "}"
 
 
 expr ::=
-	| "this" | "super"
+	| "this"
 	| bool
 	| name
 	| number

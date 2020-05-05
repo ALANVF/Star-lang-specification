@@ -1,5 +1,5 @@
 category Fractions for Int {
-	on [Fraction] is cast {
+	on [Fraction] {
 		return Fraction[top: this bottom: 1]
 	}
 }

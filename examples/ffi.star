@@ -10,6 +10,6 @@ module Main {
 	on [main] {
 		my charPtr = LibC[strdup: "banana"]
 		Core[say: charPtr[Str]]
-		LibC[free: charPtr[LLVM.Ptr[LLVM.Void]]]
+		LibC[free: charPtr[LLVM.Ptr[Void]]]
 	}
 }

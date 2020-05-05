@@ -1,5 +1,5 @@
 category Fractions for Dec {
-	on [Fraction] is cast {
+	on [Fraction] {
 		my top = this
 		my bottomP = 0
 		
