@@ -51,7 +51,7 @@ syn keyword   starKeyword     is of use
 " might work?
 syn region    starIsAttribute start="\(\<is\s\+\)\@<=" end="\s\+\|$" contains=starAttribute
 
-syn match     starCoreword    /\v<(if|orif|else|while|for|forever|do|case|match|at|default|break|next|redo|panic|try|catch|new)(:)@!>/
+syn match     starCoreword    /\v<(if|orif|else|while|for|forever|do|case|match|at|break|next|redo|panic|try|catch|new)(:)@!>/
 
 syn cluster   starRules       contains=starSep,starComment,starConstant,starLabel,starName,starType,starTag,starMacroName,starLitsym,starDec,starInt,starStr,starArray,starHash,starParen,starGroup,starBlock,starKeyword,starCoreword
 

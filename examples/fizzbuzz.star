@@ -7,7 +7,7 @@ module Main {
 				at i %% 15 {Core[say: "FizzBuzz"]}
 				at i %% 3  {Core[say: "Fizz"]}
 				at i %% 5  {Core[say: "Buzz"]}
-				default    {Core[say: i]}
+				else       {Core[say: i]}
 			}
 		}
 	}

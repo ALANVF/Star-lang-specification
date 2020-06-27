@@ -38,7 +38,7 @@ class Colony {
 		return out[trim]
 	}
 	
-	on [runTimes: times] {
+	on [runTimes: times (Int)] {
 		for my i (Int) from: 0 to: times {
 			Core
 			-> [say: "Generation \(i + 1):"]

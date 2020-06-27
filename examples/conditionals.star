@@ -28,8 +28,8 @@ module Main {
             at false && true {Core[say: 1]}
             at false ^^ true {Core[say: 2]}
             at false || true {Core[say: 3]}
-            default          {Core[say: 4]}
-        } ;=> 3
+            else             {Core[say: 4]}
+        } ;=> 2
         
         ;[conditional operators:
             `&&` = and

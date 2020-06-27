@@ -10,7 +10,7 @@ module Main {
 	}
 	
 	on [fact2: n (Int)] {
-		return [1 to: n][Array[Int]][reduce: {|a, b| return a * b}]
+		return [1 to: n][Array[Int]][reduce: $0 * $1]
 	}
 	
 	on [main] {

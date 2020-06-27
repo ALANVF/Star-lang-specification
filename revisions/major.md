@@ -1,3 +1,8 @@
+Revision #6:
+- The `default` keyword has been removed because `else` works the same way.
+- Added the `match ... at ... {...} [else {...}]` construct (shorthand match statement).
+- Changed concept documents to use markdown.
+
 Revision #5:
 - The `is cast` attribute no longer exists because it's redundant.
 - The `super` keyword has been removed because it had no use.

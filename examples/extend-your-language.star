@@ -10,7 +10,7 @@ macro [
 		at #[true, true]  @both
 		at #[true, false] @only1
 		at #[false, true] @only2
-		default           @neither
+		else              @neither
 	}
 }
 

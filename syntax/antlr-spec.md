@@ -106,7 +106,10 @@ attr ::=
 	| "inline"
 	| "noinherit"
 	| "main"
-	| "native" ('"' ... '"')?
+	| "native" (
+		| '"' ... '"'
+		| '[' ... ']'
+	)?
 	| "c_struct"
 	| "c_union"
 	| "c_enum"
@@ -137,7 +140,7 @@ init-decl ::= "init" "[" rep1sep(arg, sep?) "]" attr* block?
 
 deinit-decl ::= "deinit" block
 
-op-decl ::= "operator" litsym "[" (name typeanno?)? "]" typeanno? attr* block?
+op-decl ::= "operator" litsym ("[" (name typeanno?)? "]")? typeanno? attr* block?
 
 class-decl ::= "class" typename ("of" rep1sep(typename, ","))? attr* block?
 

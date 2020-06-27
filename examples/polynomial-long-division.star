@@ -29,7 +29,7 @@ class PolyRes {
 				)
 			}
 			
-			default {
+			else {
 				my sign = rem.top[sign] / rem.bottom[sign]
 				return (
 					poly[Str]

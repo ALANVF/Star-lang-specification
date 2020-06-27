@@ -119,7 +119,7 @@ object SyntAnal3: TLibSyntAnalyzer
       DisplayName = 'Coreword'
       StyleName = 'Id keyword'
       TokenType = 2
-      Expression = '(?-i)(if|orif|else|while|for|forever|do|case|match|at|default|break|next|redo|panic|try|catch|new)\b'
+      Expression = '(?-i)(if|orif|else|while|for|forever|do|case|match|at|break|next|redo|panic|try|catch|new)\b'
       ColumnFrom = 0
       ColumnTo = 0
     end

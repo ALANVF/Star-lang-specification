@@ -69,3 +69,4 @@ Kinds:
 - unified instance members (can be accessed without pattern matching).
 - deinitializer.
 - allow inheriting from protocols.
+- allow inheriting from other kinds (row types).

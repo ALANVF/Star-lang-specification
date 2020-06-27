@@ -78,7 +78,7 @@ class BF {
 					}
 				}
 
-				default {ptr++}
+				else {ptr++}
 			}
 		}
 	}
