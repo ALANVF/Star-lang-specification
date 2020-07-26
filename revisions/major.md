@@ -1,3 +1,6 @@
+Revision #7:
+- Added ABI.md to explain Star's ABI conventions.
+
 Revision #6:
 - The `default` keyword has been removed because `else` works the same way.
 - Added the `match ... at ... {...} [else {...}]` construct (shorthand match statement).
@@ -11,7 +14,7 @@ Revision #5:
 - `s/catagory/category/`.
 
 Revsion #4:
-- Added literal.md to document basic syntax for literals.
+- Added literals.md to document basic syntax for literals.
 
 Revision #3:
 - Control flow statements no longer require `[`...`]` since it wasn't helping anyone.
