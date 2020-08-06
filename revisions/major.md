@@ -1,3 +1,8 @@
+Revision #8:
+- Added syntax spec for statements.
+- Removed `>>>` operator because it's useless.
+- Cascades can now call into block expressions.
+
 Revision #7:
 - Added ABI.md to explain Star's ABI conventions.
 

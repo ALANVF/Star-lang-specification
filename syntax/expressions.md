@@ -13,7 +13,7 @@ a ?= b, a != b, a > b, a >= b, a < b, a <= b
 a && b, a || b, a ^^ b
 a = b, a += b, a -= b, a *= b, a **= b, a /= b, a //= b, a %= b, a %%= b, a &= b, a |= b, a ^= b, a >>= b, a <<= b, a &&= b, a ||= b, a ^^= b
 a => b
-a -> [b], a -> b = c
+a -> [b], a -> b = c, a -> {...}
 ```
 
 ### Property access
@@ -97,6 +97,19 @@ obj[method1: value1]
 -> [method2: value2]
 -> [method3: value3]
 obj[method4]
+```
+
+Cascades may call into a block expression like so:
+```
+obj
+-> {
+	[thing1]
+	[thing3: [thing4]]
+}
+-> {
+	my thing5 = this.attr
+	thing5 = thing6
+}
 ```
 
 Keeping in mind that cascades are expressions, doing something like `a[b: c->[d: e]->[f: g h: i]]` is perfectly valid.
