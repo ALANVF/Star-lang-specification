@@ -64,7 +64,7 @@ binary-sym ::=
 	| "*" | "/" | "//" | "%"
 	| "+" | "-"
 	| "%%"
-	| "&" | "|" | "^" | ">>" | ">>>" | "<<"
+	| "&" | "|" | "^" | ">>" | "<<"
 	| "&&" | "||" | "^^"
 
 prefix ::= prefix-sym expr
@@ -187,8 +187,8 @@ statement ::=
 	| module-decl
 	| "use" expr
 	| "return" expr?
-	| "break" expr?
-	| "next"
+	| "break" digit*
+	| "next" digit*
 	| macro-decl
 	| expr
 ```
