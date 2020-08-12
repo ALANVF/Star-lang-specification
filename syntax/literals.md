@@ -157,6 +157,8 @@ A way to have `val[thing: $0 + 1]` mean the same thing as `{|a| return val[thing
 
 Shorthand funcs are most likely going to be very limited until Star has a good type-checker.
 
+I'm also considering an alternative syntax that looks like `$0, $.0, $..0, $...0, etc` since it's a lot less visually confusing than the current syntax.
+
 ### Name
 A name literal:
 ```
