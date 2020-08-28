@@ -5,9 +5,6 @@ Common rules:
 ```antlr
 type-anno ::=
 	'(' <type> ')'
-
-attribute ::=
-	'is' <allowed-attribute>
 ```
 
 ### Expression
