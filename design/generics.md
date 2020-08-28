@@ -97,10 +97,10 @@ Can:
 - Protocols
 - Methods (that includes initializers and operator overloads)
 - Kinds (for tagged unions)
+- Type aliases
 
 Can't:
 - Categories
-- Type aliases
 - Members/variables
 
 TBD:
