@@ -132,7 +132,7 @@ probably explain this more at some other point.
 
 ## Future considerations
 - Variadic type arguments
-- Scala-like [higher-kinded types](http://adriaanm.github.io/files/higher.pdf)
+- ~~Scala-like [higher-kinded types](http://adriaanm.github.io/files/higher.pdf)~~ (these already exist)
 - Labeled type parameters
 
 ## Syntax

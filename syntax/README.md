@@ -1,1 +1,1 @@
-(I don't actually know ANTLR, so this is more like ANTLR + Scala's builtin parser combinator lib + regex)
+(I don't actually know ANTLR, so this is more like ANTLR + Scala's builtin parser combinator lib (because I (oddly enough) have a lot of experience with it) + regex)

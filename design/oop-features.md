@@ -51,6 +51,8 @@ Kinds:
 - generic specialization.
 - class and instance methods (and possibly members as well).
 - a "flags" attribute that allows a single kind value to contain multiple kind values. similar to C enums that use bitwise-ops. this will be availible for normal kinds and tagged union kinds (todo: elaborate on this in the kinds concept).
+- unified instance members (can be accessed without pattern matching).
+- can inherit from protocols.
 
 ## Things I'm considering adding
 
@@ -66,7 +68,5 @@ Modules:
 - global deinitializer.
 
 Kinds:
-- unified instance members (can be accessed without pattern matching).
 - deinitializer.
-- allow inheriting from protocols.
 - allow inheriting from other kinds (row types).

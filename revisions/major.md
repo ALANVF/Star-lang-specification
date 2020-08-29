@@ -1,3 +1,9 @@
+Revision #9:
+- Added `syntax/namespace-declarations.md`.
+- Started `syntax/other-declarations.md`.
+- Type aliases *can* in fact be generic.
+- Minor tweaks in various places.
+
 Revision #8:
 - Added syntax spec for statements.
 - Removed `>>>` operator because it's useless.

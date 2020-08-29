@@ -16,10 +16,10 @@ A variable declaration.
 Spec:
 ```antlr
 attribute ::=
-	| readonly
+	| 'readonly'
 
 variable-decl ::=
-	'my' <name> <type-anno>? ('is' <attribute>)* ( '=' <expr> )?
+	'my' <name> <type-anno>? ( 'is' <attribute> )* ( '=' <expr> )?
 ```
 
 Examples:
@@ -32,7 +32,7 @@ my var4 (Bool) is readonly = false
 
 Notes:
 - Although you may optionally leave out a default value, you must give the variable a value before using it later on in the program (will be checked at compile-time).
-- There is no alternative syntax for `is readonly` because mutability is one of Star's core concepts.
+- There is no alternative syntax for `is readonly` because mutability is one of Star's core concepts (therefore immutability is discouraged).
 
 ### If statement
 Spec:
