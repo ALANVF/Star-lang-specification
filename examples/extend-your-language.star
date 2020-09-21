@@ -2,7 +2,7 @@ use Core
 
 macro [
 	`if2` cond1 (AST.Expr), cond2 (AST.Expr) both (AST.Block)
-	`else1 only1 (AST.Block)
+	`else1` only1 (AST.Block)
 	`else2` only2 (AST.Block)
 	`else` neither (AST.Block)
 ] is pattern {
