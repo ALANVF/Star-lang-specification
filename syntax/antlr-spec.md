@@ -115,6 +115,7 @@ attr ::=
 	| "c_enum"
 	| "flags"
 	| "uncounted"
+	| "strong"
 	)
 
 macro-attr ::=
@@ -130,7 +131,7 @@ var-decl ::= "my" name typeanno? attr* ("=" expr)?
 
 generic-decl ::= "type" typename ("of" rep1sep(typename, ","))? ("if" expr)?
 
-alias-decl ::= "type" typename attr* "=" typename
+alias-decl ::= "alias" typename attr* "=" typename
 
 on ::=
 	| "on" "[" rep1sep(arg, sep?) "]" typeanno? attr* block?

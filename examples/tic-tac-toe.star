@@ -1,9 +1,9 @@
 use Core
 
 kind Cell {
-	empty
-	x
-	o
+	has empty
+	has x
+	has o
 	
 	on [Str] {
 		match this {
@@ -23,10 +23,10 @@ kind Cell {
 }
 
 kind Winner {
-	player1
-	player2
-	draw
-	none
+	has player1
+	has player2
+	has draw
+	has none
 }
 
 class Board {

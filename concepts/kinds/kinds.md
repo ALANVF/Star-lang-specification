@@ -2,9 +2,9 @@ Kinds are what most languages call an enum or discriminated union (although real
 Here's a simple example:
 ```swift
 kind Fruit {
-	apple
-	mango
-	banana
+	has apple
+	has mango
+	has banana
 }
 
 my fruit = Fruit.mango
@@ -22,8 +22,8 @@ Core[say: Fruit.mango - 1]            ;=> Fruit.apple
 Kinds can also be typed, where its members represent a value of the specified type.
 ```swift
 kind Sign (Int) {
-	negative => -1
-	positive => 1
+	has negative => -1
+	has positive => 1
 }
 
 Core[say: Sign.negative]           ;=> Sign.negative
@@ -34,8 +34,8 @@ Core[say: 5 * Sign.negative.value] ;=> -5
 You can also specify a kind to act like a C-style enum, which is helpful when binding to C libraries (this isn't really a good example though).
 ```swift
 kind WeirdBool (LLVM.UInt8) is c_enum {
-	yes => 1
-	no  => 0
+	has yes => 1
+	has no  => 0
 }
 
 Core[say: WeirdBool.yes]             ;=> Weird.yes
@@ -49,8 +49,8 @@ Now for the fun stuff!
 Star also allows kinds to act like discriminated unions.
 ```swift
 kind Number {
-	[zero]
-	[nth: (Int)]
+	has [zero]
+	has [nth: (Int)]
 }
 
 Core[say: Number[zero]]   ;=> Number[zero]
@@ -81,8 +81,8 @@ I haven't fully decided on the syntax, but this works for now I guess.
 You can also have kinds that have type parameters (whether or not they allow generic specification is TBD).
 ```swift
 type T, kind Option[T] {
-	[some: (T)]
-	[none]
+	has [some: (T)]
+	has [none]
 }
 
 my opt1 = Option[some: "thing"] ; Option[Str]

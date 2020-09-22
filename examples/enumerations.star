@@ -2,9 +2,9 @@ use Core
 
 module Main {
 	kind Fruit {
-		apple
-		banana
-		cherry
+		has apple
+		has banana
+		has cherry
 	}
 	
 	on [main] {

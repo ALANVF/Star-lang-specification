@@ -42,11 +42,11 @@ syn region    starBlock       start="{"   end="}"  transparent fold
 syn keyword   starAttribute   contained static hidden readonly writeonly custom
 syn keyword   starAttribute   contained unordered getter setter main inline noinherit
 syn keyword   starAttribute   contained pattern asm statement native
-syn keyword   starAttribute   contained c_struct c_union c_enum flags uncounted
+syn keyword   starAttribute   contained c_struct c_union c_enum flags uncounted strong
 
 syn keyword   starKeyword     module macro my on return init deinit operator
-syn keyword   starKeyword     class type kind category protocol
-syn keyword   starKeyword     is of use
+syn keyword   starKeyword     class alias type kind category protocol
+syn keyword   starKeyword     is of use has
 
 " might work?
 syn region    starIsAttribute start="\(\<is\s\+\)\@<=" end="\s\+\|$" contains=starAttribute

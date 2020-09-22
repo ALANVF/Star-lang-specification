@@ -1,3 +1,9 @@
+Revision #10:
+- Type aliases now use `alias` instead of `type` because it's already used for generic type args.
+- Kind cases now use `has` to declare a case, rather than nothing at all.
+- Added the `strong` attribute for types.
+- Updated the README.
+
 Revision #9:
 - Added `syntax/namespace-declarations.md`.
 - Started `syntax/other-declarations.md`.

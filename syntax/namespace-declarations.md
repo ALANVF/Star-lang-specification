@@ -66,16 +66,17 @@ attribute ::=
 
 type-alias-decl ::=
 	<leading-type-args>
-	'type' <type> ( 'is' <attribute> )* '=' <type>
+	'alias' <type> ( 'is' <attribute> )* '=' <type>
 ```
 
 Examples:
 ```antlr
-type Float = Dec
+alias Float = Dec
 ```
 
 Notes:
 - Type arguments are not required to appear on the RHS of the declaration.
+- Syntax for opaque/strong aliases is TBD.
 
 ### Class declaration
 Spec:
@@ -85,7 +86,7 @@ attribute ::=
 	| 'c_struct'
 	| 'c_union'
 	| 'uncounted'
-	| 'strong'                // Maybe
+	| 'strong'
 	| 'native' <group>
 
 class-decl ::=

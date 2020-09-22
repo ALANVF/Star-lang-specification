@@ -127,7 +127,7 @@ object SyntAnal3: TLibSyntAnalyzer
       DisplayName = 'Attribute'
       StyleName = 'Id attr'
       TokenType = 2
-      Expression = '(?-i)(?<=is\s+)(static|hidden|readonly|writeonly|custom|unordered|getter|setter|main|noinherit|inline|pattern|asm|statement|native|c_struct|c_union|c_enum|flags|uncounted)\b'
+      Expression = '(?-i)(?<=is\s+)(static|hidden|readonly|writeonly|custom|unordered|getter|setter|main|noinherit|inline|pattern|asm|statement|native|c_struct|c_union|c_enum|flags|uncounted|strong)\b'
       ColumnFrom = 0
       ColumnTo = 0
     end
@@ -221,10 +221,12 @@ object SyntAnal3: TLibSyntAnalyzer
       ConditionList = <
         item
           TagList.Strings = (
+            'alias'
           	'category'
           	'class'
           	'deinit'
           	'false'
+            'has'
           	'init'
           	'is'
           	'kind'

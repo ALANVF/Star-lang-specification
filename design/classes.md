@@ -127,10 +127,11 @@ The syntax to declare a message:
 ```
 
 Class attributes:
-- `hidden`: only allow this class to be used by the outer class.
+- `hidden`: only allow this class to be used by the namespace that it's contained in.
 - `c_struct`: represents a native C struct (so it doesn't have any RTTI).
 - `c_union`: I think you can figure it out.
 - `uncounted`: instances of this class do not contain any metadata used for ARC, so make sure to free these instances manually.
+- `strong`: the destructor doesn't need to check for cycles when deallocating members.
 - `native`: used internally only. mainly exists to represent native types within Star.
 
 Message attributes:
