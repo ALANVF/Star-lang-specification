@@ -3,6 +3,7 @@ Revision #10:
 - Kind cases now use `has` to declare a case, rather than nothing at all.
 - Added the `strong` attribute for types.
 - Updated the README.
+- Anonymous closure syntax has changed.
 
 Revision #9:
 - Added `syntax/namespace-declarations.md`.

@@ -149,15 +149,15 @@ Funcs also support a shorthand for single-expression funcs.
 
 `$0 + $1` is the same as `{|a, b| return a + b}`.
 
-`$0.0 + $0.1` is the same as `{|a| return {|b| return a + b}}`.
+`$0 + $.0` is the same as `{|a| return {|b| return a + b}}`.
 
 `val[thing: $0 + 1]` is not the same as `{|a| return val[thing: a + 1]}`, but instead `val[thing: {|a| return a + 1}]`.
 
-A way to have `val[thing: $0 + 1]` mean the same thing as `{|a| return val[thing: a + 1]}` is TBD.
+`val[thing: $.0 + 1]` is the same as `{|a| return val[thing: a + 1]}`.
+
+Every `.` indicates an extra nesting depth.
 
 Shorthand funcs are most likely going to be very limited until Star has a good type-checker.
-
-I'm also considering an alternative syntax that looks like `$0, $.0, $..0, $...0, etc` since it's a lot less visually confusing than the current syntax.
 
 ### Name
 A name literal:
@@ -252,3 +252,5 @@ A block literal:
 ```
 
 Represents consecutive statements in a context.
+
+When used as a value, it's essentially the same as `{|| ...}[call]`.
