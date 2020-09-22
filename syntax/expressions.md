@@ -141,7 +141,6 @@ Keeping in mind that cascades are expressions, doing something like `a[b: c->[d:
 - `a ^ b`: binary exclusive-or.
 - `a >> b`: binary right-shift.
 - `a << b`: binary left-shift.
-- `a >>> b`: binary unsigned right-shift.
 - `a ?= b`: equality.
 - `a != b`: inequality.
 - `a > b`: greater.
