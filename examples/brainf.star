@@ -15,7 +15,7 @@ class BF {
 					ptr++
 				}
 				
-				at ">" {
+				at "<" {
 					cell--
 					ptr++
 				}
