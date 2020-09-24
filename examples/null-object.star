@@ -2,15 +2,25 @@ use Core
 
 module Main {
 	on [main] {
-		;[ (this might be changed later)
-			In Star, the `?` postfix operator is used to test if the variable has a value. Note that there is no "null" literal. Instead, a variable that is not assigned a value is classified as "uninitialized".
-			Also, using an "uninitialized" value in an expression other than `?` or an assignment will result in an error.
-			If you never assign a variable a value, and you don't specify its type, you will also get an error.
-			Lastly, `?` can be used to check for null pointers when using C libs.
+		;[
+			Star does not have the concept of "null", but rather "not yet assigned". You
+			may declare variable/member without giving it a value, but it cannot be used
+			until it has (definitely) been assigned a value. These checks are done at
+			compile-time, which guarantees that there won't be any null errors at runtime.
 		]
-		my noValue
-		Core[say: noValue?] ;=> false
-		noValue = "no value"
-		Core[say: noValue?] ;=> true
+
+		my noValue (Int)
+
+		Core[say: noValue] ;=> Throws an error
+		
+		if someCondition {
+			noValue = 1
+		}
+
+		Core[say: noValue] ;=> Throws an error, even if `someCondition` is always true
+		
+		noValue = 2
+		
+		Core[say: noValue] ;=> 2
 	}
 }

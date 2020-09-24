@@ -10,7 +10,7 @@ module Main {
 		; converted to an array of that data's type
 		my a2 = #[]
 		Core[say: a2[typeName]] ;=> Array[_]
-		a2[pushValue: "banana"]
+		a2[add: "banana"]
 		Core[say: a2[typeName]] ;=> Array[Str]
 		
 		; I might expand on this or change some ideas later, but for now this is what I'm thinking.

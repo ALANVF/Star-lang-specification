@@ -1,7 +1,7 @@
 use Core
 
 class BF {
-	my table = Array[Int][size: 100][fill: 0]
+	my table = #[0] * 100
 	my lstack = #[]
 	my ibuffer = #[]
 	my cell = 0
@@ -10,39 +10,39 @@ class BF {
 	on [run: code (Str)] {
 		while ptr < code.length {
 			match code[at: ptr] {
-				at ">" {
+				at #">" {
 					cell++
 					ptr++
 				}
 				
-				at "<" {
+				at #"<" {
 					cell--
 					ptr++
 				}
 				
-				at "+" {
+				at #"+" {
 					table[at: cell]++
 					ptr++
 				}
 				
-				at "-" {
+				at #"-" {
 					table[at: cell]--
 					ptr++
 				}
 				
-				at "." {
+				at #"." {
 					Core[say: table[at: cell][char] end: ""]
 					ptr++
 				}
 				
-				at "," {
+				at #"," {
 					my i = Core[prompt]
 					if i ?= "" {panic "error!"}
 					table[at: cell] = i[at: 0][ord]
 					ptr++
 				}
 				
-				at "[" {
+				at #"[" {
 					if table[at: cell] ?= 0 {
 						my i = 1
 						
@@ -51,8 +51,8 @@ class BF {
 							my j = code[at: ptr]
 							
 							match j {
-								at "[" {i++}
-								at "]" {i--}
+								at #"[" {i++}
+								at #"]" {i--}
 							}
 						}
 					} else {
@@ -60,7 +60,7 @@ class BF {
 					}
 				}
 				
-				at "]" {
+				at #"]" {
 					if table[at: cell] != 0 {
 						my i = 1
 						
@@ -69,8 +69,8 @@ class BF {
 							my j = code[at: ptr]
 							
 							match j {
-								at "[" {i--}
-								at "]" {i++}
+								at #"[" {i--}
+								at #"]" {i++}
 							}
 						}
 					} else {

@@ -1,8 +1,8 @@
 use Core
 
 class Fraction {
-	my top
-	my bottom
+	my top (Poly)
+	my bottom (Poly)
 
 	on [Str] {
 		return "\(top) / \(bottom)"
@@ -10,16 +10,16 @@ class Fraction {
 }
 
 class PolyRes {
-	my poly
-	my rem
+	my poly (Poly)
+	my rem (Fraction)
 
 	on [Str] {
 		case {
-			at rem.top.degree ?= 0 && rem.top.terms[at: 0] ?= 0 {
+			at rem.top.degree ?= 0 && rem.top.terms.first ?= 0 {
 				return poly[Str]
 			}
 
-			at poly.degree ?= 0 && poly.terms[at: 0] ?= 0 {
+			at poly.degree ?= 0 && poly.terms.first ?= 0 {
 				return (
 					(rem.top[sign] / rem.bottom[sign] ?= -1)[yes: "-(" no: "("]
 						+
@@ -54,11 +54,11 @@ class Poly {
 		degree = coeffs.length - 1
 	}
 
-	on [sign] {
-		return terms[at: 0] / terms[at: 0][abs]
+	on [sign] (Int) {
+		return terms.first / terms.first[abs]
 	}
 
-	operator `/` [poly (Poly)] {
+	operator `/` [poly (Poly)] (Poly) {
 		if degree < poly.degree {
 			return PolyRes[poly: Poly[newWithCoeffs: #[0]] rem: Fraction[top: this bottom: poly]]
 		} else {
@@ -66,14 +66,14 @@ class Poly {
 			my factors = #[]
 			
 			while p.length >= poly.degree {
-				my factor = p[at: 0] / poly.terms[at: 0]
-				factors[pushValue: factor]
+				my factor = p.first / poly.terms.first
+				factors[add: factor]
 				
-				for my i from: 0 to: poly.term.length - 1 {
-					p[at: i] = p[at: i] - poly.terms[at: i] * factor
+				for my i from: 0 upto: poly.term.length {
+					p[at: i] -= poly.terms[at: i] * factor
 				}
 
-				while p[at: 0] ?= 0 {
+				while p.first ?= 0 {
 					p[popFront]
 				}
 			}
@@ -86,8 +86,8 @@ class Poly {
 		}
 	}
 
-	operator `*` [f (Int)] {
-		return Poly[newWithCoeffs: terms[take: {|term| return term * f}]]
+	operator `*` [f (Int)] (Poly) {
+		return Poly[newWithCoeffs: terms[collect: $0 * f]]
 	}
 
 	on [Str] {

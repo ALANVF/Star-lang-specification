@@ -5,7 +5,7 @@ class Cell {
 	my y (Int)
 	
 	on [neighbors] (Array[Cell]) {
-		return #[-1, 0, 1][crossWith: #[-1, 0, 1] andCollect: {|_x, _y| (Cell)
+		return #[-1, 0, 1][crossWith: #[-1, 0, 1] andCollect: {|_x, _y|
 			return Cell[x: x + _x y: y + _y]
 		}]
 	}
@@ -27,9 +27,9 @@ class Colony {
 	on [Str] is hidden {
 		my out = ""
 
-		for my y (Int) from: 0 to: height {
-			for my x (Int) from: 0 to: width {
-				out += cells[contains: Cell[:x :y]][yes: "#" no: "-"] + " "
+		for my y (Int) from: 0 upto: height {
+			for my x (Int) from: 0 upto: width {
+				out += cells[contains: Cell[:x :y]][yes: "# " no: "- "]
 			}
 
 			out += "\n"
@@ -39,7 +39,7 @@ class Colony {
 	}
 	
 	on [runTimes: times (Int)] {
-		for my i (Int) from: 0 to: times {
+		for my i (Int) from: 0 upto: times {
 			Core
 			-> [say: "Generation \(i + 1):"]
 			-> [say: this[Str]]
@@ -50,7 +50,7 @@ class Colony {
 	}
 	
 	on [runGeneration] is hidden {
-		cells = this[neighborCounts][keepIf: {|cell, count| (Bool)
+		cells = this[neighborCounts][keepIf: {|cell, count|
 			return (count ?= 2 && cells[contains: cell]) || count ?= 3
 		}].keys
 	}

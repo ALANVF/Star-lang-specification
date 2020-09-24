@@ -79,13 +79,16 @@ module Main {
 			if playerTurn {
 				Core[say: "Player 1's turn:"]
 				
-				my choice = Core[promptInt: "Choose a cell to play: " withCondition: board[verifyChoice: $0.1]]
+				my choice = Core.stdin[IO[Int]][
+					prompt: "Choose a cell to play: "
+					withCondition: board[verifyChoice: $.0]
+				]
 				
 				board.cells[at: choice - 1] = Cell.player1
 			} else {
 				Core[say: "Player 2's turn:"]
 				
-				my choice = 1[to: 9][Array[Int]][keepIf: board[verifyChoice: $0.1]][first]
+				my choice = 1[to: 9][Array[Int]][keepIf: board[verifyChoice: $.0]].first
 				
 				board.cells[at: choice - 1] = Cell.player2
 			}

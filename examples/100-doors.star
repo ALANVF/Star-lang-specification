@@ -2,7 +2,7 @@ use Core
 
 module Main {
 	on [main] {
-		my doors = Array[Bool][length: 100][fill: false]
+		my doors = #[false] * 100
 		
 		for my i from: 0 to: 99 {
 			for my j from: i to: 99 by: i + 1 {
@@ -11,7 +11,7 @@ module Main {
 		}
 		
 		for my i, my door in: doors {
-			Core[say: "Door \(i+1) is \(door[yes: "open" no: "closed"])."]
+			Core[say: "Door \(i + 1) is \(door[yes: "open" no: "closed"])."]
 		}
 	}
 }

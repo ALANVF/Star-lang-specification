@@ -7,8 +7,8 @@ module Main {
 	}
 
 	on [main] {
-		my c1 = [newCounter]
-		my c2 = [newCounter]
+		my c1 = Main[newCounter]
+		my c2 = Main[newCounter]
 
 		c1[call] ;=> 1
 		c1[call] ;=> 2
