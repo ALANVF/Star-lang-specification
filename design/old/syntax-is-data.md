@@ -1,10 +1,8 @@
-(this will closely relate to the macros document that I'll make later)
-
 # Syntax is data?
 Yes. Similarly to languages such as Lisp (and variants), REBOL/Red, and Crystal (to an extent), all syntax in Star is actually data. here's a small example:
 ```swift
 macro [whatIsThis: thing (AST.Literal)] {
-	say[@(thing[astName])]
+	Core[say: @(thing[astName][Str])]
 }
 
 [whatIsThis: "banana"] ;=> "AST.String"
