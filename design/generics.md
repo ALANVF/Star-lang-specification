@@ -70,19 +70,18 @@ class Array[Array[T]] {
 ```
 
 ## Generic constraints
-Kinda self-explainitory. This is just an idea for now:
-
+Kinda self-explainitory:
 ```swift
 ; ...
 type T of Real
 on [doThing: val (T)] {Core[say: val]}
 ; ...
-[doThing: 1]   ; works
-[doThing: 2.3] ; works
-[doThing: "a"] ; fails: type `Str` does not conform to the `Real` protocol
+[doThing: 1]   ;=> works
+[doThing: 2.3] ;=> works
+[doThing: "a"] ;=> fails: type `Str` does not conform to the `Real` protocol
 ```
 
-Conditional constraints might also be a thing:
+Refinement types also exist:
 ```swift
 type T if T != Void
 class Pointer[T] {...}
@@ -90,6 +89,33 @@ class Pointer[T] {...}
 my a = Pointer[Int][new]  ;=> works
 my b = Pointer[Void][new] ;=> fails: `Void != Void` is false
 ```
+
+## Dependent types (TBD)
+I'm a bit of a noob when it comes to fancy terms like "dependent typing", but this supposedly qualifies:
+```swift
+type I (Int)
+class Thing[I] {...}
+
+my a (Thing[1])   ;=> works
+my b (Thing[2])   ;=> works
+my c (Thing[3.4]) ;=> fails
+```
+
+Also came up with this idea where you can add conditional constraints to the type params. It could be thought of as "dependent refinement types":
+```swift
+type Bits (Int) if Bits > 0
+class Int[Bits] {...}
+
+my a (Bits[1])  ;=> works
+my b (Bits[0])  ;=> fails
+my c (Bits[-1]) ;=> fails
+```
+
+Things to note:
+- Dependent type params can only be basic literal types. These include booleans*, integers, decimals, characters, litsyms, and possibly strings.
+- For now, these types will not introduce any additional runtime overhead. If the exact type cannot be deduced at compile-time, it will not be valid.
+
+\* I don't actually know how this would work because `T[true]` is technically a method call.
 
 ## What can/can't have generic parameters
 Can:
@@ -114,6 +140,7 @@ Can:
 - Protocols
 - Kinds
 - Type aliases
+- Literals (such as integers, decimals, or characters)
 
 Can't:
 - Categories
@@ -122,9 +149,6 @@ Can't:
 - Methods
 - Macros
 
-TBD:
-- Literals (such as integers)
-
 ## Special cases
 Because I don't want to add variadic type arguments, the `Func` type will be a special case in terms of generic parameters. Its
 type definition would look something like `Func[Ret, Args...]` since methods can take any number of parameters. I'll
@@ -132,33 +156,13 @@ probably explain this more at some other point.
 
 ## Future considerations
 - Variadic type arguments
-- ~~Scala-like [higher-kinded types](http://adriaanm.github.io/files/higher.pdf)~~ (these already exist)
 - Labeled type parameters
 
 ## Syntax
-Classes/protocols:
 ```swift
 type T1
 type T2
 ; ...
 type Tn
-class MyClass[...] {...}
-```
-
-Methods:
-```swift
-type T1
-type T2
-; ...
-type Tn
-on [...] {...}
-```
-
-Kinds:
-```swift
-type T1
-type T2
-; ...
-type Tn
-kind MyKind[...] {...}
+<decl>
 ```
