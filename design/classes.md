@@ -1,3 +1,5 @@
+(NOTE: some things in here are a bit outdated)
+
 # Classes
 
 Everything in Star is a class
@@ -88,13 +90,13 @@ on [whatIsThis: (Dec)] {
 	return "decimal"
 }
 
-Core[say: whatIsThis[1]]   ;=> "integer"
-Core[say: whatIsThis[2.3]] ;=> "decimal"
+Core[say: [whatIsThis: 1]]   ;=> "integer"
+Core[say: [whatIsThis: 2.3]] ;=> "decimal"
 ```
 
 # Syntax
 
-(specs for attributes and generics will be discussed later)
+(NOTE: this is kinda old. please look at [the actual spec](../syntax/other-declarations.md) instead)
 
 The syntax to declare a class:
 ```less
