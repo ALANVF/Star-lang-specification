@@ -1,3 +1,9 @@
+Revision #12:
+- Hinted at dependent types in `generics.md`.
+- Improved `classes.md` and `oop-features.md`.
+- Moved `syntax-is-data.md` to `design/old`.
+- Added info about StarVM in the README.
+
 Revision #11:
 - Updated all examples.
 - Added new examples.

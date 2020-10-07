@@ -75,6 +75,7 @@ That's a good question. The issue with Star is that the best language to make it
 
 ## Where is the runtime?
 It's not the "real" runtime (and it's pretty outdated at this point), but there's a version in C++ right [here](https://github.com/ALANVF/Star-runtime).
+I'm also working on a (temporary) VM for Star right now, but it's not finished yet.
 
 ## Everything here seems really informal
 Yeah I'm 17.
