@@ -1,4 +1,4 @@
-# Namespace declarations
+# Top-level declarations
 These are declarations that are valid when *not* inside a method definition.
 
 Common rules:
@@ -12,11 +12,6 @@ leading-type-args ::=
 parents ::=
 	'of' <type> ( ',' <type> )*
 ```
-
-Notes:
-- Not permitted within values-based kinds.
-- Not permitted within categories.
-- Not permitted at the top-level.
 
 ### Type argument declaration
 Declares a type argument that will be relevant upto the next declaration (that isn't a type argument declaration).
@@ -66,17 +61,19 @@ attribute ::=
 
 type-alias-decl ::=
 	<leading-type-args>
-	'alias' <type> ( 'is' <attribute> )* '=' <type>
+	'alias' <type> (
+		| ( 'is' <attribute> )* '=' <type>
+		| '(' <type> ')' ( 'is' <attribute> )*
 ```
 
 Examples:
 ```antlr
 alias Float = Dec
+alias Name (Str)
 ```
 
 Notes:
 - Type arguments are not required to appear on the RHS of the declaration.
-- Syntax for opaque/strong aliases is TBD.
 
 ### Class declaration
 Spec:
@@ -87,7 +84,7 @@ attribute ::=
 	| 'c_union'
 	| 'uncounted'
 	| 'strong'
-	| 'native' <group>
+	| 'native' '[' ... ']'
 
 class-decl ::=
 	<leading-type-args>
@@ -160,7 +157,7 @@ attribute ::=
 	| 'main'
 	| 'native' (
 		| <string>
-		| <group>
+		| '[' ... ']'
 	)?
 
 module-decl ::=

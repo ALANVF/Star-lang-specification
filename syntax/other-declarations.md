@@ -14,6 +14,9 @@ use Thing1 as: Thing2
 use A only: [B, C] as: D
 ```
 
+Notes:
+- `only:`/`as:` syntax will probably change at some point.
+
 ### Member declaration
 A member declaration.
 
@@ -23,14 +26,12 @@ attribute ::=
 	| 'static'            // Not valid inside a module
 	| 'hidden'
 	| 'readonly'
-	| 'writeonly'         // will be removed in the future (only here for completion)
 	| 'getter'
 	| 'setter'
-	| 'custom'            // might be removed in the future
-	| 'noinherit'         // Only valid within a class or protocol. might be removed in the future
+	| 'noinherit'         // Only valid within an inheritable type
 	| 'native' (          // Only valid within a native module
-		| <litsym>
-		| <group>
+		| <string>
+		| '[' ... ']'
 	)?
 
 member-decl ::=

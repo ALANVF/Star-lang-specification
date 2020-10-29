@@ -74,9 +74,6 @@ Messaging is kinda like calling unnamed methods with named arguments I guess. St
 You should also note these other rules regarding messaging:
 - you may send a message to an object like `a[b: c]` or `[a b: c]`.
 - (for now) you may not have any space between the caller and the brackets `[]` when using prefix notation (`a[b: c]`).
-- you may send a message to the current context (class or module) by doing `[a: b c: d]` ~~or `a[b c: d]`~~.
-- you may not have a variable share the same name as the first label of a message sent to the current context (e.g. `a[b]` could either be `[this a: b]` or `[a b]`).
-- a message call to the current context with a single label may be called like ~~`thing[]` or~~ `[thing]`.
 
 (put something here about casting smh)
 
@@ -90,8 +87,8 @@ on [whatIsThis: (Dec)] {
 	return "decimal"
 }
 
-Core[say: [whatIsThis: 1]]   ;=> "integer"
-Core[say: [whatIsThis: 2.3]] ;=> "decimal"
+Core[say: this[whatIsThis: 1]]   ;=> "integer"
+Core[say: this[whatIsThis: 2.3]] ;=> "decimal"
 ```
 
 # Syntax
@@ -144,5 +141,4 @@ Message attributes:
 - `setter`: the method may be called as if it were assigning a value to a member. (for now) the method must take 1 argument.
 - `main`: this is the method to be called when running the main program. must be inside the main module.
 - `noinherit`: subclasses do not inherit this message.
-- `inline`: self-explainitory.
 - `native`: the method represents a native function (details coming soon).

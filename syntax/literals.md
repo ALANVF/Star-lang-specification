@@ -19,7 +19,7 @@ A floating-point literal:
 
 NaN and infinity literals are TBD.
 
-### Char (TBD)
+### Char
 A unicode character literal:
 ```
 #"a"
@@ -149,7 +149,7 @@ Funcs also support a shorthand for single-expression funcs.
 
 `$0 + $1` is the same as `{|a, b| return a + b}`.
 
-`$0 + $.0` is the same as `{|a| return {|b| return a + b}}`.
+`$0 + $.0` is the same as `{|a| return {|b| return b + a}}`.
 
 `val[thing: $0 + 1]` is not the same as `{|a| return val[thing: a + 1]}`, but instead `val[thing: {|a| return a + 1}]`.
 
@@ -180,7 +180,7 @@ A type literal
 ```
 MyType
 Core.Int
-LLVM.Ptr[Void]
+Native.Ptr[Void]
 _
 ```
 

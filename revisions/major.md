@@ -1,3 +1,15 @@
+Revision #13:
+- Fixed func shorthand example.
+- Added syntax for strong aliases (aka "newtypes").
+- Removed prefix `+` operator.
+- Removed context calls.
+- Postfix `?` operator is used for boolean coercion.
+- Removed redundant attributes.
+- Renamed `namespace-declarations.md` to `top-level-declarations.md`.
+- Updated spec for loops.
+- Updated several examples.
+- Updated ABI spec.
+
 Revision #12:
 - Hinted at dependent types in `generics.md`.
 - Improved `classes.md` and `oop-features.md`.

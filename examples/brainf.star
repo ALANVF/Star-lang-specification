@@ -31,14 +31,12 @@ class BF {
 				}
 				
 				at #"." {
-					Core[say: table[at: cell][char] end: ""]
+					Core.stdout[write: table[at: cell][Char]]
 					ptr++
 				}
 				
 				at #"," {
-					my i = Core[prompt]
-					if i ?= "" {panic "error!"}
-					table[at: cell] = i[at: 0][ord]
+					table[at: cell] = Core.stdin[IO[Char]][read][Int]
 					ptr++
 				}
 				

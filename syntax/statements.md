@@ -32,7 +32,6 @@ my var4 (Bool) is readonly = false
 
 Notes:
 - Although you may optionally leave out a default value, you must give the variable a value before using it later on in the program (will be checked at compile-time).
-- There is no alternative syntax for `is readonly` because mutability is one of Star's core concepts (therefore immutability is discouraged).
 
 ### If statement
 Spec:
@@ -192,7 +191,7 @@ loop-var ::=
 
 for-cond ::=
 	| 'in:' <expr>
-	| 'from:' <expr> 'to:' <expr> ( 'by:' <expr> )?
+	| 'from:' <expr> ( 'upto:' | 'downto:' | 'to:' ) <expr> ( 'by:' <expr> )?
 
 for-stmt ::=
 	'for' <loop-var> ( ',' <loop-var> )? <for-cond> ( 'while:' <expr> )? <block>
@@ -204,6 +203,9 @@ for my a in: b {...}
 for my k (Str), v (Int) in: d while: v > 5 {...}
 for my i from: 1 to: 10 by: 2 {...}
 ```
+
+Notes:
+- `upto:` and `downto:` are exclusive.
 
 ### Do statement
 A statement that introduces a new scope.
@@ -284,7 +286,6 @@ panic SomeError[new]
 
 Notes:
 - I'll probably change the name of this at some point.
-
 
 ### Try-Catch statement
 Needs work. Mostly here for completeness.

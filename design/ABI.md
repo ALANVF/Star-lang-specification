@@ -26,25 +26,13 @@
 # Attributes
 - `is static`: `0`.
 - `is hidden`: `1`.
-- `is readonly`: `2`.
-- `is writeonly`: `3`.
-- `is custom`: `4`.
-- `is unordered`: `5`.
-- `is getter`: `6`.
-- `is setter`: `7`.
-- `is main`: `8`.
-- `is inline`: `9`.
-- `is noinherit`: `a`.
-- `is pattern`: `b`.
-- `is asm`: `c`.
-- `is statement`: `d`.
-- `is native`: `e`.
-- `` is native `name` ``: `E#name`.
-- `is c_struct`: `f`.
-- `is c_union`: `g`.
-- `is c_enum`: `h`.
-- `is flags`: `i`.
-- `is uncounted`: `j`.
+- `is unordered`: `2`.
+- `is getter`: `3`.
+- `is setter`: `4`.
+- `is main`: `5`.
+- `is noinherit`: `6`.
+- `is asm`: `7`.
+- `` is native `name` ``: `8#name`.
 
 
 # Sub-structures
@@ -99,7 +87,7 @@ module Main {
 exported symbols:
 |         Definition         |      Exported Symbol                                       |
 |----------------------------|------------------------------------------------------------|
-| `Main[main]`               | `_So0m_m4Main4main_2s_m4Star_c4Void_1I8_0T`                |
+| `Main[main]`               | `_So0m_m4Main4main_2s_m4Star_c4Void_1I5_0T`                |
 | `Star.Value[new]`          | `_So0i_2s_m4Star_p5Value3new_0I_0T`                        |
 | `Star.Core[say: (T)]`      | `_So1m_2s_m4Star_m4Core3say_t1T_2s_m4Star_c4Void_0I_1Tn1T` |
 

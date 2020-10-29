@@ -37,7 +37,7 @@ module Main {
             `^^` = xor
 			`!!` = nor (undecided feature)
             `!`  = not
-            `?`  = has a value/boolean coercion (haven't decided)
+            `?`  = boolean coercion
         ]
     }
 }

@@ -3,7 +3,7 @@
 Precedence tree (highest to lowest):
 ```
 a.b, a[b], [a b]
-++a, --a, +a, -a, !a, ~a, a++, a--, a?
+++a, --a, -a, !a, ~a, a++, a--, a?
 a ** b
 a * b, a / b, a // b, a % b
 a + b, a - b
@@ -57,15 +57,6 @@ obj[Type]
 [obj Type]
 ```
 
-#### Context call
-A context call implicitly sends the message to `this`. Might be removed at some point in the future.
-```
-[name]
-[label: value]
-[label1: value1 label2: value2]
-[Type]
-```
-
 ### Cascade
 A cascade is series of calls on a single value, which returns the sender as the final result. Doing:
 ```
@@ -103,8 +94,8 @@ Cascades may call into a block expression like so:
 ```
 obj
 -> {
-	[thing1]
-	[thing3: [thing4]]
+	this[thing1]
+	this[thing3: this[thing4]]
 }
 -> {
 	my thing5 = this.attr
@@ -115,7 +106,6 @@ obj
 Keeping in mind that cascades are expressions, doing something like `a[b: c->[d: e]->[f: g h: i]]` is perfectly valid.
 
 ### Prefix operation
-- `+a`: you should know what this does.
 - `-a`: negation.
 - `~a`: binary not.
 - `!a`: logical not.
@@ -123,7 +113,7 @@ Keeping in mind that cascades are expressions, doing something like `a[b: c->[d:
 - `--a`: pre-decrement.
 
 ### Postfix operation
-- `a?`: haven't fully decided, but it'll either be definedness checking or logical coercion.
+- `a?`: logical coercion.
 - `a++`: post-increment.
 - `a--`: post-decrement.
 
@@ -154,10 +144,11 @@ Keeping in mind that cascades are expressions, doing something like `a[b: c->[d:
 - `a <op>= b`: compound assignment (same as `a = a <op> b`).
 
 ### Future considerations
-- `a isa B`: type assertion.
+- `a of B`: type assertion.
 - `a ~~ b`: smart-match.
 - `a !! b`: logical nor.
 - `a \& b`: and-junction.
 - `a \| b`: or-junction.
 - `a \^ b`: one-junction.
 - `a \! b`: none-junction.
+- Remove bitwise operators (and possibly replace them with something else).

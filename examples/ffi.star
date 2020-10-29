@@ -1,4 +1,5 @@
 use Core
+use Native
 
 ; pretending that LibC doesn't already exist
 module LibC is native "c" {
@@ -9,7 +10,7 @@ module LibC is native "c" {
 module Main {
 	on [main] {
 		my charPtr = LibC[strdup: #c_str "banana"]
-		Core[say: charPtr[Str]]
-		LibC[free: charPtr[LLVM.Ptr[Void]]]
+		Core[say: charPtr[Core.Str]]
+		LibC[free: charPtr[Native.Ptr[Void]]]
 	}
 }

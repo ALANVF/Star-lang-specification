@@ -1,3 +1,5 @@
+WARNING: this file is probably outdated and redundant in some places.
+
 ```antlr
 line-comment ::=
 	";" ... EOL

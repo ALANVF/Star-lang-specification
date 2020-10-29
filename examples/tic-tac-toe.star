@@ -1,24 +1,12 @@
 use Core
 
 kind Cell {
-	has empty
-	has x
-	has o
-	
+	has empty => #" "
+	has x     => #"X"
+	has o     => #"O"
+
 	on [Str] {
-		match this {
-			at empty {
-				return " "
-			}
-			
-			at x {
-				return "X"
-			}
-			
-			at o {
-				return "O"
-			}
-		}
+		return this.value[Str]
 	}
 }
 
