@@ -1,3 +1,6 @@
+Revision #14:
+- New "labeled generics" concept.
+
 Revision #13:
 - Fixed func shorthand example.
 - Added syntax for strong aliases (aka "newtypes").
