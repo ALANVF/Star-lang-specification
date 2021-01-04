@@ -39,7 +39,7 @@ syn region    starParen       start="("   end=")"  transparent fold
 syn region    starGroup       start="\["  end="\]" transparent fold
 syn region    starBlock       start="{"   end="}"  transparent fold
 
-syn keyword   starAttribute   contained static hidden readonly writeonly custom
+syn keyword   starAttribute   contained static hidden readonly friend sealed
 syn keyword   starAttribute   contained unordered getter setter main inline noinherit
 syn keyword   starAttribute   contained pattern asm statement native
 syn keyword   starAttribute   contained c_struct c_union c_enum flags uncounted strong
@@ -51,7 +51,7 @@ syn keyword   starKeyword     is of use has
 " might work?
 syn region    starIsAttribute start="\(\<is\s\+\)\@<=" end="\s\+\|$" contains=starAttribute
 
-syn match     starCoreword    /\v<(if|orif|else|while|for|forever|do|case|match|at|break|next|redo|panic|try|catch|new)(:)@!>/
+syn match     starCoreword    /\v<(if|orif|else|while|for|do|case|match|at|break|next|throw|try|catch|new)(:)@!>/
 
 syn cluster   starRules       contains=starSep,starComment,starConstant,starLabel,starName,starType,starTag,starMacroName,starLitsym,starDec,starInt,starStr,starArray,starHash,starParen,starGroup,starBlock,starKeyword,starCoreword
 

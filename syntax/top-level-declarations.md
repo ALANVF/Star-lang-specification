@@ -20,13 +20,14 @@ Spec:
 ```antlr
 cond ::=
 	| <type> ( '?=' | '!=' | 'of' ) <type>
-	| <cond> ( '&&' | '||' | '^^' ) <cond>
+	| <cond> ( '&&' | '||' | '^^' | '!!' ) <cond>
 	| '!' <cond>
 	| '(' <cond> ')'
 
 
 type-arg-decl ::=
-	'type' <type> <parents>? ( 'if' <cond> )?
+	| 'type' <type> <parents>? ( 'if' <cond> )? <block(of: <decl>)>?
+	| 'type' <type> '=' <type>
 ```
 
 Examples:
@@ -47,10 +48,15 @@ type A of Positional[I]
 
 type HKT[_, Int]
 ...
+
+type Stringy {
+	on [Str]
+}
 ```
 
 Notes:
 - Type argument declarations are not allowed to stand on their own; they must be part of a larger declaration.
+- A type argument may be assigned to an alias for future use.
 - Yes, higher-kinded types are permitted :)
 
 ### Type alias declaration
@@ -137,17 +143,19 @@ attribute ::=
 	| 'c_enum'
 	| 'flags'
 
+has-stmt ::=
+	| 'has' <name> ( '=>' <expr> )? <block>?
+	| 'has' <signature> <block>?
+
 kind-decl ::=
 	<leading-type-args>
 	'kind' <type> <type-anno>? <parents>? ( 'is' <attribute> )* <block(of:
-		| TODO
+		| <decl>
+		| <has-stmt>
 	)>
 ```
 
 [Examples](../concepts/kinds/kinds.md)
-
-Notes:
-- This is going to take a while to finish the spec for. Just look at the [concept](../concepts/kinds/kinds.md) for now (pls).
 
 ### Module declaration
 Spec:
@@ -161,5 +169,5 @@ attribute ::=
 	)?
 
 module-decl ::=
-	'module' <type> ( 'is' <attribute> )* <block(of: <decl>)>
+	'module' <type> <parents>? ( 'is' <attribute> )* <block(of: <decl>)>
 ```

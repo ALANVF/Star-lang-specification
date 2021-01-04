@@ -75,10 +75,10 @@ Similar to an if-orif-else chain, but it looks cleaner.
 Spec:
 ```antlr
 at-stmt ::=
-	'at' <expr> <block>
+	'at' <expr> (<block> | '=>' <statement>)
 
 else-stmt ::=
-	'else' <block>
+	'else' (<block> | '=>' <statement>)
 
 case-stmt ::=
 	'case' <block(of:
@@ -119,10 +119,10 @@ match-expr ::=
 	| <expr>
 
 at-stmt ::=
-	'at' rep1sep(<match-expr>, ',') ( "\n"? 'if' <expr> )? <block>
+	'at' rep1sep(<match-expr>, ',') ( "\n"? 'if' <expr> )? (<block> | '=>' <statement>)
 
 else-stmt ::=
-	'else' <block>
+	'else' (<block> | '=>' <statement>)
 
 match-stmt ::=
 	'match' <expr> <block(of:
@@ -191,7 +191,7 @@ loop-var ::=
 
 for-cond ::=
 	| 'in:' <expr>
-	| 'from:' <expr> ( 'upto:' | 'downto:' | 'to:' ) <expr> ( 'by:' <expr> )?
+	| ('from:' | 'after:') <expr> ( 'upto:' | 'downto:' | 'to:' ) <expr> ( 'by:' <expr> )?
 
 for-stmt ::=
 	'for' <loop-var> ( ',' <loop-var> )? <for-cond> ( 'while:' <expr> )? <block>
@@ -205,7 +205,7 @@ for my i from: 1 to: 10 by: 2 {...}
 ```
 
 Notes:
-- `upto:` and `downto:` are exclusive.
+- `upto:` and `after:` are exclusive.
 
 ### Do statement
 A statement that introduces a new scope.
@@ -269,19 +269,20 @@ next
 next 3
 ```
 
-### Panic statement
+### Throw statement
 Throws an error.
 
 Spec:
 ```antlr
-panic-stmt ::=
-	'panic' <expr>
+throw-stmt ::=
+	'throw' <expr>?
 ```
 
 Examples:
 ```
-panic "error!"
-panic SomeError[new]
+throw "error!"
+throw SomeError[new]
+throw                ;-- rethrows
 ```
 
 Notes:
@@ -292,9 +293,21 @@ Needs work. Mostly here for completeness.
 
 Spec:
 ```antlr
-catch-var ::=
-	'my' <name> <type-anno>?
+catch-expr ::=
+	| 'my' <name> <type-anno>? ( '=' <catch-expr> )?
+	| <array(of: <catch-expr>)>
+	| <hash(of: <catch-expr>, <catch-expr>)>
+	| <tuple(of: <catch-expr>)>
+	| <type-constructor(of: <catch-expr>)>
+	| <type>
+	| <expr>
+
+at-stmt ::=
+	'at' rep1sep(<catch-expr>, ',') ( "\n"? 'if' <expr> )? (<block> | '=>' <statement>)
 
 try-catch-stmt ::=
-	'try' <block> ( 'catch' <catch-var> <block> )*
+	'try' <block> ('catch' <block(of:
+		<at-stmt>*
+		<else-stmt>?
+	)>)?
 ```

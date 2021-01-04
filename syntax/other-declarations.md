@@ -4,18 +4,14 @@ Imports a module, category, or type into the current namespace.
 Spec:
 ```antlr
 use-stmt ::=
-	'use' <type> ( 'only:' ( <type> | <group> ) )? ( 'as:' <type> )?
+	'use' (<type> | <array(of: <type>)>) ( 'from:' <type> )?
 ```
 
 Examples:
 ```
 use Core
-use Thing1 as: Thing2
-use A only: [B, C] as: D
+use #[A, B] from: C
 ```
-
-Notes:
-- `only:`/`as:` syntax will probably change at some point.
 
 ### Member declaration
 A member declaration.

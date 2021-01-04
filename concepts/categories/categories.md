@@ -14,7 +14,7 @@ Core[say: Fraction[top: 1 bottom: 2]] ;=> Fraction[top: 1 bottom: 2]
 Core[say: 0.5[Fraction]]              ;=> error!
 ```
 
-That didn't work because in Star, categories have to be imported in order to be used.
+That didn't work because in Star, categories have to be imported in order to be used implictly.
 This prevents unnecessary "monkey-patching" frequently used in languages such as Ruby and JavaScript.
 What this instead does is that it encourages programmers to only extend classes when it'll actually be useful (hopefully).
 
@@ -26,6 +26,15 @@ Core[say: Fraction[top: 1 bottom: 2]] ;=> Fraction[top: 1 bottom: 2]
 Core[say: 0.5[Fraction]]              ;=> Fraction[top: 1 bottom: 2]
 ```
 
+If you wanted to, you could use the category without importing it by putting the category name in the method call:
+```swift
+use Fractions.Fraction
+
+Core[say: Fraction[top: 1 bottom: 2]] ;=> Fraction[top: 1 bottom: 2]
+Core[say: 0.5[Fractions Fraction]]    ;=> Fraction[top: 1 bottom: 2]
+```
+
 So I think that this could be useful because it can be used to separate large classes and stuff into smaller files, which makes the code more readable and more organized.
 For example, there could be a separate Math category that adds mathmatical functions to numeric structures, or an Native category that provides conversion functions from regular structures to primitive datatypes.
+
 I might expand on this more in the future, but this is all I've got for now.

@@ -1,3 +1,17 @@
+Revision #15:
+- Updated "categories" concept.
+- Added `!!` operator.
+- Updated `use` syntax.
+- Added `after:` label to for-loops.
+- `s/panic/throw`.
+- Added `=>` shorthand syntax for `at`/`else` cases.
+- Redid `try`/`catch` syntax to reflect `match` statements.
+- Generic argument types can have a shape or be an alias to another generic argument type.
+- Added info about generic argument type aliases.
+- Finished spec for kinds.
+- Modules should allow inheritance too.
+- Added a monad example.
+
 Revision #14:
 - New "labeled generics" concept.
 
