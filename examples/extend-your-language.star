@@ -1,5 +1,3 @@
-use Core
-
 macro [
 	`if2` cond1 (AST.Expr), cond2 (AST.Expr) both (AST.Block)
 	`else1` only1 (AST.Block)

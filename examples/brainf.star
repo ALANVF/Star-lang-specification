@@ -1,5 +1,3 @@
-use Core
-
 class BF {
 	my table = #[0] * 100
 	my lstack = #[]
@@ -49,8 +47,8 @@ class BF {
 							my j = code[at: ptr]
 							
 							match j {
-								at #"[" {i++}
-								at #"]" {i--}
+								at #"[" => i++
+								at #"]" => i--
 							}
 						}
 					} else {
@@ -67,8 +65,8 @@ class BF {
 							my j = code[at: ptr]
 							
 							match j {
-								at #"[" {i--}
-								at #"]" {i++}
+								at #"[" => i--
+								at #"]" => i++
 							}
 						}
 					} else {
@@ -76,7 +74,7 @@ class BF {
 					}
 				}
 
-				else {ptr++}
+				else => ptr++
 			}
 		}
 	}

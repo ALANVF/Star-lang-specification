@@ -1,5 +1,3 @@
-use Core
-
 class Thing {
 	macro [unknownMessage: msg (AST.Message)] {
 		; atm, the only way I could imagine this working is through macros since Star is statically typed. not sure about the details yet

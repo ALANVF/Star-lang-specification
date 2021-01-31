@@ -1,12 +1,10 @@
-use Core
-
 class Cell {
 	my x (Int)
 	my y (Int)
 	
 	on [neighbors] (Array[Cell]) {
-		return #[-1, 0, 1][crossWith: #[-1, 0, 1] andCollect: {|_x, _y|
-			return Cell[x: x + _x y: y + _y]
+		return #[-1, 0, 1][crossWith: #[-1, 0, 1] andCollect: {|x', y'|
+			return Cell[x: x + x' y: y + y']
 		}]
 	}
 
@@ -21,38 +19,38 @@ class Colony {
 	my cells (Array[Cell])
 	
 	on [neighborCounts] (Bag[Cell]) is hidden {
-		return Bag[Cell][new: cells[collect: $0[neighbors]][flatten]]
-	}
-	
-	on [Str] is hidden {
-		my out = ""
-
-		for my y (Int) from: 0 upto: height {
-			for my x (Int) from: 0 upto: width {
-				out += cells[contains: Cell[:x :y]][yes: "# " no: "- "]
-			}
-
-			out += "\n"
-		}
-
-		return out[trim]
-	}
-	
-	on [runTimes: times (Int)] {
-		for my i (Int) from: 0 upto: times {
-			Core
-			-> [say: "Generation \(i + 1):"]
-			-> [say: this[Str]]
-			-> [say]
-			
-			this[runGeneration]
-		}
+		return Bag[Cell][new: cells[collectAll: $0[neighbors]]]
 	}
 	
 	on [runGeneration] is hidden {
 		cells = this[neighborCounts][keepIf: {|cell, count|
 			return (count ?= 2 && cells[contains: cell]) || count ?= 3
 		}].keys
+	}
+
+	on [runTimes: times (Int)] {
+		for my i from: 0 upto: times {
+			Core
+			-> [say: "Generation \(i + 1):"]
+			-> [say: this]
+			-> [say]
+			
+			this[runGeneration]
+		}
+	}
+
+	on [Str] {
+		my out = ""
+
+		for my y from: 0 upto: height {
+			for my x from: 0 upto: width {
+				out[add: cells[contains: Cell[:x :y]][yes: "# " no: "- "]]
+			}
+
+			out[add: "\n"]
+		}
+
+		return out[trim]
 	}
 }
 

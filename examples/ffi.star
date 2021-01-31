@@ -1,4 +1,3 @@
-use Core
 use Native
 
 ; pretending that LibC doesn't already exist

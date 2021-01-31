@@ -8,11 +8,11 @@ type M[A] {
 	type B
 	on [fmap: (Func[B, A])] (M[B])
 }
-type M[M[A]] of M[A] {
+;[type M[M[A]] of M[A] {
 	on [join] (M[A]) {
 		return this[bind: $0]
 	}
-}
+}]
 alias Monad[A] = M[A]
 
 type T
@@ -42,7 +42,7 @@ kind Maybe[T] {
 }
 
 module Main {
-	type T = Monad[Int]
+	type T of Monad[Int]
 	on [add1: monad (T)] (T) {
 		return monad[fmap: $0 + 1]
 	}

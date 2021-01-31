@@ -1,11 +1,9 @@
-use Core
-
 class A {
-	on [f] {return 1}
+	on [f] (Int) {return 1}
 }
 
 class B {
-	on [f] {return 2}
+	on [f] (Int) {return 2}
 }
 
 class C of A, B {}

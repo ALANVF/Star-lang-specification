@@ -1,3 +1,8 @@
+Revision #16:
+- Added GADTs concept.
+- Updated all examples.
+- Updated some spec.
+
 Revision #15:
 - Updated "categories" concept.
 - Added `!!` operator.

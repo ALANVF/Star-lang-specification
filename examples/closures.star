@@ -1,7 +1,5 @@
-use Core
-
 module Main {
-	on [newCounter] {
+	on [newCounter] (Func[Int]) {
 		my i = 0
 		return {|| return ++i}
 	}

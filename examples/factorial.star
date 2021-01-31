@@ -1,7 +1,5 @@
-use Core
-
 module Main {
-	on [fact1: n (Int)] {
+	on [fact1: n (Int)] (Int) {
 		if n ?= 0 {
 			return 1
 		} else {
@@ -9,8 +7,8 @@ module Main {
 		}
 	}
 	
-	on [fact2: n (Int)] {
-		return [1 to: n][Array[Int]][reduce: $0 * $1]
+	on [fact2: n (Int)] (Int) {
+		return 1[to: n][Array[Int]][reduce: $0 * $1]
 	}
 	
 	on [main] {

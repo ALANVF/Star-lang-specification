@@ -1,6 +1,3 @@
-use Core
-use IO
-
 module Main {
 	on [evaluateGuess: guess (Str) withCode: code (Str)] (Str) {
 		return guess[collect: {|char, i|
@@ -20,7 +17,7 @@ module Main {
 
 		my numColors = intReader[
 			prompt: "Number of colors to use (2 - 20): "
-			withinRange: 2[to: 20]
+			inRange: 2[to: 20]
 		]
 
 		my colors = #"A"[upto: #"A" + numColors][Str]
@@ -37,12 +34,12 @@ module Main {
 		]
 		my codeLength = intReader[
 			prompt: "Length of the code (\(minLength) - \(maxLength)): "
-			withinRange: minLength[to: maxLength]
+			inRange: minLength[to: maxLength]
 		]
 
 		my maxGuesses = intReader[
 			prompt: "Enter the max number of guesses (7 - 20): "
-			withinRange: 7[to: 20]
+			inRange: 7[to: 20]
 		]
 
 		my code = allowDuplicates[
@@ -56,10 +53,10 @@ module Main {
 			my guess = Core[prompt: "Your guess (\(i)/\(maxGuesses)): "][trim][lower][to: codeLength]
 			my res = Main[evaluateGuess: guess withCode: code]
 			
-			guesses[add: guess => res]
+			guesses[add: #{guess, res}]
 
 			for my guess in: guesses {
-				Core[say: "\(i) : \(guess.key) : \(guess.value)"]
+				Core[say: "\(i) : \(guess.first) : \(guess.second)"]
 			}
 
 			Core[say: "-" * 30]

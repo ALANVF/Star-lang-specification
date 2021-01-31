@@ -9,7 +9,6 @@ use-stmt ::=
 
 Examples:
 ```
-use Core
 use #[A, B] from: C
 ```
 

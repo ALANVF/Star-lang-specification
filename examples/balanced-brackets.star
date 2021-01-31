@@ -1,15 +1,15 @@
-use Core
-
 module Main {
-	on [isBalanced: brackets (Str)] {
+	on [isBalanced: brackets (Str)] (Bool) {
 		my l = 0
 		
 		for my c in: brackets {
-			if l < 0 {return false}
+			if l < 0 {
+				return false
+			}
 			
 			match c {
-				at #"[" {l++}
-				at #"]" {l--}
+				at #"[" => l++
+				at #"]" => l--
 			}
 		}
 		

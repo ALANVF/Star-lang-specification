@@ -1,5 +1,3 @@
-use Core
-
 ; this is kinda outdated with the category concept but eh
 
 category DoStuff for Int {

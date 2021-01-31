@@ -1,5 +1,3 @@
-use Core
-
 module Main {
 	on [levenshteinDistanceWith: str1 (Str) and: str2 (Str)] (Int) {
 		my empty = #[0] * str2.length
@@ -21,7 +19,7 @@ module Main {
 			}
 		}
 
-		return mat.last.last
+		return mat[at: -1][at: -1]
 	}
 
 	on [main] {

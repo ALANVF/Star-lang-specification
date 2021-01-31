@@ -1,5 +1,3 @@
-use Core
-
 kind Cell {
 	has empty => #" "
 	has x     => #"X"
@@ -18,11 +16,7 @@ kind Winner {
 }
 
 class Board {
-	my cells (Array[Cell])
-	
-	init [new] {
-		cells = #[Cell.empty] * 9
-	}
+	my cells = #[Cell.empty] * 9
 	
 	on [findWinner] (Winner) {
 		my wins = cells[every: 3] + #[
@@ -47,7 +41,7 @@ class Board {
 	}
 	
 	on [verifyChoice: index (Int)] (Bool) {
-		return 0 < index && index < 10 && cells[at: index - 1] ?= Cell.empty
+		return 0 < index < 10 && cells[at: index - 1] ?= Cell.empty
 	}
 	
 	on [Str] {
@@ -61,7 +55,7 @@ module Main {
 		my playerTurn = true
 		my winner = Winner.none
 		
-		Core[say: board[Str]]
+		Core[say: board]
 		
 		while winner ?= Winner.none {
 			if playerTurn {
@@ -69,14 +63,14 @@ module Main {
 				
 				my choice = Core.stdin[IO[Int]][
 					prompt: "Choose a cell to play: "
-					withCondition: board[verifyChoice: $.0]
+					require: board[verifyChoice: $.0]
 				]
 				
 				board.cells[at: choice - 1] = Cell.player1
 			} else {
 				Core[say: "Player 2's turn:"]
 				
-				my choice = 1[to: 9][Array[Int]][keepIf: board[verifyChoice: $.0]].first
+				my choice = 1[to: 9][Array[Int]][keepIf: board[verifyChoice: $.0]][pick]
 				
 				board.cells[at: choice - 1] = Cell.player2
 			}
@@ -84,21 +78,13 @@ module Main {
 			playerTurn = !playerTurn
 			winner = board[findWinner]
 			
-			Core[say: board[Str]]
+			Core[say: board]
 		}
 		
 		match winner {
-			at Winner.player1 {
-				Core[say: "Player 1 wins!"]
-			}
-			
-			at Winner.player2 {
-				Core[say: "Player 2 wins!"]
-			}
-			
-			at Winner.draw {
-				Core[say: "It's a draw!"]
-			}
+			at Winner.player1 => Core[say: "Player 1 wins!"]
+			at Winner.player2 => Core[say: "Player 2 wins!"]
+			at Winner.draw => Core[say: "It's a draw!"]
 		}
 	}
 }

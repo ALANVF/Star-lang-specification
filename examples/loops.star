@@ -1,5 +1,3 @@
-use Core
-
 module Main {
 	on [main] {
 		; while loop
@@ -28,13 +26,12 @@ module Main {
 			Core[say: i]
 		} ;=> 1, 2
 
+		for my i from: 3 downto: 1 {
+			Core[say: i]
+		} ;=> 3, 2, 1
+
 		for my k, my v in: #("a" => 1, "b" => 2, "c" => 3) {
 			Core[say: "\(k): \(v)"]
-		}
-
-		; infinite loop (don't run!)
-		forever {
-			Core[say: "banana"]
 		}
 	}
 }

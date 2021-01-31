@@ -1,5 +1,3 @@
-use Core
-
 module Main {
 	on [main] {
 		my doors = #[false] * 100

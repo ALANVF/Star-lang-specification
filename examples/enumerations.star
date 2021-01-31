@@ -1,5 +1,3 @@
-use Core
-
 module Main {
 	kind Fruit {
 		has apple

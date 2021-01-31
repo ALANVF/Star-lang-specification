@@ -1,5 +1,3 @@
-use Core
-
 class Point {
 	my x = 0
 	my y = 0

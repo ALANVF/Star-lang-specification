@@ -1,5 +1,3 @@
-use Core
-
 class Fraction {
 	my top (Poly)
 	my bottom (Poly)
@@ -15,13 +13,13 @@ class PolyRes {
 
 	on [Str] {
 		case {
-			at rem.top.degree ?= 0 && rem.top.terms.first ?= 0 {
+			at rem.top.degree ?= 0 && rem.top.terms[at: 0] ?= 0 {
 				return poly[Str]
 			}
 
-			at poly.degree ?= 0 && poly.terms.first ?= 0 {
+			at poly.degree ?= 0 && poly.terms[at: 0] ?= 0 {
 				return (
-					(rem.top[sign] / rem.bottom[sign] ?= -1)[yes: "-(" no: "("]
+					[rem.top[sign] / rem.bottom[sign] ?= -1 yes: "-(" no: "("]
 						+
 					Fraction[top: rem.top * rem.top[sign] bottom: rem.bottom * rem.bottom[sign]][Str]
 						+
@@ -34,7 +32,7 @@ class PolyRes {
 				return (
 					poly[Str]
 						+
-					(sign ?= -1)[yes: " - (" no: " + ("]
+					[sign ?= -1 yes: " - (" no: " + ("]
 						+
 					Fraction[top: rem.top * rem.top[sign] bottom: rem.bottom * rem.bottom[sign]][Str]
 						+
@@ -46,8 +44,8 @@ class PolyRes {
 }
 
 class Poly {
-	my terms
-	my degree
+	my terms (Array[Real])
+	my degree (Int)
 	
 	init [newWithCoeffs: coeffs (Array[Real])] {
 		terms = coeffs
@@ -55,26 +53,26 @@ class Poly {
 	}
 
 	on [sign] (Int) {
-		return terms.first / terms.first[abs]
+		return terms[at: 0][abs]
 	}
 
 	operator `/` [poly (Poly)] (Poly) {
 		if degree < poly.degree {
 			return PolyRes[poly: Poly[newWithCoeffs: #[0]] rem: Fraction[top: this bottom: poly]]
 		} else {
-			my p = terms[copy]
+			my p = terms[new]
 			my factors = #[]
 			
 			while p.length >= poly.degree {
-				my factor = p.first / poly.terms.first
+				my factor = p[at: 0] / poly.terms[at: 0]
 				factors[add: factor]
 				
 				for my i from: 0 upto: poly.term.length {
 					p[at: i] -= poly.terms[at: i] * factor
 				}
 
-				while p.first ?= 0 {
-					p[popFront]
+				while p[at: 0] ?= 0 {
+					p[removeAt: 0]
 				}
 			}
 
@@ -96,19 +94,19 @@ class Poly {
 		for my e, my i in: terms {
 			if e != 0 {
 				if i != 0 {
-					out += (e < 0)[yes: " - " no: " + "]
+					out[add: [e < 0 yes: " - " no: " + "]]
 				} orif e < 0 {
-					out += "-"
+					out[add: "-"]
 				}
 
 				if e[abs] != 1 {
-					out += e[abs]
+					out[add: e[abs]]
 				}
 
 				if i < terms.length - 2 {
-					out += "x^"+i
+					out[add: "x^\(i)"]
 				} orif i ?= terms.length - 2 {
-					out += "x"
+					out[add: "x"]
 				}
 			}
 		}

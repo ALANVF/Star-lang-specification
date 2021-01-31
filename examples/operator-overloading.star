@@ -1,17 +1,19 @@
-use Core
-
 class Vector {
 	my x (Int)
 	my y (Int)
 	
 	operator `+` [v (Vector)] (Vector) {
-		return Vector[x: x + v.x
-		              y: y + v.y]
+		return Vector[
+			x: x + v.x
+			y: y + v.y
+		]
 	}
 	
 	operator `-` [v (Vector)] (Vector) {
-		return Vector[x: x - v.x
-		              y: y - v.y]
+		return Vector[
+			x: x - v.x
+			y: y - v.y
+		]
 	}
 	
 	operator `?=` [v (Vector)] (Bool) {

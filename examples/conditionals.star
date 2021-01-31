@@ -1,5 +1,3 @@
-use Core
-
 module Main {
     on [main] {
         if 1 ?= 1 {
@@ -28,14 +26,15 @@ module Main {
             at false && true {Core[say: 1]}
             at false ^^ true {Core[say: 2]}
             at false || true {Core[say: 3]}
-            else             {Core[say: 4]}
+            at false !! true {Core[say: 4]}
+            else             {Core[say: 5]}
         } ;=> 2
         
         ;[conditional operators:
             `&&` = and
             `||` = or
             `^^` = xor
-			`!!` = nor (undecided feature)
+			`!!` = nor
             `!`  = not
             `?`  = boolean coercion
         ]
