@@ -1,5 +1,5 @@
 # Star specification
-Star is a modern Objective-C with an emphasis on consistency.
+[Star](https://github.com/ALANVF/star) is an experimental language made to be powerful, productive, and predictable.
 
 ## Explanations of the random folders you see
 - design: This folder contains documents talking about design choices/explanations for Star.
@@ -71,11 +71,10 @@ I have many goals for Star, but I guess the big one right now is to make every p
 	- Commas and newlines are analogous
 
 ## Where is the compiler?
-That's a good question. The issue with Star is that the best language to make it in is itself, so I haven't been able to find a decent language to use for bootstrap. Scala 3 was just released lately though, so I might try using that and see if that'll work for now. Afterwards, I want to bootstrap the language ASAP to make development easier and more productive.
+[WIP](https://github.com/ALANVF/star)
 
 ## Where is the runtime?
-It's not the "real" runtime (and it's pretty outdated at this point), but there's a version in C++ right [here](https://github.com/ALANVF/Star-runtime).
-I'm also working on a (temporary) VM for Star right now, but it's not finished yet.
+[WIP](https://github.com/ALANVF/star)
 
 ## Everything here seems really informal
 Yeah I'm 17.

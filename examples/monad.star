@@ -8,11 +8,6 @@ type M[A] {
 	type B
 	on [fmap: (Func[B, A])] (M[B])
 }
-;[type M[M[A]] of M[A] {
-	on [join] (M[A]) {
-		return this[bind: $0]
-	}
-}]
 alias Monad[A] = M[A]
 
 type T

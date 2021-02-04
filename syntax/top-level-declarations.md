@@ -11,6 +11,10 @@ leading-type-args ::=
 
 parents ::=
 	'of' <type> ( ',' <type> )*
+
+types-spec ::=
+	| <type>
+	| <array(of: <type>)>
 ```
 
 ### Type argument declaration
@@ -63,13 +67,14 @@ Notes:
 Spec:
 ```antlr
 attribute ::=
-	| 'hidden'
+	| 'hidden' <type>?
+	| 'friend' <types-spec>
 
 type-alias-decl ::=
 	<leading-type-args>
 	'alias' <type> (
 		| ( 'is' <attribute> )* '=' <type>
-		| '(' <type> ')' ( 'is' <attribute> )*
+		| ( '(' <type> ')' )? ( 'is' <attribute> )* <block(of: <decl>)>?
 ```
 
 Examples:
@@ -85,9 +90,8 @@ Notes:
 Spec:
 ```antlr
 attribute ::=
-	| 'hidden'
-	| 'c_struct'
-	| 'c_union'
+	| 'hidden' <type>?
+	| 'friend' <types-spec>
 	| 'uncounted'
 	| 'strong'
 	| 'native' '[' ... ']'
@@ -105,7 +109,8 @@ Protocols are a combination of interfaces and traits that use dynamic-dispatch f
 Spec:
 ```antlr
 attribute ::=
-	| 'hidden'
+	| 'hidden' <type>?
+	| 'friend' <types-spec>
 
 class-decl ::=
 	<leading-type-args>
@@ -118,11 +123,12 @@ class-decl ::=
 Spec:
 ```antlr
 attribute ::=
-	| 'hidden'
+	| 'hidden' <type>?
+	| 'friend' <types-spec>
 
 category-decl ::=
 	<leading-type-args>
-	'category' <type> 'for' <type> ( 'is' <attribute> )* <block(of: <decl>)>
+	'category' <type> ( 'for' <type> )? ( 'is' <attribute> )* <block(of: <decl>)>
 ```
 
 Examples:
@@ -139,9 +145,11 @@ Not to be confused with [higher-kinded types](https://en.wikipedia.org/wiki/Kind
 Spec:
 ```antlr
 attribute ::=
-	| 'hidden'
-	| 'c_enum'
+	| 'hidden' <type>?
+	| 'friend' <types-spec>
 	| 'flags'
+	| 'strong'
+	| 'uncounted'
 
 has-stmt ::=
 	| 'has' <name> ( '=>' <expr> )? <block>?
@@ -161,12 +169,10 @@ kind-decl ::=
 Spec:
 ```antlr
 attribute ::=
-	| 'hidden'
+	| 'hidden' <type>?
+	| 'friend' <types-spec>
 	| 'main'
-	| 'native' (
-		| <string>
-		| '[' ... ']'
-	)?
+	| 'native' <litsym>?
 
 module-decl ::=
 	'module' <type> <parents>? ( 'is' <attribute> )* <block(of: <decl>)>

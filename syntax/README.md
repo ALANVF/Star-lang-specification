@@ -1,2 +1,2 @@
 (I don't actually know ANTLR, so this is more like ANTLR + Scala's builtin parser combinator lib (because I (oddly enough) have a lot of experience with it) + regex)
-Additionally, a good amount of this is pretty outdated
+Additionally, a good amount of `antlr-spec.md` is pretty outdated

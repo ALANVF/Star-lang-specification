@@ -1,3 +1,6 @@
+Revision #17:
+- Updated type spec
+
 Revision #16:
 - Added GADTs concept.
 - Updated all examples.

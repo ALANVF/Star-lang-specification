@@ -19,7 +19,7 @@ Spec:
 ```antlr
 attribute ::=
 	| 'static'            // Not valid inside a module
-	| 'hidden'
+	| 'hidden' <type>?
 	| 'readonly'
 	| 'getter'
 	| 'setter'
