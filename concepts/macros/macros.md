@@ -1,3 +1,6 @@
+(Note: THIS IS OUTDATED)
+
+
 For the record:
 - `` `...` `` = litsym
 - `(...)` = paren

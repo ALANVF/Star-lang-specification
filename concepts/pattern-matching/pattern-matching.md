@@ -42,9 +42,6 @@ In a match statement, you can have a variety of different things. none of them a
 	- All other statements will exit after their body is run.
 	- Any sort of "fall-through" statement is TBD.
 
-- multiple match: `at someValue1, someValue2, ... someValueN {...}`:
-	- This statement succeeds if the current value matches at least one of the values this statement.
-
 - conditional match: `at someValue if someCondition {...}`:
 	- This statement succeeds if the current value matches someValue and someCondition is true. This can be added to any kind of statement.
 
@@ -58,6 +55,7 @@ In a match statement, you can have a variety of different things. none of them a
 	
 - destructuring: `#[1, my value (Int)]`
 	- You can destructure classes, kinds, and arrays. Stuff for destructuring hashes is TBD.
+	- Definition behavior of `...` (spread operator) for destructuring arrays, hashes, and tuples is TBD.
 
 
-I'd also like to have match expressions such as the |, &, and :: operators seen in functional programming languages like F#.
+I'd also like to have match expressions such as the | and & operators seen in functional programming languages like F#.

@@ -1,6 +1,7 @@
 Revision #18:
 - Updated README (now that Star has an official repo).
 - Updated syntax spec.
+- Updated some concepts.
 
 Revision #17:
 - Updated type spec
