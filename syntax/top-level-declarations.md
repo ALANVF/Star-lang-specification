@@ -73,8 +73,9 @@ attribute ::=
 type-alias-decl ::=
 	<leading-type-args>
 	'alias' <type> (
-		| ( 'is' <attribute> )* '=' <type>
+		| ( 'is' <attribute> )* ( '=' <type> )?
 		| ( '(' <type> ')' )? ( 'is' <attribute> )* <block(of: <decl>)>?
+	)
 ```
 
 Examples:
@@ -84,7 +85,7 @@ alias Name (Str)
 ```
 
 Notes:
-- Type arguments are not required to appear on the RHS of the declaration.
+- If a type argument appears on the RHS of a direct alias, the alias becomes a [typeclass](https://en.wikipedia.org/wiki/Type_class).
 
 ### Class declaration
 Spec:
@@ -92,8 +93,9 @@ Spec:
 attribute ::=
 	| 'hidden' <type>?
 	| 'friend' <types-spec>
-	| 'uncounted'
+	| 'sealed' <type>?
 	| 'strong'
+	| 'uncounted'
 	| 'native' '[' ... ']'
 
 class-decl ::=
@@ -111,6 +113,7 @@ Spec:
 attribute ::=
 	| 'hidden' <type>?
 	| 'friend' <types-spec>
+	| 'sealed' <type>?
 
 class-decl ::=
 	<leading-type-args>
@@ -147,9 +150,10 @@ Spec:
 attribute ::=
 	| 'hidden' <type>?
 	| 'friend' <types-spec>
-	| 'flags'
+	| 'sealed' <type>?
 	| 'strong'
 	| 'uncounted'
+	| 'flags'
 
 has-stmt ::=
 	| 'has' <name> ( '=>' <expr> )? <block>?
@@ -163,6 +167,9 @@ kind-decl ::=
 	)>
 ```
 
+Notes:
+- Kinds are allowed to inherit from other kinds, unlike every other programming language in existence.
+
 [Examples](../concepts/kinds/kinds.md)
 
 ### Module declaration
@@ -171,6 +178,7 @@ Spec:
 attribute ::=
 	| 'hidden' <type>?
 	| 'friend' <types-spec>
+	| 'sealed' <type>?
 	| 'main'
 	| 'native' <litsym>?
 

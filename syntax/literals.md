@@ -20,7 +20,7 @@ A floating-point literal:
 NaN and infinity literals are TBD.
 
 ### Char
-A unicode character literal:
+A character literal:
 ```
 #"a"
 #"\n"
@@ -28,6 +28,8 @@ A unicode character literal:
 ```
 
 Chars support basic integer math such as `#"a" + 1` resulting in `#"b"`.
+
+Whether or not characters are unicode is TBD.
 
 ### Str
 A string literal:
@@ -51,6 +53,8 @@ Basic indexing looks like `"abc"[at: 1]` (which results in `#"b"`).
 
 Multiline strings are TBD, but for now normal strings will probably be allowed to span multiple lines on their own.
 
+Whether or not strings are unicode is TBD.
+
 ### Bool
 A boolean (logical) literal:
 ```
@@ -58,7 +62,7 @@ true
 false
 ```
 
-Booleans support logical operations such as: `!a` (not), `a && b` (and), `a || b` (or), and `a ^^ b` (xor). Might add an "nor" operator in the future.
+Booleans support logical operations such as: `!a` (not), `a && b` (and), `a || b` (or), and `a ^^ b` (xor), and `a !! b` (nor)
 
 ### Array
 An array literal:
@@ -78,8 +82,8 @@ An array literal:
 
 Arrays may only contain 1 type of value. If its elements all conform to the same protocol(s), they will not be implicitly converted because of reasons (which may change eventually):
 ```
-#[1, 2.3]             ;=> error!
-#[1[Real], 2.3[Real]] ;=> works
+#[1, 2.3]           ;=> error!
+#[1[Num], 2.3[Num]] ;=> works
 ```
 
 Arrays are completely mutable.
@@ -155,7 +159,7 @@ Funcs also support a shorthand for single-expression funcs.
 
 `val[thing: $.0 + 1]` is the same as `{|a| return val[thing: a + 1]}`.
 
-Every `.` indicates an extra nesting depth.
+Every `.` indicates an extra nesting depth. 
 
 Shorthand funcs are most likely going to be very limited until Star has a good type-checker.
 
@@ -167,6 +171,7 @@ d
 ef_g
 thing122
 _1
+f'
 ```
 
 Names cannot only be an underscore.
@@ -182,6 +187,8 @@ MyType
 Core.Int
 Native.Ptr[Void]
 _
+This
+This'
 ```
 
 Type names must start with an uppercase letter.
@@ -200,7 +207,7 @@ A label literal:
 a:
 bcd:
 _1:
-e_:
+e_d':
 _:
 ```
 
@@ -233,9 +240,16 @@ A paren literal:
 ```
 (1 + 2) * 3
 (4, 5, 6)
+(
+	7
+	/
+	8
+)
 ```
 
 Multiple expressions in a paren will evaluate each expression consecutively and return the final expression as the result.
+
+Inside a paren literal, an expression may span multiple lines (and is otherwise not allowed to).
 
 ### Group
 A group literal:
@@ -253,4 +267,6 @@ A block literal:
 
 Represents consecutive statements in a context.
 
-When used as a value, it's essentially the same as `{|| ...}[call]`.
+When used as a value, it's essentially the same as `{|| ...}[call]` without runtime overhead.
+
+The final expression in a block does not implicitly return. Use a `return` statement to return a value.

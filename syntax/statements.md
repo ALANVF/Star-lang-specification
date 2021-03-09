@@ -15,11 +15,8 @@ A variable declaration.
 
 Spec:
 ```antlr
-attribute ::=
-	| 'readonly'
-
 variable-decl ::=
-	'my' <name> <type-anno>? ( 'is' <attribute> )* ( '=' <expr> )?
+	'my' <name> <type-anno>? ( '=' <expr> )?
 ```
 
 Examples:
@@ -75,10 +72,10 @@ Similar to an if-orif-else chain, but it looks cleaner.
 Spec:
 ```antlr
 at-stmt ::=
-	'at' <expr> (<block> | '=>' <statement>)
+	'at' <expr> ( <block> | '=>' <statement> )
 
 else-stmt ::=
-	'else' (<block> | '=>' <statement>)
+	'else' ( <block> | '=>' <statement> )
 
 case-stmt ::=
 	'case' <block(of:
@@ -119,7 +116,7 @@ match-expr ::=
 	| <expr>
 
 at-stmt ::=
-	'at' rep1sep(<match-expr>, ',') ( "\n"? 'if' <expr> )? (<block> | '=>' <statement>)
+	'at' rep1sep(<match-expr>, ',') ( "\n"? 'if' <expr> )? ( <block> | '=>' <statement> )
 
 else-stmt ::=
 	'else' (<block> | '=>' <statement>)
@@ -191,7 +188,7 @@ loop-var ::=
 
 for-cond ::=
 	| 'in:' <expr>
-	| ('from:' | 'after:') <expr> ( 'upto:' | 'downto:' | 'to:' ) <expr> ( 'by:' <expr> )?
+	| ( 'from:' | 'after:' ) <expr> ( 'upto:' | 'downto:' | 'to:' ) <expr> ( 'by:' <expr> )?
 
 for-stmt ::=
 	'for' <loop-var> ( ',' <loop-var> )? <for-cond> ( 'while:' <expr> )? <block>
@@ -289,8 +286,6 @@ Notes:
 - I'll probably change the name of this at some point.
 
 ### Try-Catch statement
-Needs work. Mostly here for completeness.
-
 Spec:
 ```antlr
 catch-expr ::=
@@ -303,7 +298,7 @@ catch-expr ::=
 	| <expr>
 
 at-stmt ::=
-	'at' rep1sep(<catch-expr>, ',') ( "\n"? 'if' <expr> )? (<block> | '=>' <statement>)
+	'at' rep1sep(<catch-expr>, ',') ( "\n"? 'if' <expr> )? ( <block> | '=>' <statement> )
 
 try-catch-stmt ::=
 	'try' <block> ('catch' <block(of:

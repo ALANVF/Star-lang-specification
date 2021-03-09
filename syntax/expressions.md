@@ -14,6 +14,7 @@ a && b, a || b, a ^^ b, a !! b
 a = b, a += b, a -= b, a *= b, a **= b, a /= b, a //= b, a %= b, a %%= b, a &= b, a |= b, a ^= b, a >>= b, a <<= b, a &&= b, a ||= b, a ^^= b, a !!= b
 a => b
 a -> [b], a -> [b] = c, a -> b = c, a -> {...}
+...a
 ```
 
 ### Property access
@@ -132,6 +133,7 @@ however the `->` will have higher precedence than when used on a separate line (
 - `!a`: logical not.
 - `++a`: pre-increment.
 - `--a`: pre-decrement.
+- `...a`: spread (TBD).
 
 ### Postfix operation
 - `a?`: logical coercion.
@@ -147,6 +149,7 @@ however the `->` will have higher precedence than when used on a separate line (
 - `a + b`: add.
 - `a - b`: subtract.
 - `a %% b`: divides equally.
+	- Can also be thought of as `a % b ?= 0`.
 - `a & b`: binary and.
 - `a | b`: binary or.
 - `a ^ b`: binary exclusive-or.
@@ -174,3 +177,7 @@ however the `->` will have higher precedence than when used on a separate line (
 - `a \! b`: none-junction.
 - Remove bitwise operators (and possibly replace them with something else).
 - `a = [b]`: `a = a[b]`
+- Some operator for testing referential equality/inequality
+
+### Notes
+- There is currently no way to call an operator overload with a category (I'm not sure how I overlooked that one).

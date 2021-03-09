@@ -4,11 +4,12 @@ Imports a module, category, or type into the current namespace.
 Spec:
 ```antlr
 use-stmt ::=
-	'use' (<type> | <array(of: <type>)>) ( 'from:' <type> )?
+	'use' ( <type> | <array(of: <type>)> ) ( 'from:' <type> )?
 ```
 
 Examples:
 ```
+use Core
 use #[A, B] from: C
 ```
 
