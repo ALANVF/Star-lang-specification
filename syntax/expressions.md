@@ -17,6 +17,20 @@ a -> [b], a -> [b] = c, a -> b = c, a -> {...}
 ...a
 ```
 
+### Literal constructor
+Creates an instance of a type using a literal value:
+```
+Regex "\\d+"
+List[Int] #[1, 2, 3]
+Native.UInt8 5
+Bag[Str] #("a" => 1, "b" => 2)
+Promise[Void] {|| return }
+```
+
+Literal constructors may use an integer, decimal, character, string, array, hash, tuple, or func literal.
+
+Blocks are currently not allowed as a literal constructor due to it being ambiguous (like `at Type {...}`).
+
 ### Property access
 Gets a property from a value:
 ```
@@ -70,6 +84,10 @@ obj[Category Type]
 [obj Category Type]
 ```
 
+This syntax can also be used to call methods that were inherited from a supertype, even if they were overriden.
+
+It's also necessary when mutliple supertypes share the same method in order to remain unambiguous (which also solves the diamond problem).
+
 ### Cascade
 A cascade is series of calls on a single (value or type), which returns the sender as the final result.
 Doing:
@@ -104,6 +122,17 @@ obj[method1: value1]
 obj[method4]
 ```
 
+Nesting goes as deep as you want it too, so this is entirely valid:
+```
+obj
+-> [method1: value1]
+--> [method2: value2]
+---> [method3: value3]
+----> [method4]
+```
+
+As a bonus feature, this single feature makes it impossible to represent Star's grammar using EBNF. 
+
 Cascades may call into a block expression like so:
 ```
 obj
@@ -127,20 +156,20 @@ is not valid (for now).
 Keeping in mind that cascades are expressions, doing something like `a[b: c->[d: e]->[f: g h: i]]` is perfectly valid,
 however the `->` will have higher precedence than when used on a separate line (to make things less visually confusing).
 
-### Prefix operation
+### Prefix operator
 - `-a`: negation.
 - `~a`: binary not.
 - `!a`: logical not.
 - `++a`: pre-increment.
 - `--a`: pre-decrement.
-- `...a`: spread (TBD).
+- `...a`: spread (semantics TBD).
 
-### Postfix operation
+### Postfix operator
 - `a?`: logical coercion.
 - `a++`: post-increment.
 - `a--`: post-decrement.
 
-### Binary operation
+### Binary operator
 - `a ** b`: exponentiation.
 - `a * b`: multiply.
 - `a / b`: divide.
@@ -168,6 +197,17 @@ however the `->` will have higher precedence than when used on a separate line (
 - `a = b`: assignment.
 - `a <op>= b`: compound assignment (same as `a = a <op> b`).
 
+Notes:
+- `=` supports destructuring assignment.
+- logical operators may precede a chain of expressions when used inside `(...)`:
+```
+if (
+	|| a
+	|| b
+	|| ...
+) {...}
+```
+
 ### Future considerations
 - `a of B`: type assertion.
 - `a ~~ b`: smart-match.
@@ -176,8 +216,9 @@ however the `->` will have higher precedence than when used on a separate line (
 - `a \^ b`: one-junction.
 - `a \! b`: none-junction.
 - Remove bitwise operators (and possibly replace them with something else).
-- `a = [b]`: `a = a[b]`
-- Some operator for testing referential equality/inequality
+- `a = [b]`: `a = a[b]`.
+	- Currently ambiguous due to category methods.
+- Some operator for testing reference equality/inequality
 
 ### Notes
 - There is currently no way to call an operator overload with a category (I'm not sure how I overlooked that one).

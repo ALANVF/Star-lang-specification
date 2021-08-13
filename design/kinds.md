@@ -2,7 +2,7 @@
 
 Kinds are what most languages call an enum or discriminated union (although really they can be either).
 Here's a simple example:
-```swift
+```scala
 kind Fruit {
 	has apple
 	has mango
@@ -16,7 +16,7 @@ Core[say: fruit]       ;=> Fruit.banana
 ```
 
 Regular kinds like this are similar to C-style enums, and they can be compared and also support basic math.
-```swift
+```scala
 Core[say: Fruit.banana > Fruit.apple] ;=> true
 Core[say: Fruit.mango[previous]]      ;=> Fruit.apple
 ```
@@ -25,7 +25,7 @@ Core[say: Fruit.mango[previous]]      ;=> Fruit.apple
 ### Base type
 
 Kinds can also be typed, where its members represent a value of the specified type.
-```swift
+```scala
 kind Sign (Int) {
 	has negative => -1
 	has positive => 1
@@ -43,7 +43,7 @@ Now for the fun stuff!
 (some of this stuff is also covered in the pattern matching concept).
 
 Star also allows kinds to act like tagged unions.
-```swift
+```scala
 kind Number {
 	has [zero]
 	has [nth: (Int)]
@@ -54,7 +54,7 @@ Core[say: Number[nth: 1]] ;=> Number[nth: 1]
 ```
 
 They can also be matched on.
-```swift
+```scala
 my num = Number[nth: 2]
 
 match num {
@@ -65,7 +65,7 @@ match num {
 ```
 
 You can also have kinds that have type parameters.
-```swift
+```scala
 type T
 kind Option[T] {
 	has [some: (T)]
@@ -80,7 +80,7 @@ my opt2 = Option[some: 2.3]     ; Option[Dec]
 ### Members
 
 Kinds may have static/instance members:
-```swift
+```scala
 kind Token {
 	my position (Int)
 
@@ -110,7 +110,7 @@ Unlike most languages, Star allows kinds to inherit from types.
 
 In particular, kinds may inherit from other kinds, which is not allowed in other languages for whatever reason.
 When this happens, the hierarchy becomes flipped, where the supertype is always compatable with the subtype, but the opposite is not always true.
-```swift
+```scala
 kind Parent {
 	has a
 	has b
@@ -144,4 +144,4 @@ The answer to all of these questions is that there **is no good reason**, so the
 
 
 TODO:
-- flag kinds
+- multi-kinds

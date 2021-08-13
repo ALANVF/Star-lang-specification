@@ -3,14 +3,31 @@ Imports a module, category, or type into the current namespace.
 
 Spec:
 ```antlr
+as-rule ::=
+	| <type>
+	| <array(of: <type>)>
+	| <hash(key: <type> | <array(of: <type>)>, value: <as-rule>)>
+
 use-stmt ::=
-	'use' ( <type> | <array(of: <type>)> ) ( 'from:' <type> )?
+	<leading-type-vars>
+	'use' (
+		| <litsym>
+		| ( <type> | <array(of: <type>)> ) ( 'from:' <type> | <string> )? ( 'as:' <as-rule> )?
+		| <as-rule>
+	)
 ```
 
 Examples:
 ```
 use Core
 use #[A, B] from: C
+use #(
+	A => B
+	C => #[D, E]
+	F => #(
+		G => H
+	)
+)
 ```
 
 ### Member declaration

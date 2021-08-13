@@ -1,10 +1,33 @@
+Revision #19:
+- `s/type argument/type variable/`.
+- Things use scala syntax highlighting now.
+- Improved and updated all design docs.
+- Improved syntax docs.
+	- Added leading logical operator syntax.
+	- Added literal constructors.
+	- Added destructuring assignment.
+	- Tuples and anonymous arguments are now a definite feature.
+	- Added `=>` shorthand syntax for methods.
+	- Revamped syntax for `use` statements.
+	- Added `noinherit` attribute for newtypes.
+	- Added case alias syntax for tagged kinds.
+	- Modules can now be generic.
+- Improved concept docs.
+	- Tags are now used for intrinsics and temporary syntax.
+- Added categories design doc.
+- Moved kinds concept to `design`.
+- Moved pattern matching to `design`.
+	- Updated some syntax and features.
+- Added method declarations syntax doc.
+- Added `notes.md` for keeping track of any/all misc ideas and thoughts I have about Star.
+
 Revision #18:
 - Updated README (now that Star has an official repo).
 - Updated syntax spec.
 - Updated some concepts.
 
 Revision #17:
-- Updated type spec
+- Updated type spec.
 
 Revision #16:
 - Added GADTs concept.

@@ -11,25 +11,18 @@ my box2 = Box[Dec][value: 2.3]
 ```
 
 ## Generics
-Similarly to C++, Star uses "templates" for generic structures. In the above example, `T` becomes a generic type for the class `Box` (and then disappears afterwards),
-which takes `T` as a type argument. One thing I might consider in the future is allowing the type arguments to be inferred for generic types. Until then, you could
-do something like this to emulate it:
+Similarly to C++, Star uses "templates" for generic structures. In the above example, `T` becomes a type variable for the class `Box` (and then disappears afterwards),
+which takes `T` as a type argument. Type arguments can usually be inferred in expressions, but should have explicit args when used elsewhere (because it otherwise becomes a higher-kinded type):
 
 ```swift
-module Box {
-	type T
-	on [value: (T)] {
-		return Box[T][value: value]
-	}
-}
-
 type T
 class Box[T] {
 	my value (T)
 }
 
-my box1 = Box[value: 1]
-my box2 = Box[value: 2.3]
+my box1 = Box[Int][value: 1] ;=> Box[Int]
+my box2 = Box[value: 2.3]    ;=> Box[Dec]
+my box3 = Box[new]           ;=> Box[_]
 ```
 
 ## Influence from C++
@@ -54,7 +47,7 @@ One example of why this might be useful is for implementing something such as a 
 implement the `transpose` method for `Array[Array[T]]` but leave it out for `Array[T]`. The reason this works it because the generic
 parameters for `Array[Array[T]]` are more specific than the generic parameters for `Array[T]`. Here's an example of how this could work:
 
-```swift
+```scala
 type T
 class Array[T] {
 	; note that [transpose] does not exist here
@@ -69,20 +62,23 @@ class Array[Array[T]] {
 #[#[1, 2], #[3, 4]][transpose] ;=> #[#[1, 3], #[2, 4]]
 ```
 
+As a side note, refinements of a type do not need to provide the parents or attributes of the base type unless they differ.
+Overloads, however, do require these things as they are separate types.
+
 ## Generic constraints
 Kinda self-explainitory:
-```swift
+```scala
 ; ...
-type T of Real
-on [doThing: val (T)] {Core[say: val]}
+type T of Num
+on [doThing: val (T)] => Core[say: val]
 ; ...
-[doThing: 1]   ;=> works
-[doThing: 2.3] ;=> works
-[doThing: "a"] ;=> fails: type `Str` does not conform to the `Real` protocol
+this[doThing: 1]   ;=> works
+this[doThing: 2.3] ;=> works
+this[doThing: "a"] ;=> fails: type `Str` does not conform to protocol `Num`
 ```
 
 Refinement types also exist:
-```swift
+```scala
 type T if T != Void
 class Pointer[T] {...}
 
@@ -90,9 +86,57 @@ my a = Pointer[Int][new]  ;=> works
 my b = Pointer[Void][new] ;=> fails: `Void != Void` is false
 ```
 
+## Typeclasses
+So... what happens if you assign a type variable to an alias? You get a typeclass!
+```scala
+type T {
+	on [Str]
+}
+alias Stringy = T
+
+on [stringy: value (Stringy)] (Str) => return value[Str]
+```
+
+Typeclasses can be as complex and as fancy as you want them to be.
+They can:
+- have any number of type parameters
+- be overloaded and refined
+- used as category targets
+- and allow multiple instances per method/type
+
+On that note, it's important to note that in `Tuple[Stringy, Stringy]`, each instance of `Stringy` is a different type.
+If you want them to be the same type, you can bind them to a type variable like `type T of Stringy`.
+
+Also, keep in mind that the right side of the `=` has to be a single type, not a type expression.
+```scala
+;== Wrong
+alias A = B || C
+
+;== Right
+type T if T ?= B || T ?= C
+alias A = T
+```
+It may seem a bit verbose, but I promise that it's for the better.
+
+Oh yeah one last thing, you can also specify certain attributes that the type should have:
+```scala
+type T is native [repr: `int` bits: 8 signed: false]
+alias UInt8Like = T
+
+on [thing: value (UInt8Like)] {...}
+
+this[thing: Native.UInt8 5]
+this[thing: #"a"]
+```
+Supported attributes:
+- `flags`
+- `strong`
+- `uncounted`
+- `native [...]`
+
 ## Dependent types (TBD)
 I'm a bit of a noob when it comes to fancy terms like "dependent typing", but this supposedly qualifies:
-```swift
+```scala
 type I (Int)
 class Thing[I] {...}
 
@@ -102,7 +146,7 @@ my c (Thing[3.4]) ;=> fails
 ```
 
 Also came up with this idea where you can add conditional constraints to the type params. It could be thought of as "dependent refinement types":
-```swift
+```scala
 type Bits (Int) if Bits > 0
 class Int[Bits] {...}
 
@@ -124,14 +168,13 @@ Can:
 - Methods (that includes initializers and operator overloads)
 - Kinds (for tagged unions)
 - Type aliases
+- Modules
+- Categories
 
 Can't:
-- Categories
 - Members/variables
 
 TBD:
-- Modules
-- Macros
 - Funcs (anonymous methods)
 
 ## What can/can't be used as a generic parameter
@@ -140,14 +183,15 @@ Can:
 - Protocols
 - Kinds
 - Type aliases
-- Literals (such as integers, decimals, or characters)
+- Modules (as long as it's not used as an actual type)
 
 Can't:
 - Categories
-- Modules
 - Members/variables
 - Methods
-- Macros
+
+TBD:
+- Literals (such as integers, decimals, or characters)
 
 ## Special cases
 Because I don't want to add variadic type arguments, the `Func` type will be a special case in terms of generic parameters. Its
@@ -156,7 +200,7 @@ probably explain this more at some other point.
 
 ## Future considerations
 - Variadic type arguments
-- Labeled type parameters
+- [Labeled type parameters](../concepts/labeled-generics/labeled-generics.md)
 
 ## Syntax
 ```swift
@@ -166,3 +210,9 @@ type T2
 type Tn
 <decl>
 ```
+
+## Languages with related features
+- Scala 3: `given` clauses and implicits.
+- C++: Concepts and templates in general.
+- Nim: Concepts and typeclasses.
+- Ada: Syntax and structure of how generic types/methods are declared.

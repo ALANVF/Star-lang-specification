@@ -16,8 +16,8 @@
 - `_#p<name>`: generic protocol with N arguments.
 - `_k<name>`: kind.
 - `_#k<name>`: generic kind with N arguments.
-- `_t<name>`: represents a type argument.
-- `_#t<name>`: represents a generic type argument with N arguments.
+- `_t<name>`: represents a type variable.
+- `_#t<name>`: represents a generic type variable with N arguments.
 - `_u`: unknown/throwaway type.
 - `_#u`: unknown/throwawary type with N arguments.
 - `_e<path><type>`: category.
@@ -48,36 +48,37 @@ Condition:
 - `i<type><type>`: types are inequal.
 - `d<type><type>`: type 1 inherits from type 2.
 
-Type arg:
+(note: this does not work with structural types)
+Type var:
 - `n<name>`: type arg.
 - `p<name>#(<type>)`: type arg with N parents.
 - `c<name><condition>`: type arg with a condition.
 - `b<name>#(<type>)<condition>`: type arg with N parents and a condition.
 
-Type args: `_#T(<type-arg>)`
+Type vars: `_#T(<type-var>)`
 
 Namespace: `<path>` or `<type>` or `<category>`
 
 
 # Declarations
 Initializer/Method (`i`/`m`) decl:
-- single-arity: `o0[im]<namespace><name><ret=type><attributes><type-args>`.
-- multi-arity: `o#[im]<namespace>(<label=name><type>)<ret=type><attributes><type-args>`.
+- single-arity: `o0[im]<namespace><name><ret=type><attributes><type-vars>`.
+- multi-arity: `o#[im]<namespace>(<label=name><type>)<ret=type><attributes><type-vars>`.
 
 Operator decl:
 - zero-arity: `o0o<namespace><name><ret=type><attributes><type-args>`
-- single-arity: `o1o<namespace><name><arg=type><ret=type><attributes><type-args>`
+- single-arity: `o1o<namespace><name><arg=type><ret=type><attributes><type-vars>`
 
-Cast decl: `oc<namespace><ret=type><attributes><type-args>`
+Cast decl: `oc<namespace><ret=type><attributes><type-vars>`
 
-Deinitializer decl: `od<namespace><attributes><type-args>`
+Deinitializer decl: `od<namespace><attributes><type-vars>`
 
 
 # Examples
 
 ## Ex. 1
 code:
-```
+```scala
 module Main {
 	on [main] {
 		Core[say: "Hello, world!"]

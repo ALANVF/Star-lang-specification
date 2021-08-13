@@ -119,13 +119,13 @@ A hash's type looks like `Hash[K, V]` where `K` is the type of every key and `V`
 
 The type of an empty hash without any sort of type indication is TBD.
 
-### Tuple (TBD)
+### Tuple
 A tuple literal:
 ```
 #{1, 2.3, "4"}
 ```
 
-Everything else is TBD.
+Tuples are represented as regular classes, nothing magical.
 
 ### Func
 An anonymous function literal:
@@ -148,7 +148,7 @@ Funcs are called like `{|a, b| return a + b}[call: 1, 2]` (which results in `3`)
 
 A Func's type looks like `Func[Ret, Args...]` where `Ret` is the func's return type and `Args...` are types of all of its arguments.
 
-### Func (shorthand) (TBD-ish)
+### Func (shorthand)
 Funcs also support a shorthand for single-expression funcs.
 
 `$0 + $1` is the same as `{|a, b| return a + b}`.
@@ -178,7 +178,14 @@ Names cannot only be an underscore.
 
 Names cannot start with an uppercase letter.
 
+Single quotes are allowed after the first character.
+
 Identifiers, keywords, tags, and macro variables follow this convention.
+
+Variable names are allowed to be a keyword:
+- Anything except for keywords that appear inside method bodies, `is`, and `has` are all fair game (even `class`!).
+- The excluded keywords can still be passed around via punned labels.
+- Getters/properties can be any keyword.
 
 ### Type
 A type literal
@@ -193,13 +200,19 @@ This'
 
 Type names must start with an uppercase letter.
 
+Single quotes are allowed after the first character.
+- `_'` is not a type.
+
 A type name only containing an underscore is a special case that will be explained at some point later.
 
 A type may contain multiple type names separated by a `.`. `A.B.C` identifies a type called `C` located in `A.B`.
 
 A type may be generic if allowed, in which case it's followed by 1 or more types separated by a `,` within a `[...]`.
 
-Modules, classes, protocols, categories, kinds, aliases, and type parameters follow this convention.
+`This` is a special type representing the current type, and works polymorphically (similar to the `this` type in TypeScript).
+- If the defined type is called `This`, it can be referred to by using the `_.` path operator like `_.This`. 
+
+Modules, classes, protocols, categories, kinds, aliases, and type variables follow this convention.
 
 ### Label
 A label literal:
@@ -213,7 +226,13 @@ _:
 
 Labels start with a lowercase letter or an underscore.
 
+Single quotes are allowed after the first character.
+
 Label syntax may be reversed as `:something` in the case of `something: something` in a method call.
+
+A label may be a keyword, in which case it can only passed around as `:keyword` (a punned label)
+- This only applies to keywords that appear inside method bodies, `is`, and `has`. Anything else is fair game (even `class`!).
+- `this`, `:true`, and `:false` are stupid edge-cases, please don't use them.
 
 ### Tag
 A tag literal:
@@ -267,6 +286,6 @@ A block literal:
 
 Represents consecutive statements in a context.
 
-When used as a value, it's essentially the same as `{|| ...}[call]` without runtime overhead.
+When used as a value, it's essentially the same as `{|| ...}[call]` without any overhead.
 
 The final expression in a block does not implicitly return. Use a `return` statement to return a value.

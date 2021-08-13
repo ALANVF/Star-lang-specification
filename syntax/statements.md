@@ -23,8 +23,6 @@ Examples:
 ```
 my var1 = 1
 my var2 (Dec) = 2.3
-my var3 is readonly = "banana"
-my var4 (Bool) is readonly = false
 ```
 
 Notes:
@@ -107,19 +105,21 @@ Pattern matching for humans.
 Spec:
 ```antlr
 match-expr ::=
-	| 'my' <name> <type-anno>? ( '=' <match-expr> )?
+	| 'my' <name> <type-anno>?
+	| <match-expr> '=' <match-expr>
 	| <array(of: <match-expr>)>
 	| <hash(of: <match-expr>, <match-expr>)>
 	| <tuple(of: <match-expr>)>
 	| <type-constructor(of: <match-expr>)>
 	| <type>
+	| <expr(as: <match-expr>)>
 	| <expr>
 
 at-stmt ::=
-	'at' rep1sep(<match-expr>, ',') ( "\n"? 'if' <expr> )? ( <block> | '=>' <statement> )
+	'at' <match-expr> ( "\n"? 'if' <expr> )? ( <block> | '=>' <statement> )
 
 else-stmt ::=
-	'else' (<block> | '=>' <statement>)
+	'else' ( <block> | '=>' <statement> )
 
 match-stmt ::=
 	'match' <expr> <block(of:
@@ -159,13 +159,17 @@ A loop that is controlled by a conditon.
 Spec:
 ```antlr
 while-stmt ::=
-	'while' <expr> <block>
+	'while' <expr> ( 'label:' <litsym> )? <block>
 ```
 
 Examples:
 ```
 while a {
 	b
+}
+
+while a label: `b` {
+	break `b`
 }
 ```
 
@@ -175,7 +179,7 @@ Similar to a while-loop, but it's guaranteed to at least run once.
 Spec:
 ```antlr
 do-while-stmt ::=
-	'do' <block> 'while' <expr>
+	'do' ( 'label:' <litsym> )? <block> 'while' <expr>
 ```
 
 ### For-loop statement
@@ -188,10 +192,10 @@ loop-var ::=
 
 for-cond ::=
 	| 'in:' <expr>
-	| ( 'from:' | 'after:' ) <expr> ( 'upto:' | 'downto:' | 'to:' ) <expr> ( 'by:' <expr> )?
+	| ( 'from:' | 'after:' ) <expr> ( 'upto:' | 'downto:' | 'to:' | 'times:' ) <expr> ( 'by:' <expr> )?
 
 for-stmt ::=
-	'for' <loop-var> ( ',' <loop-var> )? <for-cond> ( 'while:' <expr> )? <block>
+	'for' <loop-var> ( ',' <loop-var> )? <for-cond> ( 'while:' <expr> )? ( 'label:' <litsym> )? <block>
 ```
 
 Examples:
@@ -203,6 +207,7 @@ for my i from: 1 to: 10 by: 2 {...}
 
 Notes:
 - `upto:` and `after:` are exclusive.
+- `after:` can't actually be used with `count:`, I'm just too lazy to rewrite the grammar.
 
 ### Do statement
 A statement that introduces a new scope.
@@ -210,12 +215,13 @@ A statement that introduces a new scope.
 Spec:
 ```antlr
 do-stmt ::=
-	'do' <block>
+	'do' ( 'label:' <litsym> )? <block>
 ```
 
 Examples:
 ```
 do {...}
+do label: `blk` {...}
 ```
 
 Notes:
@@ -236,19 +242,23 @@ return
 return a
 ```
 
+Notes:
+- `return`ing inside a block expression will return from the block, NOT the method.
+
 ### Break statement
 Exits a loop, optionally with a specified nesting depth.
 
 Spec:
 ```antlr
 break-stmt ::=
-	'break' \d*
+	'break' ( \d* | <litsym> )
 ```
 
 Examples:
 ```
 break
 break 3
+break `outer`
 ```
 
 ### Next statement
@@ -257,13 +267,14 @@ Exits the current iteration of a loop, optionally with a specified nesting depth
 Spec:
 ```antlr
 next-stmt ::=
-	'next' \d*
+	'next' ( \d* | <litsym> )
 ```
 
 Examples:
 ```
 next
 next 3
+next `outer`
 ```
 
 ### Throw statement
@@ -282,23 +293,11 @@ throw SomeError[new]
 throw                ;-- rethrows
 ```
 
-Notes:
-- I'll probably change the name of this at some point.
-
 ### Try-Catch statement
 Spec:
 ```antlr
-catch-expr ::=
-	| 'my' <name> <type-anno>? ( '=' <catch-expr> )?
-	| <array(of: <catch-expr>)>
-	| <hash(of: <catch-expr>, <catch-expr>)>
-	| <tuple(of: <catch-expr>)>
-	| <type-constructor(of: <catch-expr>)>
-	| <type>
-	| <expr>
-
 at-stmt ::=
-	'at' rep1sep(<catch-expr>, ',') ( "\n"? 'if' <expr> )? ( <block> | '=>' <statement> )
+	'at' <match-expr> ( "\n"? 'if' <expr> )? ( <block> | '=>' <statement> )
 
 try-catch-stmt ::=
 	'try' <block> ('catch' <block(of:

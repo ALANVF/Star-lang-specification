@@ -6,8 +6,8 @@ Common rules:
 type-anno ::=
 	'(' <type> ')'
 
-leading-type-args ::=
-	( <type-arg-decl> <sep> )*
+leading-type-vars ::=
+	( <type-var-decl> <sep> )*
 
 parents ::=
 	'of' <type> ( ',' <type> )*
@@ -17,20 +17,28 @@ types-spec ::=
 	| <array(of: <type>)>
 ```
 
-### Type argument declaration
-Declares a type argument that will be relevant upto the next declaration (that isn't a type argument declaration).
+### Type variable declaration
+Declares a type variable that will be relevant upto the next declaration (that isn't a type variable declaration).
 
 Spec:
 ```antlr
 cond ::=
-	| <type> ( '?=' | '!=' | 'of' ) <type>
+	| '!' ( <cond> | <type> )
+	| <type> ( ( '<' | '>' | '<=' | '>=' ) <type> )+
+	| <type> ( '?=' <type> )+
+	| <type> ( '!=' <type> )+
+	| <type> ( 'of' <type> )+
 	| <cond> ( '&&' | '||' | '^^' | '!!' ) <cond>
-	| '!' <cond>
-	| '(' <cond> ')'
+	| '(' <cond> ')'                                 // allows the same "leading operator" thing as normal parens
 
+attribute ::=
+	| 'flags'
+	| 'strong'
+	| 'uncounted'
+	| 'native' '[' ... ']'
 
-type-arg-decl ::=
-	| 'type' <type> <parents>? ( 'if' <cond> )? <block(of: <decl>)>?
+type-var-decl ::=
+	| 'type' <type> <parents>? ( 'is' <attribute> )* ( 'if' <cond> )? <block(of: <any-decl>)>?
 	| 'type' <type> '=' <type>
 ```
 
@@ -59,8 +67,8 @@ type Stringy {
 ```
 
 Notes:
-- Type argument declarations are not allowed to stand on their own; they must be part of a larger declaration.
-- A type argument may be assigned to an alias for future use.
+- Type variable declarations are not allowed to stand on their own; they must be part of a larger declaration.
+- A type variable may be assigned to an alias for future use.
 - Yes, higher-kinded types are permitted :)
 
 ### Type alias declaration
@@ -69,11 +77,12 @@ Spec:
 attribute ::=
 	| 'hidden' <type>?
 	| 'friend' <types-spec>
+	| 'noinherit'
 
 type-alias-decl ::=
-	<leading-type-args>
+	<leading-type-vars>
 	'alias' <type> (
-		| ( 'is' <attribute> )* ( '=' <type> )?
+		| ( 'is' <attribute> )* '=' <type>
 		| ( '(' <type> ')' )? ( 'is' <attribute> )* <block(of: <decl>)>?
 	)
 ```
@@ -85,7 +94,8 @@ alias Name (Str)
 ```
 
 Notes:
-- If a type argument appears on the RHS of a direct alias, the alias becomes a [typeclass](https://en.wikipedia.org/wiki/Type_class).
+- If a type variable appears on the RHS of a direct alias, the alias becomes a [typeclass](https://en.wikipedia.org/wiki/Type_class).
+- `noinherit` is only valid for newtypes
 
 ### Class declaration
 Spec:
@@ -99,7 +109,7 @@ attribute ::=
 	| 'native' '[' ... ']'
 
 class-decl ::=
-	<leading-type-args>
+	<leading-type-vars>
 	'class' <type> <parents>? ( 'is' <attribute> )* <block(of: <decl>)>
 ```
 
@@ -116,7 +126,7 @@ attribute ::=
 	| 'sealed' <type>?
 
 class-decl ::=
-	<leading-type-args>
+	<leading-type-vars>
 	'protocol' <type> <parents>? ( 'is' <attribute> )* <block(of: <decl>)>
 ```
 
@@ -130,7 +140,7 @@ attribute ::=
 	| 'friend' <types-spec>
 
 category-decl ::=
-	<leading-type-args>
+	<leading-type-vars>
 	'category' <type> ( 'for' <type> )? ( 'is' <attribute> )* <block(of: <decl>)>
 ```
 
@@ -157,10 +167,10 @@ attribute ::=
 
 has-stmt ::=
 	| 'has' <name> ( '=>' <expr> )? <block>?
-	| 'has' <signature> <block>?
+	| 'has' '[' ( <multi-sig> | <name> ) ']' ( '=>' <message> )? <block>?
 
 kind-decl ::=
-	<leading-type-args>
+	<leading-type-vars>
 	'kind' <type> <type-anno>? <parents>? ( 'is' <attribute> )* <block(of:
 		| <decl>
 		| <has-stmt>
@@ -170,7 +180,7 @@ kind-decl ::=
 Notes:
 - Kinds are allowed to inherit from other kinds, unlike every other programming language in existence.
 
-[Examples](../concepts/kinds/kinds.md)
+[More about kinds](../design/kinds.md)
 
 ### Module declaration
 Spec:
@@ -183,5 +193,6 @@ attribute ::=
 	| 'native' <litsym>?
 
 module-decl ::=
+	<leading-type-vars>
 	'module' <type> <parents>? ( 'is' <attribute> )* <block(of: <decl>)>
 ```

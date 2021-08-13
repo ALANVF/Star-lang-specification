@@ -1,6 +1,6 @@
 Purely conceptual for now
 
-```star
+```scala
 type T
 kind Expr[T] {
 	has [plus: a (Expr[Num]), b (Expr[Num])] (Expr[Num])
@@ -20,7 +20,7 @@ kind Expr[T] {
 ```
 
 It's worth noting that GADTs are already kinda possible via type specialization or inheritance
-```star
+```scala
 type T
 kind Expr[T] {
 	has [const: v (T)]

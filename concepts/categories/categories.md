@@ -1,3 +1,5 @@
+(THIS IS OLD. SEE [THE DESIGN DOC](../../design/categories.md))
+
 In Star, categories are similar to Objective-C categories.
 They can be used to add methods to classes and protocols, however they do have some differences.
 Mainly, categories are not automatically applied to the classes/protocols that they extend.
@@ -7,7 +9,7 @@ Oh also if a protocol in included in a category, all classes that conform to tha
 Before reading further, go look at the stuff in the Fractions folder and then come back.
 
 Let's try this:
-```swift
+```scala
 use Fractions.Fraction
 
 Core[say: Fraction[top: 1 bottom: 2]] ;=> Fraction[top: 1 bottom: 2]
@@ -19,7 +21,7 @@ This prevents unnecessary "monkey-patching" frequently used in languages such as
 What this instead does is that it encourages programmers to only extend classes when it'll actually be useful (hopefully).
 
 Ok so now let's actually use the Fractions category
-```swift
+```scala
 use Fractions
 
 Core[say: Fraction[top: 1 bottom: 2]] ;=> Fraction[top: 1 bottom: 2]
@@ -27,7 +29,7 @@ Core[say: 0.5[Fraction]]              ;=> Fraction[top: 1 bottom: 2]
 ```
 
 If you wanted to, you could use the category without importing it by putting the category name in the method call:
-```swift
+```scala
 use Fractions.Fraction
 
 Core[say: Fraction[top: 1 bottom: 2]] ;=> Fraction[top: 1 bottom: 2]

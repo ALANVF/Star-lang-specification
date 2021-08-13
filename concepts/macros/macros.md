@@ -20,7 +20,7 @@ Macros can also be overloaded, and can (maybe) have generic arguments (I'll expl
 I'll start with hygienic macros first since they're simpler.
 
 A simple hygienic macro:
-```swift
+```scala
 macro [typeOf: expr (AST.Expr)] {
 	@(expr.valueType)
 }

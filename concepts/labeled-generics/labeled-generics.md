@@ -8,7 +8,7 @@ So this could go one of two ways.
 
 The first option is to just use the labels as labels, and nothing else.
 
-```swift
+```scala
 type T
 class Array[Of: T] {
 	...
@@ -25,7 +25,7 @@ normal methods (like `a[b]`), as `A[B]` syntax would mean something different.
 
 The second option fixes the issue with the first option.
 
-```swift
+```scala
 type T
 class Array[Of: T] {
 	...
@@ -48,7 +48,7 @@ Another thing worth noting is that the type-cast syntax (`a[B]`) would clash a b
 no-arg generic type syntax (`A[B]`), which means that it's ambiguous. This is an unexpected
 road-block, but I definitely want to investigate this idea more in the future. It'd be pretty
 cool if type constraints could look (and act) just like regular method parameters:
-```swift
+```scala
 protocol Sequential[Index: I (Comparable), Element: E (_)] {
 	...
 }
