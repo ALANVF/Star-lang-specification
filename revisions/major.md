@@ -12,6 +12,7 @@ Revision #19:
 	- Added `noinherit` attribute for newtypes.
 	- Added case alias syntax for tagged kinds.
 	- Modules can now be generic.
+	- Added new operators and syntax to type variable conditions.
 - Improved concept docs.
 	- Tags are now used for intrinsics and temporary syntax.
 - Added categories design doc.
