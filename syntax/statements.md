@@ -207,7 +207,7 @@ for my i from: 1 to: 10 by: 2 {...}
 
 Notes:
 - `upto:` and `after:` are exclusive.
-- `after:` can't actually be used with `count:`, I'm just too lazy to rewrite the grammar.
+- `after:` can't actually be used with `times:`, I'm just too lazy to rewrite the grammar.
 
 ### Do statement
 A statement that introduces a new scope.
