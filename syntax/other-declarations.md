@@ -3,17 +3,16 @@ Imports a module, category, or type into the current namespace.
 
 Spec:
 ```antlr
-as-rule ::=
+use-tree ::=
 	| <type>
 	| <array(of: <type>)>
-	| <hash(key: <type> | <array(of: <type>)>, value: <as-rule>)>
+	| <hash(key: <type>, value: <use-tree>)>
 
 use-stmt ::=
 	<leading-type-vars>
 	'use' (
 		| <litsym>
-		| ( <type> | <array(of: <type>)> ) ( 'from:' <type> | <string> )? ( 'as:' <as-rule> )?
-		| <as-rule>
+		| <use-tree> ( 'from:' <type> | <string> )? ( 'as:' <use-tree> )?
 	)
 ```
 

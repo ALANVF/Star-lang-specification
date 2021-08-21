@@ -24,6 +24,7 @@ Spec:
 ```antlr
 cond ::=
 	| '!' ( <cond> | <type> )
+	| <type> '?'
 	| <type> ( ( '<' | '>' | '<=' | '>=' ) <type> )+
 	| <type> ( '?=' <type> )+
 	| <type> ( '!=' <type> )+

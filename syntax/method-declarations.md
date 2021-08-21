@@ -14,7 +14,7 @@ types-spec ::=
 	| <array(of: <type>)>
 
 body ::=
-	| `=>` <simple-stmt>
+	| '=>' <simple-stmt>
 	| <block(of: <stmt>)>
 ```
 

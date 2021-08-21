@@ -5,6 +5,10 @@ Common rules:
 ```antlr
 type-anno ::=
 	'(' <type> ')'
+
+then ::=
+	| <block>
+	| '=>' <statement>
 ```
 
 ### Expression
@@ -70,10 +74,10 @@ Similar to an if-orif-else chain, but it looks cleaner.
 Spec:
 ```antlr
 at-stmt ::=
-	'at' <expr> ( <block> | '=>' <statement> )
+	'at' <expr> <then>
 
 else-stmt ::=
-	'else' ( <block> | '=>' <statement> )
+	'else' <then>
 
 case-stmt ::=
 	'case' <block(of:
@@ -116,10 +120,10 @@ match-expr ::=
 	| <expr>
 
 at-stmt ::=
-	'at' <match-expr> ( "\n"? 'if' <expr> )? ( <block> | '=>' <statement> )
+	'at' <match-expr> ( "\n"? 'if' <expr> )? <then>
 
 else-stmt ::=
-	'else' ( <block> | '=>' <statement> )
+	'else' <then>
 
 match-stmt ::=
 	'match' <expr> <block(of:
@@ -195,7 +199,7 @@ for-cond ::=
 	| ( 'from:' | 'after:' ) <expr> ( 'upto:' | 'downto:' | 'to:' | 'times:' ) <expr> ( 'by:' <expr> )?
 
 for-stmt ::=
-	'for' <loop-var> ( ',' <loop-var> )? <for-cond> ( 'while:' <expr> )? ( 'label:' <litsym> )? <block>
+	'for' <match-expr> ( ',' <match-expr> )? <for-cond> ( 'while:' <expr> )? ( 'label:' <litsym> )? <block>
 ```
 
 Examples:
@@ -203,11 +207,12 @@ Examples:
 for my a in: b {...}
 for my k (Str), v (Int) in: d while: v > 5 {...}
 for my i from: 1 to: 10 by: 2 {...}
+for #{my a, my b} in: pairs {...}
 ```
 
 Notes:
 - `upto:` and `after:` are exclusive.
-- `after:` can't actually be used with `times:`, I'm just too lazy to rewrite the grammar.
+- ~~`after:` can't actually be used with `times:`, I'm just too lazy to rewrite the grammar.~~ This probably works fine now that I think about it.
 
 ### Do statement
 A statement that introduces a new scope.
@@ -297,7 +302,7 @@ throw                ;-- rethrows
 Spec:
 ```antlr
 at-stmt ::=
-	'at' <match-expr> ( "\n"? 'if' <expr> )? ( <block> | '=>' <statement> )
+	'at' <match-expr> ( "\n"? 'if' <expr> )? <then>
 
 try-catch-stmt ::=
 	'try' <block> ('catch' <block(of:
