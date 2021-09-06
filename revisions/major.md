@@ -1,3 +1,7 @@
+Revision #20:
+- Changed some operator precedence rules.
+- `orif` has been removed. `case` is a much better alternative.
+
 Revision #19:
 - `s/type argument/type variable/`.
 - Things use scala syntax highlighting now.

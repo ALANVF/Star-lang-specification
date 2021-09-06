@@ -15,7 +15,7 @@ then ::=
 Any valid expression listed in the [expressions spec](expressions.md).
 
 ### Variable declaration
-A variable declaration.
+A variable declaration. Technically an expression, but listed here as a statement for documentation purposes.
 
 Spec:
 ```antlr
@@ -36,7 +36,7 @@ Notes:
 Spec:
 ```antlr
 if-stmt ::=
-	'if' <expr> <block> ( 'orif' <expr> <block> )* ( 'else' <block> )?
+	'if' <expr> <block> ( 'else' <block> )?
 ```
 
 Examples:
@@ -50,26 +50,10 @@ if a {
 } else {
 	c
 }
-
-if a {
-	b
-} orif c {
-	d
-} orif e {
-	f
-}
-
-if a {
-	b
-} orif c {
-	d
-} else {
-	e
-}
 ```
 
 ### Case statement
-Similar to an if-orif-else chain, but it looks cleaner.
+Similar to the else-if syntax in common languages, but it looks cleaner.
 
 Spec:
 ```antlr
