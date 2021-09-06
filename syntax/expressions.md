@@ -2,8 +2,8 @@
 
 Precedence tree (highest to lowest):
 ```
-a.b, a[b], [a b]
-++a, --a, -a, !a, ~a, a++, a--, a?
+a.b, a[b], [a b], a++, a--, a?
+++a, --a, -a, ~a, !a
 a ** b
 a * b, a / b, a // b, a % b
 a + b, a - b
