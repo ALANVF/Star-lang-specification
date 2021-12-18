@@ -36,7 +36,8 @@ Notes:
 Spec:
 ```antlr
 if-stmt ::=
-	'if' <expr> <block> ( 'else' <block> )?
+	| 'if' <expr> <block> ( 'else' <block> )?
+	| 'if' <expr> '=>' <statement>
 ```
 
 Examples:
@@ -44,6 +45,8 @@ Examples:
 if a {
 	b
 }
+
+if a => b
 
 if a {
 	b

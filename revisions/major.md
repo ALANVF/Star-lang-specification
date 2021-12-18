@@ -1,3 +1,6 @@
+Revision #21:
+- Added `if ... => ...` shorthand for if-statements.
+
 Revision #20:
 - Changed some operator precedence rules.
 - `orif` has been removed. `case` is a much better alternative.
