@@ -181,3 +181,62 @@ Still a bit weird, but at least it's consistent(-ish?).
 Patch modules: modules that modify part of an existing module rather than being a new one.
 Kinda like a patch file for actual code I guess.
 
+----------------------------------
+
+List comprehensions:
+```star
+my array = #[1, 2, 3]
+my array' = #[for my value in: array => return value + 1] ;=> #[2, 3, 4]
+```
+
+Could also be extended to dicts, although I'm not a fan of special-casing the return syntax
+for it:
+```star
+my dict = #("a" => 1, "b" => 2, "c" => 3)
+my dict' = #(for my k, my v in: dict => return k => v + 1)
+```
+Maybe `return #{k, v + 1}` could be used instead?
+
+Also a note, you could have multiple comprehensions per literal
+```star
+my ranges = #[
+	for my i from: 1 to: 5 => return i
+	10
+	12
+	for my i from: 20 downto: 15 => return i
+]
+;=> #[1, 2, 3, 4, 5, 10, 12, 20, 19, 18, 17, 16, 15]
+```
+
+Maybe if-statements and other control flow could be allowed?
+```star
+#[
+	if foo => return bar
+	while cond {
+		return thing[stuff]
+	}
+]
+```
+Honestly, array and dict literals could be treated similarly to block expressions (although that
+raises the issue of implicit returns for non-statement entries)
+
+If the default rules for `return` are scrapped entirely (for some reason), maybe it would also be
+possible to have multiple returns per statement
+```star
+#[
+	for my i from: 1 to: 5 {
+		return i
+		return i * 2
+	}
+]
+;=> #[1, 2, 2, 4, 3, 6, 4, 8, 5, 10]
+```
+
+In either case, implicit returns for these comprehensions are a no-no.
+
+These should also ideally work with user-defined literal constructors
+```star
+my set = Set #[for my i from: 1 to: 5 => return i]
+;=> Set[Int] #[1, 2, 3, 4, 5]
+```
+
