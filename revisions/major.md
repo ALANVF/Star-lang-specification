@@ -1,5 +1,8 @@
 Revision #21:
 - Added `if ... => ...` shorthand for if-statements.
+- Added `match ... at ... => ...` shorthand for short match-statements.
+- Added `while ... => ...` shorthand for while-statements.
+- Added `for ... => ...` shorthand for for-statements.
 
 Revision #20:
 - Changed some operator precedence rules.

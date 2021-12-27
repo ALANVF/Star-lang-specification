@@ -128,7 +128,10 @@ For when you just want to match 1 thing.
 Spec:
 ```antlr
 match-inline-stmt ::=
-	'match' <expr> 'at' <match-expr> ( 'if' <expr> )? <block> ( 'else' <block> )?
+	'match' <expr> 'at' <match-expr> ( 'if' <expr> )? (
+		| <block> ( 'else' <block> )?
+		| '=>' <statement>
+	)
 ```
 
 Examples:
@@ -150,7 +153,7 @@ A loop that is controlled by a conditon.
 Spec:
 ```antlr
 while-stmt ::=
-	'while' <expr> ( 'label:' <litsym> )? <block>
+	'while' <expr> ( 'label:' <litsym> )? <then>
 ```
 
 Examples:
@@ -186,7 +189,7 @@ for-cond ::=
 	| ( 'from:' | 'after:' ) <expr> ( 'upto:' | 'downto:' | 'to:' | 'times:' ) <expr> ( 'by:' <expr> )?
 
 for-stmt ::=
-	'for' <match-expr> ( ',' <match-expr> )? <for-cond> ( 'while:' <expr> )? ( 'label:' <litsym> )? <block>
+	'for' <match-expr> ( ',' <match-expr> )? <for-cond> ( 'while:' <expr> )? ( 'label:' <litsym> )? <then>
 ```
 
 Examples:
@@ -195,6 +198,7 @@ for my a in: b {...}
 for my k (Str), v (Int) in: d while: v > 5 {...}
 for my i from: 1 to: 10 by: 2 {...}
 for #{my a, my b} in: pairs {...}
+for my value in: array => ...
 ```
 
 Notes:
