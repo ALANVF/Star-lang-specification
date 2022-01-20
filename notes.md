@@ -240,3 +240,60 @@ my set = Set #[for my i from: 1 to: 5 => return i]
 ;=> Set[Int] #[1, 2, 3, 4, 5]
 ```
 
+----------------------------------
+
+Combined loop structure:
+```star
+for my value in: values from: 1 upto: 10 by: 2 {
+	...
+}
+```
+
+The issue is that I'm not sure how this would be able to be user-defined,
+unless I were to use my proposed solution that fixes magical iteration semantics
+```star
+type T
+class Array[T] {
+	for my result (T) in: this from: (Int) upto: (Int) by: (Int) {
+		for my i :from :upto :by {
+			result = buffer[at: i]
+		}
+		
+		break
+	}
+}
+```
+
+Of course, this would be extremely tedious because of all the different looping variants
+(unless it was defined to only work on integers, which I'd rather avoid)
+
+----------------------------------
+
+Looping over multiple things at the same time:
+```star
+my array1 = #[1, 2, 3]
+my array2 = #[4, 5, 6]
+for my value1, my value2 in: array1, array2 {
+	Core[say: value1 + value2]
+}
+;=> 5
+;=> 7
+;=> 9
+```
+
+No clue how this would be implemented, but at the very least it would throw an error if
+they don't yield the same number of values
+
+----------------------------------
+
+Apparently this is ambiguous:
+```star
+Foo[bar: a baz: b] = value
+```
+
+This could be either be:
+1) destructuring `value` (either a memberwise or variant pattern)
+2) calling a static setter method on `Foo`
+
+The latter will be preferred for now, but how was this even overlooked?
+What should be used instead??
