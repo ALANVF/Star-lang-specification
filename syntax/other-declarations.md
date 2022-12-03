@@ -17,7 +17,7 @@ use-stmt ::=
 ```
 
 Examples:
-```
+```star
 use Core
 use #[A, B] from: C
 use #(

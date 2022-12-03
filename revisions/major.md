@@ -1,3 +1,12 @@
+Revision #22:
+- Hashes => Dicts
+- Dec literals are no longer floating point, but now dec64.
+- Dec literals now require leading and trailing digits.
+- Fixed operator precedence listing.
+- Methods can now be sealed (with optional visibility).
+- Added more information about categories.
+- Added information about multi-kinds.
+
 Revision #21:
 - Added `if ... => ...` shorthand for if-statements.
 - Added `match ... at ... => ...` shorthand for short match-statements.

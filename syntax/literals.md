@@ -10,10 +10,10 @@ An integer literal:
 Hex/binary literals are TBD.
 
 ### Dec
-A floating-point literal:
+A decimal literal:
 ```
 +1.2
-.3
+0.3
 4e-5
 ```
 
@@ -94,7 +94,7 @@ An array's type looks like `Array[E]` where `E` is the type of each value.
 
 The type of an empty array without any sort of type indication is TBD.
 
-### Hash
+### Dict
 An associative array literal:
 ```
 #("a" => 1, "b" => 2)
@@ -109,15 +109,15 @@ An associative array literal:
 
 A literal on the left-hand side of a pair does not become a string, so keep that in mind.
 
-Hashes are completely mutable.
+Dicts are completely mutable.
 
-Hashes are currently planned to be ordered (as opposed to being unordered).
+Dicts are ordered by default (as opposed to being unordered).
 
 Basic lookup looks like `#("a" => 1, "b" => 2, "c" => 3)[at: "b"]` (which results in `3`).
 
-A hash's type looks like `Hash[K, V]` where `K` is the type of every key and `V` is the type of every value.
+A dict's type looks like `Dict[K, V]` where `K` is the type of every key and `V` is the type of every value.
 
-The type of an empty hash without any sort of type indication is TBD.
+The type of an empty dict without any sort of type indication is TBD.
 
 ### Tuple
 A tuple literal:
@@ -232,7 +232,7 @@ Label syntax may be reversed as `:something` in the case of `something: somethin
 
 A label may be a keyword, in which case it can only passed around as `:keyword` (a punned label)
 - This only applies to keywords that appear inside method bodies, `is`, and `has`. Anything else is fair game (even `class`!).
-- `this`, `:true`, and `:false` are stupid edge-cases, please don't use them.
+- `:this`, `:true`, and `:false` work exactly how you'd expect.
 
 ### Tag
 A tag literal:
@@ -276,7 +276,7 @@ A group literal:
 [...]
 ```
 
-Generally not used by itself, but it represents a list of abstract syntax nodes.
+Repesents either a message, or the argments of a type.
 
 ### Block
 A block literal:

@@ -57,6 +57,36 @@ I'm not entirely sure what else to compare this to, or even what to call it. "As
 
 ## Other notes
 
+Categories can be declared inside a type declaration as a shorthand:
+```scala
+class Foo {
+	category Bar {
+		...
+	}
+}
+```
+
+When declared inside a protocol, it can enforce a requirement for types that implement it:
+```scala
+protocol Foo {
+	category Bar {
+		on [method]
+	}
+}
+
+class Baz of Foo {
+	;-- MUST implement Foo#[Bar method]
+	category Bar {
+		on [method] { ... }
+	}
+}
+```
+
+This adds an "extra" and "separate" vtable for types implementing `Foo`
+(though how to implement such a thing is another story...)
+
+<br>
+
 A generic type can be its own category:
 ```scala
 type T

@@ -297,3 +297,44 @@ This could be either be:
 
 The latter will be preferred for now, but how was this even overlooked?
 What should be used instead??
+
+----------------------------------
+
+Assertions could be neat:
+```star
+assert 0 <= index < array.length
+return array[at: index]
+```
+
+They could be disabled based on whether or not it's a debug or a production build.
+
+My original idea was to also allow custom exceptions to be thrown
+```star
+assert 0 <= index < array.length throw IndexError[at: index]
+return array[at: index]
+```
+but this might encourage users to use assertions for production code.
+
+----------------------------------
+
+Inferred kind values/tags:
+```star
+my foo (MyValueKind) = $someTag
+my bar (MyTaggedKind) = $[someTag: value]
+my baz (MyMultiKind) = $flag1 | $flag2
+```
+
+I see this mainly being useful for kinds that are used for options/flags and in pattern matching:
+```star
+my foo = Regex[new: "\\s+" flags: Regex.Flags.global | Regex.Flags.multiline]
+my bar = Regex[new: "\\s+" flags: $global | $multiline]
+
+match maybeValue {
+	at $[the: my value] { ... }
+	at $[none] { ... }
+}
+```
+
+Star currently requires all constructed values (kinds and classes) to be fully qualified with a type, which helps to make code self-documenting. This may discourage that style of code, which will eventually fall back onto the user and make it more difficult for them to read and work on existing code.
+
+Unfortunately, this will also make typechecking more difficult as it will require the typechecker to be fully bidirectional (which already needs to happen anyways because of closures / anon args).

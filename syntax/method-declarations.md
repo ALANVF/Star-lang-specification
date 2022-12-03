@@ -69,6 +69,7 @@ Spec:
 attribute ::=
 	| 'static'
 	| 'hidden' <type>?
+	| 'sealed' <type>?
 	| 'main'
 	| 'getter'
 	| 'setter'
@@ -102,6 +103,7 @@ Spec:
 ```antlr
 attribute ::=
 	| 'hidden' <type>?
+	| 'sealed' <type>?
 	| 'noinherit'
 	| 'unordered'
 	| 'native' <litsym>?
@@ -125,6 +127,7 @@ Spec:
 ```antlr
 attribute ::=
 	| 'hidden' <type>?
+	| 'sealed' <type>?
 	| 'noinherit'
 	| 'native' <litsym>?
 	| 'inline'
