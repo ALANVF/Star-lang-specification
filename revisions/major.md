@@ -1,3 +1,6 @@
+Revision #23:
+- Added new concept for spread operator.
+
 Revision #22:
 - Hashes => Dicts
 - Dec literals are no longer floating point, but now dec64.
