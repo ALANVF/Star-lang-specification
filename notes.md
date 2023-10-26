@@ -338,3 +338,19 @@ match maybeValue {
 Star currently requires all constructed values (kinds and classes) to be fully qualified with a type, which helps to make code self-documenting. This may discourage that style of code, which will eventually fall back onto the user and make it more difficult for them to read and work on existing code.
 
 Unfortunately, this will also make typechecking more difficult as it will require the typechecker to be fully bidirectional (which already needs to happen anyways because of closures / anon args).
+
+----------------------------------
+
+Recursion statement:
+```star
+my values = #[1, 2, 3, 4, 5]
+recursion i: 0 res: 0 {
+	if i < values.length {
+		recurse i: i - 1 res: res + values[at: i]
+	} else {
+		Core[say: res]
+	}
+} 
+```
+
+This would essentially fix Star's "Java" issue where recursion can only be used by making a separate method, since neither Star nor Java have local functions/methods outside of closures.
