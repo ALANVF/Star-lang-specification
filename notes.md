@@ -354,3 +354,5 @@ recursion i: 0 res: 0 {
 ```
 
 This would essentially fix Star's "Java" issue where recursion can only be used by making a separate method, since neither Star nor Java have local functions/methods outside of closures.
+
+I personally dislike the use of the word `recursion` here, and would like to change it to something like `recur` or `with`, but neither seem to fit very well (I would also prefer it if all keywords were full words)
