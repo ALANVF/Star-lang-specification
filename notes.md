@@ -341,18 +341,12 @@ Unfortunately, this will also make typechecking more difficult as it will requir
 
 ----------------------------------
 
-Recursion statement:
+Unified loop construct:
 ```star
-my values = #[1, 2, 3, 4, 5]
-recursion i: 0 res: 0 {
-	if i < values.length {
-		recurse i: i - 1 res: res + values[at: i]
-	} else {
-		Core[say: res]
-	}
-} 
+loop while: .. { ... }
+loop my i from: a to: b { ... }
+loop my x in: arr { ... }
+loop my a = 1 { ... next with: a + 1 }
 ```
 
-This would essentially fix Star's "Java" issue where recursion can only be used by making a separate method, since neither Star nor Java have local functions/methods outside of closures.
-
-I personally dislike the use of the word `recursion` here, and would like to change it to something like `recur` or `with`, but neither seem to fit very well (I would also prefer it if all keywords were full words)
+Since all loop constructs share similar features, it just makes sense to combine them all together to make them more accessible and customizable

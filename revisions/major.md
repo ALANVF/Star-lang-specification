@@ -1,3 +1,8 @@
+Revision #24:
+- Added new `recurse` statement
+	- Updated `next` statement accordingly
+- Added note about a unified loop construct.
+
 Revision #23:
 - Added new concept for spread operator.
 

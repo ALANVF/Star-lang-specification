@@ -120,7 +120,7 @@ match-stmt ::=
 ```
 
 Examples:
-[pattern matching concept](../concepts/pattern-matching/pattern-matching.md)
+[pattern matching concept](../design/pattern-matching.md)
 
 ### Inline-Match statement
 For when you just want to match 1 thing.
@@ -205,6 +205,33 @@ Notes:
 - `upto:` and `after:` are exclusive.
 - ~~`after:` can't actually be used with `times:`, I'm just too lazy to rewrite the grammar.~~ This probably works fine now that I think about it.
 
+### Recurse statement
+A loop that recurses like a recursive function.
+
+Spec:
+```antlr
+recurse-stmt ::=
+	'recurse' <lvar> ( ',' <lvar> )* ( 'label:' <litsym> )? <then>
+```
+
+Example:
+```
+use List from: Immutable
+
+recurse my list = List #[1, 2, 3] {
+	match list at List[head: my value tail: my rest] {
+		Core[say: value]
+		next with: rest
+	} else {
+		break
+	}
+}
+
+;=> 1
+;=> 2
+;=> 3
+```
+
 ### Do statement
 A statement that introduces a new scope.
 
@@ -247,7 +274,7 @@ Exits a loop, optionally with a specified nesting depth.
 Spec:
 ```antlr
 break-stmt ::=
-	'break' ( \d* | <litsym> )
+	'break' ( <int> | <litsym> )?
 ```
 
 Examples:
@@ -260,10 +287,12 @@ break `outer`
 ### Next statement
 Exits the current iteration of a loop, optionally with a specified nesting depth.
 
+It may also be supplied with values via `with:` when used inside a `recurse` statement
+
 Spec:
 ```antlr
 next-stmt ::=
-	'next' ( \d* | <litsym> )
+	'next' ( <int> | <litsym> )? ( 'with:' <expr> ( ',' <expr> )* )
 ```
 
 Examples:
@@ -271,6 +300,7 @@ Examples:
 next
 next 3
 next `outer`
+next with: values, i + 1
 ```
 
 ### Throw statement
